@@ -1,0 +1,65 @@
+{
+    "projects": [
+      {
+        "id": 1,
+        "title": "We Love Socials",
+        "description": "Chcete obsah na sociální sítě, který přináší výsledky?",
+        "image": "/images/work/love_socials.png",
+        "link": "https://welovesocials.cz/",
+        "link_lbl":"www.welovesocials.cz",
+        "feedback": "Choosing Hero Solutions was the best business decision we made this year. Our online traffic and conversions have skyrocketed!",
+        "client_name":"Elena C."
+      },
+      {
+        "id": 2,
+        "title": "United Recruitment",
+        "description": "Time to level up your team game! We understand, you're a go-getter with no time to waste.",
+        "image": "/images/work/unitedrecruitment.png",
+        "link": "https://unitedrecruitment.com.au/",
+        "link_lbl":"www.unitedrecruitment.com.au",
+        "feedback": "Hero Solutions provides more than just web development; they provide peace of mind. Their maintenance and support have been top-notch.",
+        "client_name":"Jerome V."
+      },
+      {
+        "id": 3,
+        "title": "Project Paving",
+        "description": "The South's #1 Paving & Driveway Contractor",
+        "image": "/images/work/paving.png",
+        "link": "https://projectpaving.co.uk/",
+        "link_lbl":"www.projectpaving.co.uk",
+        "feedback": "Working with Hero Solutions feels like a partnership. They listened, advised, and delivered beyond our expectations. Our website now perfectly reflects our brand.",
+        "client_name":"Chloe W."
+      },
+      {
+        "id": 4,
+        "title": "Skip the Dealer",
+        "description": "Canada’s #1 Way To Purchase The Right Vehicle",
+        "image": "/images/work/skip_dealer.png",
+        "link": "https://skipthedealers.ca/",
+        "link_lbl":"www.skipthedealers.ca",
+        "feedback": "The team at Hero Solutions is a blend of creativity and technical genius. Thanks to them, our website is the crown jewel of our business.",
+        "client_name":"Darnell J."
+      },
+      {
+        "id": 5,
+        "title": "World Forest Id",
+        "description": "Using science to take deforestation off the shopping list",
+        "image": "/images/work/word-forest.png",
+        "link": "https://worldforestid.org/",
+        "link_lbl":"www.worldforestid.org",
+        "feedback": "Hero Solutions not only met our web development needs but also introduced us to the latest digital trends. They're truly ahead of the curve.",
+        "client_name":"Rebecca F."
+      },
+      {
+        "id": 6,
+        "title": "Heart Solutions",
+        "description": "Comprehensive Cardiac Care at Heart Solutions of Oklahoma",
+        "image": "/images/work/heartsolutions.png",
+        "link": "https://heartsolutions.org/",
+        "link_lbl":"www.heartsolutions.org",
+        "feedback": "Our website's user experience has drastically improved, all thanks to the intuitive design crafted by Hero Solutions. They're web wizards!",
+        "client_name":"Martin L."
+      }
+      
+    ]
+  }
