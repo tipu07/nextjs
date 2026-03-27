@@ -1,0 +1,2823 @@
+/*
+|----------------------------------------------------------------------
+|		Body
+|----------------------------------------------------------------------
+*/
+
+html {
+  font-size: 10 + $pix;
+  // scroll-behavior: smooth;
+  @include laptop_xl {
+    font-size: 12 + $pix;
+  }
+  @include desktop {
+    font-size: 14 + $pix;
+  }
+  @at-root {
+    body {
+      background: var(--light);
+    }
+    section {
+      overflow: hidden;
+    }
+    .text_prime {
+      color: var(--prime_color);
+    }
+    .heading {
+      font-weight: 500;
+      margin-bottom: 2rem;
+      text-transform: uppercase;
+    }
+    .subheading {
+      color: var(--prime_color);
+    }
+    hr {
+      margin: 2rem 0;
+      border: 0;
+      border-top: 0.1rem solid var(--gray);
+    }
+    .form_blk {
+      > p {
+        > br {
+          display: none;
+        }
+      }
+    }
+    button {
+      background: transparent;
+      padding: 0;
+      border: 0;
+      @include trans;
+    }
+    .blk {
+      background: var(--light);
+      padding: 2.5rem;
+      border-radius: 2rem;
+      @include shadow(0 0.5rem 2rem 0 rgba(var(--black_rgb), 0.1));
+      hr {
+        opacity: 0.1;
+      }
+    }
+    .red {
+      background: var(--red);
+    }
+    .green {
+      background: var(--green);
+    }
+    .section_content {
+      font-size: 1.6rem;
+    }
+  }
+}
+
+/*
+|----------------------------------------------------------------------
+|		Logo
+|----------------------------------------------------------------------
+*/
+
+.logo {
+  position: relative;
+  @include flex(center, center);
+  width: 100%;
+  max-width: 8rem;
+  height: 8rem;
+  > a {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    > img {
+      height: 100%;
+      @include object(contain, left center);
+      @include trans;
+      header & {
+        @include object(contain, left center, $fill: true);
+        @include filter(1);
+      }
+      footer & {
+        @include filter(1);
+      }
+      &.logo-full {
+        header & {
+          @include filter(none);
+          opacity: 0;
+        }
+      }
+    }
+  }
+  header & {
+    position: relative;
+    float: left;
+    max-width: 16rem;
+    height: 5rem;
+    margin: 1.5rem auto;
+    @include trans;
+    z-index: 10;
+  }
+  footer & {
+    @include pos;
+    @include inset(auto 0 0);
+    max-width: 50rem;
+    height: auto;
+    opacity: 0.1;
+    pointer-events: none;
+    @include mobile_inverse {
+      position: static;
+    }
+  }
+}
+
+/*
+|----------------------------------------------------------------------
+|		Header
+|----------------------------------------------------------------------
+*/
+
+header {
+  @include pos($pos: fixed, $z: 30);
+  @include inset(0 0 auto);
+  background: var(--black);
+  @include trans(none);
+  .logo_blk {
+    @include pos($z: 10);
+    @include inset;
+    @include flex(center, center);
+    max-width: 14rem;
+    height: 12rem;
+    background: var(--prime_color);
+    margin: -3rem auto 0;
+  }
+  > .overlay {
+    @include pos($z: -1);
+    @include inset;
+    background: var(--light);
+    opacity: 0;
+  }
+}
+
+nav {
+  position: relative;
+  // @include flex(center, flex-end, wrap);
+  // height: 9.6rem;
+  margin-left: auto;
+  @include ipad_sm {
+    @include pos($pos: fixed, $z: 3);
+    @include inset;
+    // @include flex(center, flex-start, column);
+    @include gap(3rem);
+    height: auto;
+    background: var(--black);
+    padding: 12rem 3rem 5rem;
+    margin-top: 0;
+    -webkit-backdrop-filter: blur(1rem);
+    backdrop-filter: blur(1rem);
+    overflow: hidden;
+    overflow-y: auto;
+    @include visible(hide);
+    @include trans;
+  }
+  &.active {
+    @include visible(show);
+  }
+  > ul {
+    @include list;
+    @include flex(center, flex-end);
+    @include gap(2rem 4rem);
+    min-height: 8rem;
+    margin-left: 4rem;
+    @include ipad_sm {
+      @include flex($flow: column);
+      text-align: center;
+      margin: 0;
+    }
+    > li {
+      @include ipad_sm {
+        @include flex(center, center, $direction: column);
+      }
+      @include ipad_sm_inverse {
+        padding: 1rem 0;
+        &:nth-child(1),
+        &:nth-last-child(1) {
+          margin-left: auto;
+        }
+      }
+      &:hover {
+        > ul {
+          @include visible(show);
+          @include transform(translateX(0));
+        }
+      }
+      > a:not(.site_btn) {
+        @include flex(center, center);
+        // height: 3.4rem;
+        color: var(--light);
+        @at-root {
+          a.link {
+            @include i_flex;
+            color: var(--light);
+            font-size: 1.2rem;
+            font-weight: 600;
+            line-height: 1;
+            text-transform: uppercase;
+            white-space: nowrap;
+            overflow: hidden;
+            @include trans(none);
+            &:hover {
+              > span {
+                @include transform(translateY(-1.2em));
+              }
+            }
+            > span {
+              text-shadow: 0 1.2em 0 var(--light);
+              @include trans(all linear 0.2s);
+            }
+          }
+        }
+        &:hover {
+          color: var(--light);
+        }
+        > span {
+          text-shadow: 0 1.2em 0 var(--light);
+        }
+      }
+      &.active {
+        > a:not(.site_btn) {
+          color: var(--light);
+        }
+      }
+      &.drop {
+        position: relative;
+        > a {
+          &::after {
+            @include chev;
+            width: 1.2rem;
+            min-width: 1.2rem;
+            height: 1.2rem;
+            background: var(--light);
+            margin-left: 0.5rem;
+            @include trans;
+            // @include transform(rotate(-90deg));
+            @include ipad_sm_inverse {
+              content: "";
+            }
+          }
+        }
+        &:hover {
+          > a {
+            &::after {
+              @include transform(rotateX(180deg));
+            }
+          }
+        }
+      }
+      .sub {
+        @include list;
+        @include flex($flow: wrap);
+        @include pos($z: 5);
+        @include inset(100% auto auto -28rem);
+        width: 64rem;
+        background: var(--light);
+        padding: 1rem 0;
+        border-radius: 1rem;
+        @include visible(hide);
+        @include transform(translateY(1rem));
+        @include shadow(var(--shadow));
+        @include trans;
+        @include ipad_sm {
+          // display: none;
+          position: static;
+          width: auto;
+          background: rgba(var(--light_rgb), 0.1);
+          margin-top: 1rem;
+          @include visible(show);
+          pointer-events: unset;
+          @include transform(none);
+          @include trans(none);
+          @include shadow(none);
+        }
+        > li {
+          @include flex($justify: center);
+          width: 33.3334%;
+          @include ipad_sm {
+            width: 50%;
+          }
+          > a {
+            @include flex(center, $direction: column);
+            font-size: 1.2rem;
+            line-height: 1.2;
+            padding: 1rem 2rem;
+            text-align: center;
+            @include ipad_sm {
+              @include i_flex($justify: center);
+              color: var(--light);
+              font-size: 1.3rem;
+              padding: 0.6rem 0;
+            }
+            > img {
+              width: 4rem;
+              min-width: 4rem;
+              height: 4rem;
+              margin: 0 auto 1rem;
+            }
+          }
+          > ul {
+            font-size: 1.3rem;
+            padding-left: 3rem;
+            > li {
+              &:not(:nth-last-child(1)) {
+                margin-bottom: 0.5rem;
+              }
+              > a {
+                &:not(:hover) {
+                  opacity: 0.5;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/*
+|----------------------------------------------------------------------
+|		Banner
+|----------------------------------------------------------------------
+*/
+
+#banner {
+  background: var(--black);
+  color: var(--light);
+  padding: 16rem 0 0;
+  > .image,
+  > .video {
+    @include pos;
+    @include inset;
+    img,
+    video {
+      @include object($fill: true);
+    }
+  }
+  .content {
+    position: relative;
+    padding: 0 2rem;
+    z-index: 2;
+    .h1 {
+      max-width: 84rem;
+      font-size: 4.8rem;
+      font-weight: 600;
+      line-height: 0.9;
+      margin: 0 auto 2rem;
+      text-transform: uppercase;
+      @include mobile_inverse {
+        font-size: 9rem;
+      }
+    }
+    p {
+      max-width: 40rem;
+      font-size: 1.6rem;
+      font-weight: 300;
+      margin: 0 auto;
+    }
+  }
+  .curved_carousel {
+    @at-root {
+      :root {
+        // --viewport-height: 70rem;
+        --viewport-height: 112rem;
+        // --viewport-height-m: 35rem;
+        --viewport-height-m: 56rem;
+        // --perspective: 600px;
+        --perspective: 60rem;
+        // --perspective-m: 400px;
+        --perspective-m: 40rem;
+        // --block-offset: -18rem;
+        --block-offset: -28.8rem;
+        // --block-offset-m: -6rem;
+        --block-offset-m: -9.6rem;
+      }
+    }
+    position: relative;
+    width: 100%;
+    height: var(--viewport-height-m);
+    transform-style: preserve-3d;
+    user-select: none;
+    overflow: visible;
+    margin-block: var(--block-offset-m);
+    z-index: 1;
+    @include mobile_inverse {
+      height: var(--viewport-height);
+      margin-block: var(--block-offset);
+      margin-top: -40rem;
+    }
+    .curved_carousel__stage {
+      perspective: var(--perspective-m);
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      @include transform(translate(-50%, -50%));
+      @include mobile_inverse {
+        perspective: var(--perspective);
+      }
+    }
+    .curved_carousel__ring {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      pointer-events: none;
+    }
+    .curved_carousel__slide {
+      position: absolute;
+      /* Width and height will be set by JavaScript */
+      padding: 0 1.5rem;
+      transform-style: preserve-3d;
+      backface-visibility: initial !important;
+      pointer-events: all;
+      &:hover {
+        .curved_carousel__media {
+          opacity: 0;
+        }
+        .curved_carousel__media_hover {
+          opacity: 1;
+        }
+      }
+    }
+    .curved_carousel__media {
+      @include object(cover);
+      border-radius: 2.4rem;
+      @include transform(rotateY(180deg));
+      @include shadow(var(--shadow));
+      @include trans(all linear 0.3s);
+      overflow: hidden;
+    }
+    .curved_carousel__media_hover {
+      @include pos;
+      @include inset(0 1.5rem);
+      @include object(cover);
+      width: calc(100% - 3rem);
+      border-radius: 2.4rem;
+      opacity: 0;
+      @include transform(rotateY(180deg));
+      @include shadow(var(--shadow));
+      @include trans(all linear 0.3s);
+      overflow: hidden;
+    }
+  }
+
+  .slider {
+    @include flex;
+    // @include gap(0 1rem);
+    width: 20rem;
+    height: 30rem;
+    margin: auto;
+    transform-style: preserve-3d;
+    perspective: 30rem;
+    .item {
+      @include pos;
+      width: 20rem;
+      min-width: 20rem;
+      height: 30rem;
+      border-radius: 1rem;
+      overflow: hidden;
+      transform-style: preserve-3d;
+      backface-visibility: hidden;
+      transform-origin: 50% 50%;
+      &:nth-child(1) {
+        transform: rotateY(51deg);
+      }
+      &:nth-child(2) {
+        transform: rotateY(34deg);
+      }
+      &:nth-child(3) {
+        transform: rotateY(17deg);
+      }
+      &:nth-child(4) {
+        transform: rotateY(0);
+      }
+      &:nth-child(5) {
+        transform: rotateY(-17deg);
+      }
+      &:nth-child(6) {
+        transform: rotateY(-34deg);
+      }
+      &:nth-child(7) {
+        transform: rotateY(-51deg);
+      }
+      .image {
+        height: 100%;
+        > img {
+          @include object(cover);
+        }
+      }
+    }
+  }
+}
+
+/* #banner {
+	min-height: 50rem;
+	clip-path: inset(0 0 0 0);
+	@include min_height(400) {
+		min-height: 100vh;
+	}
+	.overlay {
+		content: "";
+		@include pos($z: 2);
+		@include inset;
+		background: var(--black);
+		opacity: 0.6;
+	}
+	> .image,
+	> .video {
+		@include pos;
+		@include inset;
+		img,
+		video {
+			@include object($fill: true);
+		}
+	}
+	.content {
+		position: fixed;
+		@include inset(auto 2rem 2rem);
+		color: var(--light);
+		text-align: right;
+		z-index: 2;
+		.h1 {
+			max-width: 84rem;
+			font-size: 9rem;
+			font-weight: 600;
+			line-height: 0.9;
+			margin: 0 0 2rem;
+			margin-left: auto;
+			text-transform: uppercase;
+			// text-shadow: 0.4rem 0.4rem 0.8rem rgba(var(--black_rgb), 0.5);
+		}
+		p {
+			max-width: 30rem;
+			font-size: 1.6rem;
+			font-weight: 300;
+			margin-left: auto;
+			margin-bottom: 0;
+		}
+		.logo_blk {
+			max-width: 24rem;
+			position: fixed;
+			left: 2rem;
+			bottom: 2rem;
+			@include filter(1);
+		}
+	}
+} */
+
+#serve {
+  padding: 8rem 0;
+  .content {
+    // max-width: 100rem;
+    margin-bottom: 5rem;
+    .h1 {
+      font-size: 4.8rem;
+      line-height: 0.9;
+      text-transform: uppercase;
+      @include mobile_inverse {
+        font-size: 12rem;
+      }
+    }
+    p {
+      max-width: 38rem;
+    }
+  }
+  .wrapper {
+    @include flex;
+    @include gap(2rem);
+    .column {
+      width: 32rem;
+      min-width: 32rem;
+      will-change: transform;
+      @include mobile_inverse {
+        width: 50rem;
+        min-width: 50rem;
+      }
+    }
+  }
+  .inner {
+    @include flex($direction: column);
+    min-height: calc(100vh - 18rem);
+    background: var(--light);
+    padding: 3rem 2rem;
+    border-radius: 2rem;
+    @include shadow(var(--shadow));
+    @include mobile_inverse {
+      padding: 5rem 4rem;
+    }
+    @include min_height(1200) {
+      min-height: initial;
+    }
+    .image {
+      width: 4rem;
+      min-width: 4rem;
+      height: 4rem;
+      min-height: 4rem;
+      margin-bottom: 2rem;
+      overflow: hidden;
+      img {
+        @include trans(all linear 0.2s);
+      }
+    }
+    .title {
+      font-size: 2.4rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 2rem;
+      @include mobile_inverse {
+        font-size: 3rem;
+      }
+    }
+  }
+}
+
+#project_old {
+  padding: 8rem 0;
+  .content {
+    max-width: 80rem;
+    margin-bottom: 5rem;
+    .h1 {
+      font-size: 14rem;
+      line-height: 0.9;
+      text-transform: uppercase;
+    }
+    p {
+      max-width: 38rem;
+    }
+  }
+  .wrapper {
+    @include flex($flow: wrap);
+    margin: -2rem;
+    .column {
+      width: 50%;
+      padding: 2rem;
+      &:nth-child(3) {
+        width: 100%;
+      }
+    }
+  }
+  .inner {
+    &:hover {
+      .image {
+        img {
+          @include transform(scale(1.1));
+        }
+      }
+    }
+    .image {
+      margin-bottom: 1rem;
+      overflow: hidden;
+      img {
+        @include trans(all linear 0.2s);
+      }
+    }
+    .text {
+      @include flex(flex-start, space-between);
+      @include gap(2rem);
+      text-transform: uppercase;
+      .title {
+        font-size: 4rem;
+        font-weight: 700;
+        line-height: 1;
+      }
+      .data {
+        text-align: right;
+        .small {
+          color: var(--gray);
+          font-size: 1.2rem;
+          font-weight: 600;
+          white-space: nowrap;
+        }
+      }
+    }
+  }
+}
+
+#project {
+  background: var(--black);
+  color: var(--light);
+  padding: 8rem 0;
+  overflow: initial;
+  .content {
+    margin-bottom: 5rem;
+    .h1 {
+      font-size: 5rem;
+      font-weight: 700;
+      line-height: 0.9;
+      text-transform: uppercase;
+      @include mobile_inverse {
+        font-size: 10.6rem;
+      }
+    }
+    p {
+      max-width: 37rem;
+      font-weight: 500;
+      margin-left: auto;
+    }
+  }
+  /* .wrapper {
+		opacity: 0.8;
+		@include transform(scale(0.7));
+	} */
+  .project_blk {
+    position: sticky;
+    top: 8rem;
+    background: var(--black);
+    border-radius: 2rem;
+    overflow: hidden;
+    .inner {
+      @include ratio(calc(100vh - 8rem));
+      > img {
+        @include object(cover, top center);
+      }
+      .overlay {
+        @include inset(0 0 auto);
+        @include flex($direction: column);
+        background: linear-gradient(
+          rgba(var(--black_rgb), 0.5),
+          rgba(0, 0, 0, 0)
+        );
+        color: var(--light);
+        padding: 3rem 2rem 6rem;
+        @include trans(all linear 0.3s);
+        border-radius: inherit;
+        @include mobile_inverse {
+          padding: 4rem 4rem 6rem;
+        }
+        .title {
+          font-size: 3.6rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          line-height: 1;
+          margin-bottom: 2rem;
+          @include mobile_inverse {
+            font-size: 5rem;
+          }
+        }
+        a.link {
+          color: var(--light);
+          &:hover {
+            color: var(--light);
+          }
+          > span {
+            text-shadow: 0 1.2em 0 var(--light);
+          }
+        }
+        p {
+          max-width: 30rem;
+          font-weight: 500;
+        }
+        ul {
+          margin-top: auto;
+          > li {
+            font-size: 1.2rem;
+            &:not(:nth-last-child(1)) {
+              margin-bottom: 0.5rem;
+            }
+            > span {
+              font-weight: 600;
+              text-transform: uppercase;
+            }
+          }
+        }
+      }
+      > img {
+        opacity: 0.9;
+      }
+    }
+  }
+}
+
+#folio {
+  position: relative;
+  padding: 8rem 0;
+  z-index: 2;
+  .content {
+    text-align: center;
+    margin-bottom: 5rem;
+    .h1 {
+      font-size: 5.4rem;
+      font-weight: 700;
+      line-height: 0.9;
+      text-transform: uppercase;
+      @include mobile_inverse {
+        font-size: 16rem;
+        line-height: 0.8;
+        @include min_height(1200) {
+          font-size: 10rem;
+        }
+      }
+    }
+    hr {
+      opacity: 0.5;
+    }
+  }
+  .wrapper {
+    @include flex;
+    @include gap(0 2rem);
+  }
+  .folio_blk {
+    @include flex;
+    width: 54rem;
+    min-width: 54rem;
+    border-radius: 2rem;
+    will-change: transform;
+    overflow: hidden;
+    @include mobile_inverse {
+      width: 80rem;
+      min-width: 80rem;
+    }
+    .video {
+      @include ratio(calc(100vh - 18rem));
+      background: var(--black);
+      width: 24rem;
+      min-width: 24rem;
+      @include mobile_inverse {
+        width: 30rem;
+        min-width: 30rem;
+      }
+      @include min_height(1200) {
+        @include ratio(50vh);
+      }
+      &.played {
+        &:hover {
+          > button {
+            opacity: 1;
+          }
+        }
+        > button {
+          opacity: 0;
+        }
+        > video {
+          opacity: 1;
+        }
+      }
+      > button {
+        @include flex(center, center);
+        @include bg((2.4rem, 0));
+        background-color: rgba(var(--light_rgb), 0.1);
+        width: 7rem;
+        min-width: 7rem;
+        height: 7rem;
+        margin: auto;
+        border-radius: 75%;
+        cursor: pointer;
+        &:hover {
+          width: 8rem;
+          min-width: 8rem;
+          height: 8rem;
+        }
+      }
+      > video {
+        @include object($fill: true);
+        opacity: 0.3;
+      }
+      > img {
+        opacity: 0.3;
+      }
+    }
+    .text {
+      @include flex($direction: column);
+      position: relative;
+      width: calc(100% - 24rem);
+      min-height: 40rem;
+      background: var(--light_gray);
+      padding: 2rem;
+      @include mobile_inverse {
+        width: calc(100% - 30rem);
+        padding: 4rem;
+      }
+      .info {
+        font-size: 1.2rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        opacity: 0.3;
+        margin-bottom: 1rem;
+      }
+      p {
+        max-width: 38rem;
+        font-size: 1.6rem;
+        font-weight: 400;
+        line-height: 1.2;
+        @include mobile_inverse {
+          font-size: 2rem;
+        }
+      }
+      .name {
+        font-size: 2.4rem;
+        font-weight: 700;
+        line-height: 1;
+        text-transform: uppercase;
+        text-align: right;
+        margin-top: auto;
+        @include mobile_inverse {
+          font-size: 3.6rem;
+        }
+      }
+      > img {
+        @include pos;
+        width: 8rem;
+        opacity: 0.1;
+        @include mobile_inverse {
+          width: 14rem;
+        }
+        &:nth-child(1) {
+          @include inset(2rem 2rem auto auto);
+        }
+        &:nth-last-child(1) {
+          @include inset(auto auto 2rem 2rem);
+        }
+      }
+    }
+  }
+  .inner {
+    @include align(flex-start);
+    @include gap(2rem);
+    .text {
+      // position: sticky;
+      // @include inset(10rem 0 auto);
+      width: 50%;
+      .h6 {
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+
+/*
+|----------------------------------------------------------------------
+|		Footer
+|----------------------------------------------------------------------
+*/
+
+footer {
+  background: var(--black);
+  color: var(--light);
+  padding: 8rem 0;
+  margin-top: auto;
+  .title {
+    // color: var(--prime_color);
+    margin: 0 0 2rem;
+    text-transform: uppercase;
+  }
+  a,
+  a.link {
+    color: var(--light);
+    &:hover {
+      color: var(--light);
+    }
+    > span {
+      text-shadow: 0 1.2em 0 var(--light);
+    }
+  }
+  .topper {
+    margin-bottom: 8rem;
+    padding-bottom: 8rem;
+    border-bottom: 0.2rem solid rgba(var(--light_rgb), 0.2);
+    .h1 {
+      font-size: 5rem;
+      font-weight: 700;
+      line-height: 1;
+      text-transform: uppercase;
+      @include mobile_inverse {
+        font-size: 11.2rem;
+      }
+    }
+    p {
+      max-width: 40rem;
+      font-weight: 500;
+    }
+  }
+  .wrapper {
+    @include flex($flow: wrap);
+    margin: -2rem;
+    .column {
+      width: 100%;
+      padding: 2rem;
+      @include mobile_inverse {
+        width: auto;
+      }
+      &:nth-last-child(1) {
+        @include mobile_inverse {
+          margin-left: auto;
+          text-align: right;
+        }
+      }
+    }
+  }
+  .list {
+    @include list;
+    > li {
+      &:not(:nth-last-child(1)) {
+        margin-bottom: 0.6rem;
+      }
+    }
+    &.main_list {
+      > li {
+        > a {
+          font-size: 3.4rem;
+          font-weight: 600;
+          line-height: 1.2;
+          text-transform: initial;
+          > span {
+            line-height: inherit;
+          }
+        }
+      }
+    }
+    &.info_list {
+      // color: var(--gray);
+      > li {
+        &.address {
+          max-width: 20rem;
+        }
+      }
+      a {
+        &:not(:hover) {
+          color: inherit;
+        }
+      }
+    }
+  }
+  .social {
+    @include list;
+    @include flex(center);
+    @include gap(1rem);
+    margin-top: 3rem;
+    @include mobile_inverse {
+      @include justify(flex-end);
+    }
+    > a {
+      width: 2rem;
+      min-width: 2rem;
+      height: 2rem;
+      &:not(:hover) {
+        @include filter(1);
+      }
+    }
+  }
+  .copyright {
+    margin-top: 6rem;
+  }
+}
+
+.flag_lnk {
+  @include flex;
+  column-gap: 1rem;
+  .flag_icon {
+    width: 3rem;
+    height: 3rem;
+    // @include radius(5rem);
+    overflow: hidden;
+    // &.contain_whatsapp {
+    // @include radius(0);
+    // }
+    img {
+      @include object;
+    }
+  }
+  span {
+    flex: 1;
+    align-self: center;
+    color: var(--light);
+    font-size: 2rem;
+    &.small_text {
+      font-size: 1.5rem;
+      &.dark_lnk {
+        color: var(--black);
+        font-family: "Medium";
+      }
+    }
+  }
+}
+
+/*
+|----------------------------------------------------------------------
+|		All Pages
+|----------------------------------------------------------------------
+*/
+
+#contact {
+  .top_block {
+    background: var(--black);
+    padding: 12rem 0 10rem;
+    color: var(--light);
+    @include mobile_inverse {
+      padding: 16rem 0 10rem;
+    }
+    h1,
+    .h1 {
+      max-width: 112rem;
+      font-size: 4.8rem;
+      font-weight: 700;
+      line-height: 0.9;
+      @include mobile_inverse {
+        font-size: 12rem;
+      }
+    }
+    p {
+      max-width: 40rem;
+      margin-top: 2rem;
+    }
+  }
+  .wrapper {
+    padding: 8rem 0;
+    @include mobile_inverse {
+      @include flex;
+    }
+    .data {
+      margin-bottom: 4rem;
+      @include mobile_inverse {
+        width: 30rem;
+        padding-right: 2rem;
+        margin-bottom: 0;
+      }
+      .contact_info_lst {
+        @include list;
+        font-weight: 500;
+        @include mobile_inverse {
+          max-width: 24rem;
+        }
+        > li {
+          @include flex;
+          &:not(:nth-last-child(1)) {
+            margin-bottom: 2rem;
+          }
+          > img {
+            width: 3.4rem;
+            min-width: 3.4rem;
+            height: 3.4rem;
+            background: var(--light);
+            padding: 0.8rem;
+            margin-right: 1rem;
+            border-radius: 75%;
+            @include shadow(var(--shadow));
+            & + * {
+              @include align_self(center);
+            }
+          }
+        }
+      }
+    }
+    .contact_form {
+      background: var(--light);
+      padding: 3rem;
+      border-radius: 2rem;
+      @include shadow(var(--shadow));
+      @include mobile_inverse {
+        width: calc(100% - 30rem);
+        margin-top: -14rem;
+      }
+      .input {
+        font-size: 1.3rem;
+        font-weight: 500;
+        padding: 0;
+        border: 0;
+        border-bottom: 0.2rem solid var(--gray);
+        border-radius: 0;
+      }
+    }
+  }
+}
+
+#launch_project {
+  padding-bottom: 8rem;
+  .top_block {
+    background: var(--black);
+    padding: 10rem 0 14rem;
+    color: var(--light);
+    .h1 {
+      font-size: 5rem;
+      font-weight: 700;
+      line-height: 0.9;
+      text-transform: uppercase;
+      @include mobile_inverse {
+        font-size: 10.6rem;
+        text-transform: initial;
+      }
+    }
+    p {
+      max-width: 40rem;
+      margin-top: 2rem;
+    }
+  }
+  .wrapper {
+    background: var(--light);
+    padding: 2rem;
+    margin: -12rem auto 0;
+    border-radius: 2rem;
+    @include shadow(var(--shadow));
+    @include mobile_inverse {
+      width: calc(100% - 30rem);
+      padding: 3rem;
+    }
+    h4,
+    .h4 {
+      font-size: 2rem;
+      font-weight: 700;
+      @include mobile_inverse {
+        font-size: 3rem;
+      }
+    }
+    .input {
+      font-size: 1.3rem;
+      font-weight: 500;
+      padding: 0;
+      border: 0;
+      border-bottom: 0.2rem solid var(--gray);
+      border-radius: 0;
+    }
+  }
+  @at-root {
+    .fileFlex {
+      @include flex(center);
+      @include gap(1rem);
+      width: fit-content;
+      padding: 1rem;
+      margin: auto;
+      cursor: pointer;
+      border: 0.2rem solid var(--prime_color);
+      border-radius: 1rem;
+      img {
+        @include object(contain);
+        width: 3rem;
+        height: 3rem;
+      }
+    }
+  }
+}
+
+#about {
+  .x_banner {
+    background: var(--black);
+    padding: 12rem 0 8rem;
+    color: var(--light);
+    @include mobile_inverse {
+      padding-top: 16rem;
+    }
+    .h1 {
+      font-size: 5.4rem;
+      font-weight: 700;
+      line-height: 0.9;
+      text-transform: uppercase;
+      @include mobile_inverse {
+        font-size: 10.2rem;
+      }
+    }
+    p {
+      width: 40rem;
+    }
+    .image {
+      @include ratio(30rem);
+      margin-top: 8rem;
+      border-radius: 2rem;
+    }
+  }
+  .fun_facts {
+    padding: 10rem 0;
+    .wrapper {
+      @include mobile_inverse {
+        @include flex($justify: space-between);
+      }
+      .content {
+        margin-bottom: 3rem;
+        @include mobile_inverse {
+          width: 62rem;
+          padding-right: 2rem;
+          margin-bottom: 0;
+        }
+        .h1 {
+          font-size: 4rem;
+          font-weight: 700;
+          line-height: 1;
+          margin-bottom: 2rem;
+          @include mobile_inverse {
+            font-size: 4.8rem;
+            line-height: 0.9;
+          }
+        }
+        p {
+          @include mobile_inverse {
+            max-width: 35rem;
+          }
+        }
+      }
+      .blocks {
+        @include mobile_inverse {
+          width: calc(100% - 62rem);
+        }
+        .flexor {
+          @include flex($flow: wrap);
+          > .inner {
+            width: 50%;
+            background: var(--light);
+            padding: 4rem 2rem;
+            text-align: center;
+            border-radius: 2rem;
+            @include shadow(var(--shadow));
+            @include mobile_inverse {
+              padding: 7rem 3rem;
+            }
+            .number {
+              font-size: 3.8rem;
+              font-weight: 700;
+              line-height: 1;
+              @include mobile_inverse {
+                font-size: 5rem;
+              }
+            }
+            &:nth-child(1) {
+              .number {
+                color: #df1a1a;
+              }
+            }
+            &:nth-child(2) {
+              .number {
+                color: #df8b1a;
+              }
+            }
+            &:nth-child(3) {
+              .number {
+                color: #1adf7d;
+              }
+            }
+            &:nth-child(4) {
+              .number {
+                color: #7a1adf;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .mission {
+    background: var(--black);
+    color: var(--light);
+    padding: 10rem 0;
+    .h1 {
+      font-size: 5rem;
+      // font-size: 11.2rem;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 4rem;
+      @include mobile_inverse {
+        font-size: 8rem;
+        line-height: 0.9;
+      }
+    }
+    .wrapper {
+      @include flex($flow: wrap);
+      @include gap(2rem);
+      @include mobile_inverse {
+        @include flow(nowrap);
+      }
+      .side {
+        width: 100%;
+        background: rgba(var(--light_rgb), 0.1);
+        padding: 3rem 2rem;
+        border-radius: 2rem;
+        @include mobile_inverse {
+          width: 50%;
+          padding: 4rem 12rem;
+        }
+        .icon {
+          width: 7rem;
+          min-width: 7rem;
+          height: 7rem;
+          background: rgba(var(--light_rgb), 0.1);
+          padding: 1rem;
+          margin: 0 auto 2rem;
+          border-radius: 75%;
+        }
+        .h4 {
+          font-weight: 700;
+          text-transform: uppercase;
+        }
+      }
+    }
+    .content {
+      margin-top: 6rem;
+      padding-top: 6rem;
+      border-top: 0.2rem dashed rgba(var(--light_rgb), 0.1);
+      text-align: center;
+      @include mobile_inverse {
+        text-align: initial;
+      }
+      .h2 {
+        font-size: 3.8rem;
+        font-weight: 700;
+        line-height: 1;
+        margin-bottom: 2rem;
+        @include mobile_inverse {
+          font-size: 7.4rem;
+        }
+      }
+      p {
+        @include mobile_inverse {
+          max-width: 56rem;
+        }
+      }
+    }
+  }
+  .works {
+    padding: 10rem 0;
+    .out_wrapper {
+      @include flex($direction: column);
+      min-height: calc(100vh - 20rem);
+      .min_wrapper {
+        @include mobile_inverse {
+          @include flex($direction: column);
+          min-height: calc(100vh - 15rem);
+          @include flex_grow(1);
+          @include min_height(1200) {
+            min-height: initial;
+          }
+        }
+      }
+    }
+    .h2 {
+      max-width: 100rem;
+      font-size: 5rem;
+      font-weight: 700;
+      line-height: 0.9;
+      margin: 0 auto 4rem;
+      text-transform: uppercase;
+      @include mobile_inverse {
+        font-size: 14rem;
+      }
+    }
+    .wrapper {
+      @include flex;
+      @include gap(2rem);
+      @include flex_grow(1);
+      .column {
+        width: 34rem;
+        min-width: 34rem;
+        will-change: transform;
+        @include mobile_inverse {
+          width: 40rem;
+          min-width: 40rem;
+        }
+      }
+    }
+    .inner {
+      @include flex(center);
+      background: var(--light);
+      padding: 2rem;
+      border-radius: 2rem;
+      @include shadow(var(--shadow));
+      @include mobile_inverse {
+        padding: 3rem;
+      }
+      .icon {
+        width: 4rem;
+        min-width: 4rem;
+        height: 4rem;
+        margin-right: 2rem;
+        @include mobile_inverse {
+          width: 5rem;
+          min-width: 5rem;
+          height: 5rem;
+        }
+      }
+    }
+    .content {
+      max-width: 72rem;
+      font-weight: 500;
+      margin: 5rem auto 0;
+    }
+  }
+  .teams {
+    background: var(--black);
+    color: var(--light);
+    padding: 10rem 0;
+    .out_wrapper {
+      @include flex($direction: column);
+      min-height: calc(100vh - 20rem);
+    }
+    .content {
+      margin-bottom: 5rem;
+      .h1 {
+        font-size: 5rem;
+        font-weight: 700;
+        line-height: 0.9;
+        margin-bottom: 0;
+        text-transform: uppercase;
+        z-index: 2;
+        @include mobile_inverse {
+          font-size: 11.2rem;
+        }
+      }
+      hr {
+        opacity: 0.3;
+        @include mobile_inverse {
+          @include min_height(1200) {
+            display: none;
+          }
+        }
+      }
+      p {
+        max-width: 36rem;
+        @include mobile_inverse {
+          @include min_height(1200) {
+            display: none;
+          }
+        }
+      }
+    }
+    .wrapper {
+      @include flex;
+      @include gap(2rem);
+      @include flex_grow(1);
+      .column {
+        // width: 40rem;
+        // min-width: 40rem;
+        width: 30rem;
+        min-width: 30rem;
+        will-change: transform;
+      }
+    }
+    .inner {
+      min-height: calc(100vh - 15rem);
+      background: rgba(var(--light_rgb), 0.1);
+      padding: 3rem;
+      border-radius: 2rem;
+      @include shadow(var(--shadow));
+      @include min_height(1200) {
+        min-height: initial;
+      }
+      &.ceo {
+        background: var(--light);
+        color: var(--black);
+      }
+      .image {
+        width: 16rem;
+        @include ratio(16rem);
+        margin: 0 auto 2rem;
+        border-radius: 75%;
+        @include shadow(var(--shadow));
+        @include mobile_inverse {
+          width: 20rem;
+          @include ratio(20rem);
+        }
+      }
+      .name {
+        font-size: 2rem;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+      .designation {
+        margin: 0 auto 2rem;
+        opacity: 0.5;
+        text-transform: capitalize;
+      }
+    }
+  }
+  .team_work {
+    padding: 10rem 0;
+    .h2 {
+      font-size: 5rem;
+      font-weight: 700;
+      line-height: 0.9;
+      text-transform: uppercase;
+      margin-bottom: 3rem;
+      @include mobile_inverse {
+        font-size: 10.4rem;
+      }
+    }
+    .video {
+      @include ratio(40rem);
+      background: var(--black);
+      // width: 30rem;
+      margin-top: 4rem;
+      border-radius: 2rem;
+      &.played {
+        &:hover {
+          > button {
+            opacity: 1;
+          }
+        }
+        > button {
+          opacity: 0;
+        }
+      }
+      > button {
+        @include flex(center, center);
+        @include bg((2.4rem, 0));
+        background-color: rgba(var(--light_rgb), 0.1);
+        width: 7rem;
+        min-width: 7rem;
+        height: 7rem;
+        margin: auto;
+        border-radius: 75%;
+        cursor: pointer;
+        &:hover {
+          width: 8rem;
+          min-width: 8rem;
+          height: 8rem;
+        }
+      }
+      > video {
+        @include object($fill: true);
+        opacity: 0.3;
+      }
+      > img {
+        opacity: 0.3;
+      }
+    }
+  }
+}
+
+#careers {
+  padding-top: 8rem;
+  .top_block {
+    padding: 4rem 0;
+    .h1 {
+      font-size: 5rem;
+      max-width: 86rem;
+      font-weight: 700;
+      line-height: 0.9;
+      margin-bottom: 2rem;
+      text-transform: uppercase;
+      @include mobile_inverse {
+        font-size: 8rem;
+        text-transform: initial;
+      }
+    }
+  }
+  .connectivity {
+    background: var(--black);
+    color: var(--light);
+    padding: 10rem 0;
+    .wrapper {
+      @include mobile_inverse {
+        @include flex(center, space-between);
+      }
+      .content {
+        @include mobile_inverse {
+          max-width: 36rem;
+        }
+        .h2 {
+          font-size: 4rem;
+          font-weight: 700;
+          line-height: 0.9;
+          text-transform: uppercase;
+          @include mobile_inverse {
+            font-size: 3.8rem;
+            line-height: 1.1;
+            text-transform: initial;
+          }
+        }
+      }
+      .side {
+        margin-top: 3rem;
+        @include mobile_inverse {
+          width: calc(100% - 38rem);
+          padding-left: 2rem;
+          margin-top: 0;
+        }
+      }
+    }
+    .flexor {
+      @include flex($flow: wrap);
+      margin: -1rem;
+      > .column {
+        width: 100%;
+        padding: 1rem;
+        @include mobile_inverse {
+          width: 33.3334%;
+        }
+      }
+    }
+    .inner {
+      background: rgba(var(--light_rgb), 0.1);
+      padding: 3rem;
+      border-radius: 2rem;
+      @include shadow(var(--shadow));
+      .icon {
+        width: 5rem;
+        min-width: 5rem;
+        height: 5rem;
+        margin-bottom: 2rem;
+      }
+    }
+  }
+  .choose {
+    padding: 10rem 0;
+    .h1 {
+      font-size: 6rem;
+      font-weight: 700;
+      line-height: 0.9;
+      margin: 0 0 3rem;
+      text-transform: uppercase;
+      @include mobile_inverse {
+        font-size: 14rem;
+      }
+    }
+    p {
+      max-width: 48rem;
+      margin: 0 auto;
+      @include mobile_inverse {
+        font-size: 1.8rem;
+      }
+    }
+  }
+  .jobs {
+    background: var(--black);
+    color: var(--light);
+    padding: 10rem 0;
+    .out_wrapper {
+      @include flex($direction: column);
+      min-height: calc(100vh - 18rem);
+    }
+    .content {
+      margin-bottom: 5rem;
+      .h1 {
+        max-width: 68rem;
+        font-size: 5rem;
+        font-weight: 700;
+        line-height: 0.9;
+        margin-bottom: 0;
+        text-transform: uppercase;
+        @include mobile_inverse {
+          font-size: 8rem;
+          text-transform: initial;
+        }
+      }
+      p {
+        display: none;
+        max-width: 46rem;
+        padding-top: 2rem;
+        @include min_height(1200) {
+          display: block;
+        }
+      }
+    }
+    .wrapper {
+      @include flex;
+      @include flex_grow(1);
+      @include gap(2rem);
+      .column {
+        width: 32rem;
+        min-width: 32rem;
+        will-change: transform;
+        @include mobile_inverse {
+          width: 46rem;
+          min-width: 46rem;
+          @include min_height(1200) {
+            width: 36rem;
+            min-width: 36rem;
+          }
+        }
+      }
+    }
+    .inner {
+      @include flex($direction: column);
+      background: rgba(var(--light_rgb), 0.1);
+      padding: 3rem;
+      border-radius: 2rem;
+      @include shadow(var(--shadow));
+      .h4 {
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+      ul {
+        @include list;
+        @include flex;
+        @include gap(2rem);
+        padding-top: 3rem;
+        margin-top: auto;
+        > li {
+          @include flex(center);
+          @include gap(1rem);
+          > img {
+            width: 2rem;
+            min-width: 2rem;
+            height: 2rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+#apply {
+  padding-bottom: 8rem;
+  .top_block {
+    background: var(--black);
+    padding: 12rem 0 14rem;
+    color: var(--light);
+    .h1 {
+      font-size: 11.4rem;
+      font-weight: 700;
+      line-height: 0.9;
+      margin-bottom: 3rem;
+    }
+    p {
+      max-width: 36rem;
+      margin-top: 2rem;
+    }
+  }
+  .wrapper {
+    width: calc(100% - 30rem);
+    background: var(--light);
+    padding: 3rem;
+    margin: -10rem auto 0;
+    border-radius: 2rem;
+    @include shadow(var(--shadow));
+    .job_info {
+      @include flex($justify: space-between);
+      @include gap(2rem);
+      margin-bottom: 2rem;
+      .text {
+        width: 100%;
+        max-width: 60rem;
+      }
+      .info {
+        text-align: right;
+        > div {
+          @include flex(center, flex-end);
+          @include gap(0.5rem);
+          &:not(:nth-last-child(1)) {
+            margin-bottom: 0.5rem;
+          }
+          > img {
+            width: 2rem;
+            min-width: 2rem;
+            height: 2rem;
+          }
+        }
+      }
+    }
+    .h3 {
+      font-size: 3rem;
+      font-weight: 700;
+    }
+    .input {
+      font-size: 1.3rem;
+      font-weight: 500;
+      padding: 0;
+      border: 0;
+      border-bottom: 0.2rem solid var(--gray);
+      border-radius: 0;
+    }
+  }
+}
+
+#services {
+  padding-top: 8rem;
+  .top_block {
+    background: var(--black);
+    color: var(--light);
+    padding: 4rem 0 10rem;
+    .content {
+      margin-bottom: 4rem;
+      .h1 {
+        font-size: 4.6rem;
+        font-weight: 700;
+        line-height: 1;
+        margin-bottom: 3rem;
+        @include mobile_inverse {
+          font-size: 10rem;
+          line-height: 0.9;
+        }
+      }
+      .icon_text {
+        @include flex(center);
+        @include gap(2rem);
+        background: rgba(var(--light_rgb), 0.1);
+        max-width: 48rem;
+        padding: 2rem;
+        border-radius: 2rem;
+        > img {
+          width: 5rem;
+          min-width: 5rem;
+          height: 5rem;
+        }
+      }
+    }
+    .wrapper {
+      @include mobile_inverse {
+        @include flex;
+      }
+      > .text {
+        margin-bottom: 2rem;
+        @include mobile_inverse {
+          width: 50rem;
+          padding-right: 6rem;
+          margin-bottom: 0;
+        }
+      }
+      > .video {
+        @include ratio(36rem);
+        background: var(--light);
+        border-radius: 2rem;
+        @include mobile_inverse {
+          width: calc(100% - 50rem);
+        }
+        &.played {
+          &:hover {
+            > button {
+              opacity: 1;
+            }
+          }
+          > button {
+            opacity: 0;
+          }
+        }
+        > button {
+          @include flex(center, center);
+          @include bg((2.4rem, 0));
+          background-color: rgba(var(--black_rgb), 0.5);
+          width: 7rem;
+          min-width: 7rem;
+          height: 7rem;
+          margin: auto;
+          border-radius: 75%;
+          cursor: pointer;
+          @include trans(all linear 0.1s);
+          &:hover {
+            width: 8rem;
+            min-width: 8rem;
+            height: 8rem;
+          }
+        }
+        > video {
+          @include object($fill: true);
+        }
+      }
+    }
+  }
+  .choose {
+    padding: 10rem 0;
+    .out_wrapper {
+      @include flex($direction: column);
+      min-height: calc(100vh - 20rem);
+      @include mobile_inverse {
+        min-height: initial;
+      }
+    }
+    .h2 {
+      font-size: 5rem;
+      font-weight: 700;
+      line-height: 0.9;
+      text-transform: uppercase;
+      margin-bottom: 4rem;
+      @include mobile_inverse {
+        font-size: 7rem;
+      }
+    }
+    .wrapper {
+      @include flex;
+      @include gap(2rem);
+      @include flex_grow(1);
+      @include mobile_inverse {
+        @include flex($flow: wrap);
+        @include gap(0);
+        margin: -1rem;
+      }
+      .column {
+        width: 32rem;
+        min-width: 32rem;
+        will-change: transform;
+        @include mobile_inverse {
+          width: 25%;
+          min-width: 25%;
+          padding: 1rem;
+          // min-width: 40rem;
+        }
+      }
+    }
+    .inner {
+      @include flex;
+      background: var(--light);
+      padding: 2rem;
+      border-radius: 2rem;
+      @include shadow(var(--shadow));
+      .icon {
+        width: 5rem;
+        min-width: 5rem;
+        height: 5rem;
+        margin-right: 2rem;
+      }
+    }
+  }
+  .process {
+    background: var(--black);
+    color: var(--light);
+    padding: 10rem 0;
+    .h2 {
+      font-size: 3.6rem;
+      font-weight: 700;
+      line-height: 0.9;
+      text-transform: uppercase;
+      margin-bottom: 4rem;
+      @include mobile_inverse {
+        font-size: 7rem;
+      }
+    }
+    p {
+      max-width: 60rem;
+      margin: 0 auto;
+    }
+    .list {
+      @include flex($flow: wrap);
+      @include gap(1rem);
+      .item {
+        width: 100;
+        background: rgba(var(--light_rgb), 0.1);
+        font-size: 2rem;
+        font-weight: 300;
+        line-height: 1.2;
+        padding: 3rem;
+        border-radius: 2rem;
+        @include mobile_inverse {
+          width: calc(50% - 0.5rem);
+        }
+        *:not(h5) {
+          font-size: 1.6rem;
+        }
+      }
+    }
+  }
+  .faqs {
+    padding: 10rem 0;
+    .content {
+      margin-bottom: 4rem;
+      .h2 {
+        max-width: 80rem;
+        font-size: 4.6rem;
+        font-weight: 700;
+        line-height: 0.9;
+        margin: 0 auto 2rem;
+        text-transform: uppercase;
+        @include mobile_inverse {
+          font-size: 7rem;
+        }
+      }
+      p {
+        max-width: 56rem;
+        font-weight: 500;
+        margin: auto;
+      }
+    }
+    .faq_block {
+      max-width: 80rem;
+      margin: 0 auto;
+    }
+  }
+  .goals {
+    background: var(--black);
+    color: var(--light);
+    padding: 10rem 0;
+    border-bottom: 1rem solid rgba(var(--light_rgb), 0.1);
+    .content {
+      margin-bottom: 4rem;
+      .h2 {
+        font-size: 6rem;
+        font-weight: 700;
+        line-height: 0.9;
+        margin-bottom: 2rem;
+        @include mobile_inverse {
+          font-size: 12rem;
+        }
+      }
+      p {
+        max-width: 40rem;
+      }
+    }
+    .wrapper {
+      @include flex($flow: wrap);
+      @include gap(2rem);
+      @include mobile_inverse {
+        @include flow(nowrap);
+      }
+      > .column {
+        width: 100%;
+        @include mobile_inverse {
+          width: 25%;
+        }
+        .inner {
+          background: rgba(var(--light_rgb), 0.1);
+          padding: 2rem;
+          border-radius: 1rem;
+        }
+      }
+    }
+  }
+}
+
+.faq_block {
+  .faq_item {
+    padding: 2rem;
+    border-radius: 1rem;
+    @include shadow(var(--shadow));
+    &:not(:nth-last-child(1)) {
+      margin-bottom: 2rem;
+    }
+    .accordion__header {
+      .h4 {
+        position: relative;
+        @include flex($justify: space-between);
+        @include gap(0 2rem);
+        font-size: 1.6rem;
+        cursor: pointer;
+        margin-bottom: 0;
+        @include trans;
+        @include mobile_inverse {
+          @include gap(0 30rem);
+          font-size: 1.8rem;
+        }
+        &:hover {
+          color: var(--prime_color);
+        }
+        &:after {
+          content: "";
+          width: 1.4rem;
+          min-width: 1.4rem;
+          height: 1.4rem;
+          border-right: 0.2rem solid;
+          border-bottom: 0.2rem solid;
+          @include transform(rotate(45deg));
+        }
+      }
+    }
+    .accordion__details {
+      overflow: hidden;
+      height: 0;
+      > *:first-child {
+        margin-top: 1.4rem;
+      }
+      p {
+        &:nth-last-child(1) {
+          margin-bottom: 0;
+        }
+      }
+    }
+    &.open {
+      .accordion__header {
+        .h4 {
+          &:after {
+            @include transform(rotate(225deg));
+          }
+        }
+      }
+      .accordion__details {
+        height: auto;
+      }
+    }
+  }
+}
+
+#portfolio {
+  overflow: initial;
+  .top_block {
+    background: var(--black);
+    padding: 12rem 0 10rem;
+    color: var(--light);
+    .h1 {
+      max-width: 112rem;
+      font-size: 6rem;
+      font-weight: 700;
+      line-height: 0.9;
+      text-transform: uppercase;
+      @include mobile_inverse {
+        font-size: 12rem;
+      }
+    }
+    p {
+      max-width: 42rem;
+      font-weight: 500;
+      margin-top: 2rem;
+    }
+  }
+  .works {
+    // background: var(--black);
+    padding: 10rem 0 10rem;
+    .wrapper {
+      @include flex($flow: wrap);
+      margin: -5rem -2rem;
+      .column {
+        width: 100%;
+        padding: 5rem 2rem;
+        @include mobile_inverse {
+          width: 50%;
+        }
+      }
+    }
+    .inner {
+      .image {
+        margin-bottom: 2rem;
+        border-radius: 2rem;
+        // @include shadow(var(--shadow));
+        overflow: hidden;
+        &:hover {
+          > img {
+            @include transform(scale(1.03) translateX(0.8rem));
+          }
+        }
+        img {
+          @include trans(0.4s ease-in-out);
+        }
+      }
+      .text {
+        @include flex(flex-start, space-between, $direction: column);
+        @include gap(1rem 2rem);
+        text-transform: uppercase;
+        @include mobile_inverse {
+          @include direction(row);
+        }
+        .title {
+          font-size: 3rem;
+          font-weight: 700;
+          line-height: 1;
+          margin-bottom: 0;
+          @include mobile_inverse {
+            font-size: 3.6rem;
+          }
+        }
+        .data {
+          @include mobile_inverse {
+            text-align: right;
+          }
+          a.link {
+            color: var(--black);
+            &:hover {
+              color: var(--black);
+            }
+            > span {
+              text-shadow: 0 1.2em 0 var(--black);
+            }
+          }
+          .small {
+            font-size: 1.2rem;
+            font-weight: 600;
+            opacity: 0.5;
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+  }
+  .notch {
+    background: var(--black);
+    color: var(--light);
+    padding: 10rem 0;
+    overflow: initial;
+    .content {
+      margin-bottom: 5rem;
+      .h1 {
+        max-width: 80rem;
+        font-size: 5rem;
+        font-weight: 700;
+        line-height: 0.9;
+        text-transform: uppercase;
+        @include mobile_inverse {
+          font-size: 10.6rem;
+        }
+      }
+      p {
+        max-width: 37rem;
+        font-weight: 500;
+        margin-left: auto;
+      }
+    }
+    /* .wrapper {
+			opacity: 0.8;
+			@include transform(scale(0.7));
+		} */
+    .project_blk {
+      position: sticky;
+      top: 8rem;
+      background: var(--black);
+      border-radius: 2rem;
+      overflow: hidden;
+      .inner {
+        @include ratio(calc(100vh - 8rem));
+        > img {
+          @include object(cover, top center);
+        }
+        .overlay {
+          @include inset(0 0 auto);
+          @include flex($direction: column);
+          background: linear-gradient(
+            rgba(var(--black_rgb), 0.5),
+            rgba(0, 0, 0, 0)
+          );
+          color: var(--light);
+          padding: 2rem 2rem 6rem;
+          @include trans(all linear 0.3s);
+          border-radius: inherit;
+          @include mobile_inverse {
+            padding: 4rem 4rem 6rem;
+          }
+          .title {
+            font-size: 3rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            line-height: 1;
+            margin-bottom: 2rem;
+            @include mobile_inverse {
+              font-size: 5rem;
+            }
+          }
+          a.link {
+            color: var(--light);
+            &:hover {
+              color: var(--light);
+            }
+            > span {
+              text-shadow: 0 1.2em 0 var(--light);
+            }
+          }
+          p {
+            max-width: 30rem;
+            font-weight: 500;
+          }
+          ul {
+            margin-top: auto;
+            > li {
+              font-size: 1.2rem;
+              &:not(:nth-last-child(1)) {
+                margin-bottom: 0.5rem;
+              }
+              > span {
+                font-weight: 600;
+                text-transform: uppercase;
+              }
+            }
+          }
+        }
+        > img {
+          opacity: 0.9;
+        }
+      }
+    }
+  }
+}
+
+#similar_project {
+  padding: 10rem 0;
+  .out_wrapper {
+    @include flex($direction: column);
+    min-height: calc(100vh - 20rem);
+  }
+  .content {
+    margin-bottom: 5rem;
+    .h1 {
+      font-size: 4.4rem;
+      font-weight: 700;
+      line-height: 0.9;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      @include mobile_inverse {
+        font-size: 10rem;
+      }
+    }
+    p {
+      font-weight: 500;
+      margin: 0 auto;
+      @include mobile_inverse {
+        max-width: 42rem;
+      }
+    }
+  }
+  .wrapper {
+    @include flex;
+    @include gap(2rem);
+    @include flex_grow(1);
+    .column {
+      @include align_self(flex-end);
+      width: 32rem;
+      min-width: 32rem;
+      will-change: transform;
+      @include mobile_inverse {
+        width: 34rem;
+        min-width: 34rem;
+      }
+      &:nth-child(3n + 1) {
+        @include align_self(initial);
+        .inner {
+          &::before {
+            padding-bottom: calc(100vh - 18rem);
+            @include min_height(1200) {
+              padding-bottom: 120%;
+            }
+          }
+        }
+      }
+    }
+  }
+  .inner {
+    width: 32rem;
+    min-width: 32rem;
+    @include ratio(80%);
+    border-radius: 2rem;
+    // @include shadow(var(--shadow));
+    @include trans(all linear 0.3s);
+    overflow: hidden;
+    @include mobile_inverse {
+      width: 34rem;
+      min-width: 34rem;
+    }
+    &:hover {
+      img {
+        @include transform(scale(1.1));
+      }
+      .overlay {
+        &::before {
+          opacity: 1;
+        }
+      }
+    }
+    > a {
+      > img {
+        @include object(cover, top center);
+        @include trans(all linear 0.3s);
+      }
+    }
+    .overlay {
+      @include inset(auto 0 0);
+      padding: 5rem 2rem 2rem;
+      text-align: right;
+      color: var(--light);
+      pointer-events: none;
+      @include trans(all linear 0.3s);
+      z-index: 2;
+      &::before {
+        content: "";
+        @include pos($z: -1);
+        @include inset;
+        background: linear-gradient(
+          transparent,
+          rgba(var(--black_rgb), 0.7),
+          rgba(var(--black_rgb), 1)
+        );
+        opacity: 0.7;
+        @include trans(all linear 0.3s);
+      }
+      .title {
+        font-size: 2rem;
+      }
+      .h5 {
+        font-size: 1.2rem;
+        @include flex(center, flex-end);
+        @include gap(0.8rem);
+        margin-bottom: 0;
+        text-transform: uppercase;
+        &::after {
+          content: "";
+          @include arrow;
+          width: 1.2rem;
+          min-width: 1.2rem;
+          height: 1.2rem;
+          @include transform(rotate(-45deg));
+        }
+      }
+    }
+  }
+}
+
+#work_detail {
+  overflow: initial;
+  .top_block {
+    background: var(--black);
+    padding: 12rem 0 10rem;
+    color: var(--light);
+    .content {
+      margin-bottom: 4rem;
+      .h1 {
+        font-size: 4rem;
+        font-weight: 700;
+        line-height: 0.9;
+        text-transform: uppercase;
+        @include mobile_inverse {
+          font-size: 7.6rem;
+        }
+      }
+      p {
+        max-width: 42rem;
+        font-weight: 500;
+        margin-top: 2rem;
+      }
+    }
+    .wrapper {
+      @include mobile_inverse {
+        @include flex;
+        @include gap(2rem);
+      }
+      .inner {
+        @include mobile_inverse {
+          width: calc(100% - 28rem);
+        }
+        > .image {
+          &:not(:nth-last-child(1)) {
+            margin-bottom: 3rem;
+          }
+          > img {
+            border-radius: 2rem;
+            overflow: hidden;
+          }
+          > .title {
+            background: linear-gradient(
+              transparent,
+              rgba(var(--black_rgb), 0.5),
+              rgba(var(--black_rgb), 0.8)
+            );
+            font-size: 2.8rem;
+            font-weight: 700;
+            line-height: 1;
+            padding: 2rem;
+            text-align: center;
+            text-shadow: 0.2rem 0.2rem rgba(var(--black_rgb), 0.2);
+            text-transform: uppercase;
+            @include mobile_inverse {
+              position: sticky;
+              bottom: 0;
+              font-size: 4.4rem;
+            }
+          }
+        }
+        > .title {
+          background: rgba(var(--light_rgb), 0.1);
+          font-size: 3.6rem;
+          font-weight: 700;
+          line-height: 1;
+          padding: 2rem;
+          text-transform: uppercase;
+          border-radius: 2rem;
+          @include mobile_inverse {
+            position: sticky;
+            top: 10rem;
+            width: 28rem;
+            min-width: 28rem;
+          }
+        }
+      }
+      .side {
+        @include mobile_inverse {
+          @include flex($direction: column);
+          width: 28rem;
+        }
+        > .column {
+          @include mobile_inverse {
+            @include flex_grow(1);
+          }
+        }
+        .author {
+          background: rgba(var(--light_rgb), 0.1);
+          padding: 3rem;
+          margin-bottom: 3rem;
+          border-radius: 2rem;
+          @include mobile_inverse {
+            position: sticky;
+            top: 10rem;
+            margin-bottom: 50vh;
+          }
+          .icon {
+            width: 8rem;
+            min-width: 8rem;
+            height: 8rem;
+            margin-bottom: 1.5rem;
+            border-radius: 75%;
+            overflow: hidden;
+            > img {
+              @include object(cover);
+            }
+          }
+        }
+        .list {
+          position: sticky;
+          top: 10rem;
+          ul {
+            @include list;
+            > li {
+              &:not(:nth-last-child(1)) {
+                margin-bottom: 2rem;
+              }
+              > span {
+                font-size: 1.2rem;
+                text-transform: uppercase;
+              }
+              > strong {
+                display: block;
+                font-size: 1.6rem;
+                font-weight: 600;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .together {
+    padding: 10rem 0;
+    .wrapper {
+      text-align: center;
+      @include mobile_inverse {
+        @include flex(center, space-between);
+        text-align: initial;
+      }
+    }
+    .h3 {
+      font-size: 5rem;
+      font-weight: 700;
+      line-height: 0.9;
+      text-transform: uppercase;
+      @include mobile_inverse {
+        max-width: 80rem;
+        font-size: 12rem;
+      }
+    }
+    .text {
+      max-width: 26rem;
+      margin: 0 auto;
+      @include mobile_inverse {
+        width: 100%;
+        margin: 0;
+      }
+      p {
+        font-weight: 500;
+        margin-top: 2rem;
+        @include mobile_inverse {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+  .launch {
+    overflow: hidden;
+    .wrapper {
+      width: max-content;
+      @include i_flex(flex-start);
+      @include gap(0 10rem);
+      will-change: transform;
+      a {
+        @include flex(center, center);
+        @include gap(2rem);
+        font-size: 4rem;
+        font-weight: 700;
+        padding: 4rem 0;
+        text-transform: uppercase;
+        white-space: nowrap;
+        @include mobile_inverse {
+          @include gap(4rem);
+          font-size: 10rem;
+        }
+        &::after {
+          content: "";
+          @include arrow;
+          width: 4rem;
+          min-width: 4rem;
+          height: 4rem;
+          @include transform(rotate(-45deg));
+          @include mobile_inverse {
+            width: 10rem;
+            min-width: 10rem;
+            height: 10rem;
+          }
+        }
+      }
+    }
+  }
+  .choose {
+    background: var(--black);
+    color: var(--light);
+    padding: 10rem 0;
+    overflow: hidden;
+    .out_wrapper {
+      @include flex($direction: column);
+      min-height: calc(100vh - 20rem);
+    }
+    .content {
+      margin-bottom: 5rem;
+      .h2 {
+        max-width: 94rem;
+        font-size: 4rem;
+        font-weight: 700;
+        line-height: 0.9;
+        text-transform: uppercase;
+        margin: 0 auto 2rem;
+        @include mobile_inverse {
+          font-size: 6rem;
+        }
+      }
+      p {
+        max-width: 60rem;
+        margin: auto;
+      }
+    }
+    .wrapper {
+      @include flex;
+      @include gap(2rem);
+      @include flex_grow(1);
+      .column {
+        width: 32rem;
+        min-width: 32rem;
+        will-change: transform;
+        @include mobile_inverse {
+          width: 50rem;
+          min-width: 50rem;
+          @include min_height(1200) {
+            width: 28rem;
+            min-width: 28rem;
+          }
+        }
+      }
+    }
+    .inner {
+      @include flex;
+      background: rgba(var(--light_rgb), 0.1);
+      padding: 2rem;
+      border-radius: 2rem;
+      @include mobile_inverse {
+        padding: 3rem;
+        @include min_height(1200) {
+          @include flex($direction: column);
+          @include gap(2rem);
+        }
+      }
+      .icon {
+        width: 5rem;
+        min-width: 5rem;
+        height: 5rem;
+        margin-right: 2rem;
+      }
+      .btn_blk {
+        display: none;
+        margin-top: auto;
+        @include mobile_inverse {
+          @include min_height(1200) {
+            @include flex;
+          }
+        }
+        > a {
+          &:not(:hover) {
+            color: var(--light);
+          }
+        }
+      }
+    }
+  }
+  .connectivity {
+    background: var(--black);
+    color: var(--light);
+    padding: 10rem 0;
+    .wrapper {
+      @include mobile_inverse {
+        @include flex(center, space-between);
+      }
+      .content {
+        @include mobile_inverse {
+          max-width: 36rem;
+        }
+        .h2 {
+          font-size: 3.2rem;
+          font-weight: 700;
+          @include mobile_inverse {
+            font-size: 3.8rem;
+          }
+        }
+      }
+      .side {
+        margin-top: 3rem;
+        @include mobile_inverse {
+          width: calc(100% - 38rem);
+          padding-left: 2rem;
+          margin-top: 0;
+        }
+      }
+    }
+    .flexor {
+      @include flex($flow: wrap);
+      margin: -1rem;
+      > .column {
+        width: 100%;
+        padding: 1rem;
+        @include mobile_inverse {
+          width: 33.3334%;
+        }
+      }
+    }
+    .inner {
+      background: rgba(var(--light_rgb), 0.1);
+      padding: 3rem;
+      border-radius: 2rem;
+      @include shadow(var(--shadow));
+      .icon {
+        width: 5rem;
+        min-width: 5rem;
+        height: 5rem;
+        margin-bottom: 2rem;
+      }
+    }
+  }
+}
