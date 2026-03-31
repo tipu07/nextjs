@@ -4,7 +4,6 @@
 .hero {
   position: relative;
   overflow: hidden;
-  min-height: 868px;
   background: #fff;
 }
 
@@ -29,27 +28,17 @@
   background-size: 38px 38px;
 }
 
-.hero__inner {
+.hero__heading-block {
   position: relative;
   z-index: 2;
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 24px;
-  display: flex;
-  align-items: flex-end;
-  min-height: 868px;
-}
-
-.hero__heading-block {
-  position: absolute;
-  top: 91px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 702px;
+  width: 100%;
   text-align: center;
   display: flex;
   flex-direction: column;
   gap: 13px;
+  padding: 91px 24px 0;
+  max-width: 1440px;
+  margin: 0 auto;
 }
 
 .hero__title {
@@ -68,10 +57,28 @@
   line-height: normal;
 }
 
+.hero__inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 48px 24px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+  min-height: auto;
+}
+
+.hero__left {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 500px;
+}
+
 .hero__bikes {
-  position: absolute;
-  top: 343px;
-  left: 66px;
   width: 657px;
   height: 468px;
   display: flex;
@@ -88,8 +95,8 @@
 
 .hero__play {
   position: absolute;
-  top: 481px;
-  left: 384px;
+  top: 50px;
+  left: 50px;
   width: 126px;
   height: 126px;
   background: rgba(255, 255, 255, 0.51);
@@ -119,11 +126,12 @@
   object-fit: contain;
 }
 
+.hero__right {
+  flex: 0 0 552px;
+}
+
 .hero__form-card {
-  position: absolute;
-  top: 371px;
-  right: calc(50% - 720px + 24px);
-  width: 552px;
+  width: 100%;
   background: var(--color-white);
   border-radius: var(--radius-35);
   border: 1px solid #ffd3d3;

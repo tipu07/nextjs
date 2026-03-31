@@ -12,22 +12,23 @@ export default function HeroSection() {
       <div className="hero__bg"></div>
       <div className="hero__bg-pattern" aria-hidden="true"></div>
 
+      <div className="hero__heading-block">
+        <h1 className="hero__title">Sell Your Motorcycle<br/>Just Got Easier</h1>
+        <p className="hero__subtitle">Answer a few questions about your motorcycle to get a<br/>customized offer from one of our appraisers.</p>
+      </div>
+
       <div className="hero__inner">
-        <div className="hero__heading-block">
-          <h1 className="hero__title">Sell Your Motorcycle<br/>Just Got Easier</h1>
-          <p className="hero__subtitle">Answer a few questions about your motorcycle to get a<br/>customized offer from one of our appraisers.</p>
-        </div>
+        <div className="hero__left">
+          <div className="hero__bikes" aria-hidden="true">
+            <img src="/images/bikes.png" alt="Motorcycles" />
+          </div>
 
-        <div className="hero__bikes" aria-hidden="true">
-          <img src="/images/bikes.png" alt="Motorcycles" />
-        </div>
-
-        <div className="hero__play" aria-label="Watch video" role="button" tabIndex="0">
-          <div className="hero__play-inner">
-            <img src="/images/play-button.svg" alt="Play" className="hero__play-icon" />
+          <div className="hero__play" aria-label="Watch video" role="button" tabIndex="0">
+            <div className="hero__play-inner">
+              <img src="/images/play-button.svg" alt="Play" className="hero__play-icon" />
+            </div>
           </div>
         </div>
-
         <div className="hero__form-card" role="form" aria-label="Get your motorcycle offer">
           <div className="form__tabs-row" role="tablist">
             <div className="form__tabs-bg" aria-hidden="true"></div>
@@ -86,6 +87,9 @@ export default function HeroSection() {
             <div className="form__submit-bg" aria-hidden="true"></div>
             <button className="form__submit-btn" type="submit">GET YOUR OFFER</button>
           </div>
+        </div>
+
+        <div className="hero__right">
         </div>
       </div>
     </section>
