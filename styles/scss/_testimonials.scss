@@ -1,0 +1,90 @@
+/* ═══════════════════════════════════════════════════
+   TESTIMONIALS
+═══════════════════════════════════════════════════ */
+.test-section { padding: 80px 0; background: #fff; }
+
+.test__inner { max-width: 1440px; margin: 0 auto; padding: 0 71px; }
+
+.test__heading {
+  display: flex; flex-direction: column; gap: 29px;
+  align-items: center; margin-bottom: 56px;
+}
+
+.test__title {
+  font-size: var(--fs-50); font-weight: var(--fw-700);
+  color: var(--color-black); text-align: center; line-height: 55px;
+}
+
+.test__subtitle {
+  font-size: var(--fs-20); font-weight: var(--fw-400);
+  color: var(--color-gray-text); text-align: center; line-height: 28px;
+  width: 696px;
+}
+
+.test__cards {
+  display: grid; grid-template-columns: repeat(3, 415px);
+  gap: 30px; justify-content: center;
+}
+
+.test__card {
+  display: flex; flex-direction: column; gap: 16px;
+  padding: 24px;
+  background: var(--color-white); border-radius: var(--radius-16);
+  box-shadow: var(--shadow-review);
+}
+
+.test__card-top {
+  display: flex; align-items: flex-start; gap: 8px;
+}
+
+.test__avatar {
+  width: 40px; height: 40px; border-radius: 40px; flex-shrink: 0;
+}
+
+.test__avatar--purple { background: #811ea1; }
+.test__avatar--blue   { background: #3b5bdb; }
+.test__avatar--green  { background: #2f9e44; }
+
+.test__card-name {
+  font-size: var(--fs-16); font-weight: var(--fw-600);
+  color: var(--color-dark); line-height: 20px;
+}
+
+.test__card-review {
+  font-size: 17px; font-weight: var(--fw-400);
+  color: var(--color-dark); line-height: 20px;
+}
+
+.test__card-footer {
+  display: flex; align-items: center; justify-content: space-between;
+}
+
+.test__card-meta {
+  display: flex; align-items: center; gap: 8px;
+}
+
+.test__google-icon { width: 24px; height: 24px; }
+
+.test__date {
+  font-size: var(--fs-12); font-weight: var(--fw-500);
+  color: rgba(26,26,26,.7); line-height: 20px;
+}
+
+.test__stars { display: flex; align-items: center; gap: 4px; }
+.test__star { width: 22px; height: 21px; }
+
+/* Pagination */
+.test__pagination {
+  display: flex; justify-content: center; align-items: center;
+  gap: 14px; margin-top: 40px;
+}
+
+.test__page-btn {
+  width: 58px; height: 58px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; border: none; transition: background .15s;
+}
+
+.test__page-btn--prev { background: #fff; box-shadow: 0 2px 12px rgba(0,0,0,.1); }
+.test__page-btn--next { background: var(--color-red); }
+.test__page-icon { width: 19px; height: 19px; }

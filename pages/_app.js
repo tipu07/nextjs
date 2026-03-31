@@ -8,9 +8,10 @@ import http from "../helpers/http";
 import NextNProgress from "nextjs-progressbar";
 import Layout from "../components/layout";
 
-import "../styles/css/tailwind.min.css";
-import "../styles/scss/web.generic.scss";
-import "aos/dist/aos.css";
+// import "../styles/css/tailwind.min.css";
+// import "../styles/scss/web.generic.scss";
+import "../styles/scss/final.generic.scss";
+// import "aos/dist/aos.css";
 
 import gsap from "gsap";
 import { ReactLenis } from "lenis/react";

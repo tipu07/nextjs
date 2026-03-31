@@ -1,11 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import { useRouter } from "next/router";
-import NewsletterForm from "../pages/sections/newsletter-form";
 
-import http from "../helpers/http";
-import Text from "../components/text";
-import { cmsFileUrl } from "../helpers/helpers";
 export default function Footer({ siteSettings }) {
   const router = useRouter();
   const date = new Date();
@@ -14,155 +10,78 @@ export default function Footer({ siteSettings }) {
   const path = router.pathname;
   return (
     <>
-      {/* <NewsletterForm /> */}
       <footer>
-        <div className="topper">
-          <div className="contain">
-            <div className="text">
-              <div className="h1">
-                <Text string={siteSettings?.site_pre_footer_heading} />
+        <div className="footer-grid">
+          <div>
+            <a href="#" className="footer-logo">
+              <div className="footer-logo-badge">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+                  <path d="M19 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l7.59-7.59L21 8l-9 9z" />
+                </svg>
               </div>
-              <p>
-                <Text string={siteSettings?.site_pre_footer_tagline} />
-              </p>
+              MotoBuyers
+            </a>
+            <div className="footer-address">
+              <a href="#">
+                7696 Broadway, Suite C<br />
+                Lemon Grove, CA 91945
+              </a>
+              <a href="tel:8446686289" style={{ marginTop: 8 }}>
+                (844) 668-6289
+              </a>
+              <a href="mailto:info@motobuyers.com">info@motobuyers.com</a>
             </div>
-            <div className="btn_blk mt-[2rem] md:justify-end">
-              <Link
-                href={siteSettings?.site_pre_footer_field_text}
-                className="site_btn simple round hover_prime"
-              >
-                <Text string={siteSettings?.site_pre_footer_button_text} />
-              </Link>
+          </div>
+          <div>
+            <div className="footer-h">Quick Links</div>
+            <div className="footer-links">
+              <a href="#">Home</a>
+              <a href="#how-it-works">How It Works</a>
+              <a href="#compare">Compare Moto Buyers</a>
+            </div>
+          </div>
+          <div>
+            <div className="footer-h">More Links</div>
+            <div className="footer-links">
+              <a href="#">Contact Us</a>
+              <a href="#">FAQ</a>
+              <a href="#">Appointment Tips</a>
+              <a href="#">Our Appraisals</a>
+            </div>
+          </div>
+          <div>
+            <div className="footer-h">Signup for Newsletters</div>
+            <div className="nl-form">
+              <input
+                className="nl-input"
+                type="email"
+                placeholder="Enter your email address"
+              />
+              <button className="nl-btn">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="white">
+                  <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+                </svg>
+              </button>
+            </div>
+            <div className="footer-h" style={{ fontSize: 13 }}>
+              Follow Us
+            </div>
+            <div className="socials">
+              {["f", "𝕏", "in", "▶"].map((s, i) => (
+                <a
+                  href="#"
+                  key={i}
+                  className="social"
+                  style={{ color: "rgba(255,255,255,.7)", fontWeight: 700 }}
+                >
+                  {s}
+                </a>
+              ))}
             </div>
           </div>
         </div>
-        <div className="contain">
-          <div className="wrapper">
-            <div className="column">
-              <div className="title h6">Menu</div>
-              <ul className="list main_list">
-                <li>
-                  <Link href="/about" className="link">
-                    <span>About</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/services" className="link">
-                    <span>Services</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/how-it-works" className="link">
-                    <span>How works?</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/careers" className="link">
-                    <span>Careers</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/expertise" className="link">
-                    <span>Expertise</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/projects" className="link">
-                    <span>Projects</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/contact" className="link">
-                    <span>Contact</span>
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div className="column">
-              <div className="logo">
-                <Link href="/">
-                  <img src="/images/logo_icon.webp" alt="" />
-                </Link>
-              </div>
-            </div>
-            <div className="column">
-              <ul className="list info_list">
-                <li>
-                  <Link
-                    href={`https://wa.me/${siteSettings?.site_whatsapp?.replace(
-                      /[^\d]/g,
-                      "",
-                    )}`}
-                    target="_blank"
-                  >
-                    {siteSettings?.site_whatsapp}
-                  </Link>
-                </li>
-                <li>
-                  <Link href={`tel:${siteSettings?.site_phone}`}>
-                    {siteSettings?.site_phone}
-                  </Link>
-                </li>
-                <li>
-                  <Link href={`mailto:${siteSettings?.site_email}`}>
-                    {siteSettings?.site_email}
-                  </Link>
-                </li>
-                <li className="address">{siteSettings?.site_address}</li>
-              </ul>
-              <div className="social">
-                {/* <a href="https://facebook.com">
-                  <img src="/images/social_facebook.svg" alt="" />
-                </a> */}
-                <Link
-                  href={siteSettings?.site_facebook}
-                  target="_blank"
-                  className="facebook"
-                >
-                  <img
-                    src="/images/social_facebook.svg"
-                    alt={siteSettings?.site_facebook}
-                  />
-                </Link>
-                <Link
-                  href={siteSettings?.site_instagram}
-                  target="_blank"
-                  className="instagram"
-                >
-                  <img
-                    src="/images/social_instagram.svg"
-                    alt={siteSettings?.site_instagram}
-                  />
-                </Link>
-                {/* <a href="https://instagram.com">
-                  <img src="/images/social_instagram.svg" alt="" />
-                </a> */}
-                <Link
-                  href={siteSettings?.site_linkedin}
-                  target="_blank"
-                  className="linkedin"
-                >
-                  <img
-                    src="/images/social_linkedin.svg"
-                    alt={siteSettings?.site_linkedin}
-                  />
-                </Link>
-                {/* <a href="https://www.linkedin.com/">
-                  <img src="/images/social_linkedin.svg" alt="" />
-                </a> */}
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="copyright">
-          <div className="contain">
-            <div className="flexor">
-              <p>
-                Copyright © {year}, {siteSettings?.site_name}
-                {siteSettings?.site_copyright}
-              </p>
-            </div>
-          </div>
+        <div className="footer-bottom">
+          Copyright © 2024, All Rights MotoBuyers
         </div>
       </footer>
     </>

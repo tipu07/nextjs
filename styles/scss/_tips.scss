@@ -1,0 +1,79 @@
+/* ═══════════════════════════════════════════════════
+   TIPS / HOW WE CREATE YOUR OFFER (red bg)
+═══════════════════════════════════════════════════ */
+.tips-section {
+  background: var(--color-red);
+  padding: 80px 0;
+  position: relative; overflow: hidden;
+}
+
+.tips-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,.05) 1px, transparent 1px);
+  background-size: 32px 32px; pointer-events: none;
+}
+
+.tips__inner { max-width: 1440px; margin: 0 auto; padding: 0 71px; position: relative; z-index: 1; }
+
+.tips__heading {
+  display: flex; flex-direction: column; gap: 24px;
+  align-items: center; margin-bottom: 60px;
+}
+
+.tips__title {
+  font-size: var(--fs-50); font-weight: var(--fw-700);
+  color: var(--color-white); text-align: center; line-height: 55px;
+}
+
+.tips__subtitle {
+  font-size: var(--fs-20); font-weight: var(--fw-400);
+  color: #efefef; text-align: center; line-height: 28px;
+}
+
+.tips__grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 24px 56px;
+  margin-bottom: 50px;
+}
+
+.tips__card {
+  display: flex; align-items: center; gap: 22px;
+  padding: 20px; border-radius: var(--radius-25);
+  border: 1px solid #e6e6e6;
+  background: rgba(255,255,255,.06);
+}
+
+.tips__card-img {
+  flex-shrink: 0; width: 242px; height: 168px; object-fit: contain;
+}
+
+.tips__card-img--sm { height: 150px; }
+.tips__card-img--term { height: 141px; }
+
+.tips__card-body { position: relative; flex: 1; }
+
+.tips__card-label {
+  font-size: var(--fs-21); font-weight: var(--fw-600);
+  color: var(--color-white); line-height: normal;
+  margin-bottom: 10px;
+}
+
+.tips__card-desc {
+  font-size: var(--fs-16); font-weight: var(--fw-400);
+  color: var(--color-white); line-height: 26.3px;
+}
+
+.tips__cta { text-align: center; }
+
+.tips__cta-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 477px; height: 66px;
+  background: var(--color-white); border-radius: var(--radius-50);
+  font-size: var(--fs-20); font-weight: var(--fw-500);
+  color: var(--color-red); line-height: normal;
+  cursor: pointer; border: none;
+  transition: opacity .15s;
+}
+
+.tips__cta-btn:hover { opacity: .9; }

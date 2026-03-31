@@ -1,0 +1,120 @@
+/* ═══════════════════════════════════════════════════════
+   RESPONSIVE – TABLET (≤1024px)
+═══════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .u-container { padding: 0 32px; }
+  .nav { padding: 0 32px; }
+  .nav__links, .nav__cta { display: none; }
+  .nav__hamburger { display: flex; }
+  .nav__mobile-menu { display: flex; }
+
+  .hero { min-height: auto; }
+  .hero__inner { flex-direction: column; padding: 0 32px; min-height: auto; position: relative; }
+  .hero__heading-block {
+    position: static; transform: none; width: 100%;
+    text-align: center; padding-top: 50px; margin-bottom: 24px;
+  }
+  .hero__title { font-size: 38px; line-height: 1.2; }
+  .hero__subtitle { font-size: 16px; }
+  .hero__bikes { position: static; width: 100%; height: 260px; margin-bottom: 20px; }
+  .hero__play { position: static; margin: 0 auto 20px; }
+  .hero__form-card {
+    position: static; width: 100%; max-width: 552px;
+    margin: 0 auto 40px; border-radius: 20px;
+  }
+  .form__tabs-row, .form__fields { width: 100%; margin-left: 0; margin-right: 0; }
+  .form__field, .form__select-wrap { width: 100%; }
+
+  /* HIW */
+  .hiw-section-wrap { padding-top: 60px; }
+  .hiw__section { height: auto; padding: 0 32px; }
+  .hiw__section-inner { height: auto; display: flex; flex-direction: column; gap: 24px; }
+  .hiw__tabs { position: static; width: 100%; height: auto; }
+  .hiw__tab { width: 100%; }
+  .hiw__panel { position: static; width: 100%; flex-direction: column; padding: 30px; }
+  .hiw__panel-img { width: 100%; height: 200px; }
+  .hiw__panel-desc { width: 100%; }
+
+  /* Compare */
+  .cmp__title { font-size: 36px; }
+  .cmp__head { grid-template-columns: 1fr 1fr 1fr; font-size: 15px; padding: 0 16px; }
+  .cmp__row { grid-template-columns: 1fr 1fr 1fr; padding: 0 16px; }
+  .cmp__feat-label { font-size: 14px; }
+
+  /* Tips */
+  .tips__title { font-size: 36px; }
+  .tips__grid { grid-template-columns: 1fr; }
+  .tips__cta-btn { width: 100%; max-width: 477px; }
+
+  /* CTA */
+  .cta-section { min-height: auto; }
+  .cta__inner { flex-direction: column; padding: 40px 32px; min-height: auto; position: static; }
+  .cta__text { padding-top: 0; width: 100%; }
+  .cta__heading { font-size: 36px; width: 100%; }
+  .cta__desc { width: 100%; }
+  .cta__visual { position: static; width: 100%; margin-top: 40px; height: auto; }
+  .cta__phone { margin: 0 auto; }
+
+  /* Testimonials */
+  .test__cards { grid-template-columns: 1fr 1fr; }
+  .test__title { font-size: 36px; }
+  .test__subtitle { width: 100%; }
+  .test__card:last-child { grid-column: 1 / -1; max-width: 415px; margin: 0 auto; }
+
+  /* Footer */
+  .footer__top {
+    grid-template-columns: 1fr 1fr;
+    padding: 40px 32px 0; gap: 32px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   RESPONSIVE – MOBILE (≤768px)
+═══════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .nav { padding: 0 20px; }
+  .u-container { padding: 0 20px; }
+
+  .hero__title { font-size: 28px; line-height: 1.2; }
+  .hero__subtitle { font-size: 14px; }
+  .hero__bikes { height: 180px; }
+  .form__tabs-row { margin: 24px 16px 0; width: calc(100% - 32px); }
+  .form__fields { margin: 16px 16px 0; width: calc(100% - 32px); }
+  .form__or { margin: 16px 0 0 0; width: 100%; justify-content: center; }
+  .form__submit-row { margin: 20px auto 0; width: calc(100% - 32px); }
+  .form__submit-btn { width: 100%; }
+
+  .hiw-section-wrap { padding-top: 40px; }
+  .hiw-section-wrap .hiw__heading-abs { font-size: 32px; }
+  .hiw__panel { padding: 20px; }
+  .hiw__panel-title { font-size: 24px; line-height: 1.3; }
+  .hiw__panel-desc { font-size: 15px; }
+
+  .cmp__title { font-size: 26px; line-height: 1.2; }
+  .cmp__head { font-size: 13px; padding: 0 10px; height: 70px; }
+  .cmp__row { padding: 0 10px; }
+  .cmp__feat-icon { width: 32px; height: 32px; }
+  .cmp__feat-label { font-size: 12px; }
+  .cmp__check { width: 18px; height: 18px; }
+  .cmp__cross { width: 15px; height: 15px; }
+  .cmp__maybe { font-size: 12px; }
+
+  .tips__title { font-size: 28px; line-height: 1.2; }
+  .tips__grid { gap: 16px; }
+  .tips__card { flex-direction: column; }
+  .tips__card-img { width: 100%; height: 140px; }
+  .tips__cta-btn { width: 100%; font-size: 15px; padding: 0 20px; }
+
+  .cta__heading { font-size: 28px; }
+  .cta__buttons { gap: 12px; }
+  .cta__btn { width: auto !important; padding: 0 24px; font-size: 15px; }
+
+  .test__title { font-size: 28px; }
+  .test__subtitle { font-size: 15px; }
+  .test__cards { grid-template-columns: 1fr; }
+  .test__card:last-child { grid-column: auto; max-width: none; }
+
+  .footer__top { grid-template-columns: 1fr; padding: 32px 20px 0; gap: 24px; }
+  .footer__bottom-inner { padding: 0 20px; }
+  .footer__copyright { font-size: 13px; text-align: center; }
+}

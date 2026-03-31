@@ -16,9 +16,9 @@ export default function Layout({
     <>
       <Toaster position="top-center" reverseOrder={false} />
       <SiteMaster meta_info={meta_info} page_title={page_title} />
-      <Header siteSettings={siteSettings} headerServices={headerServices} />
+      {/* <Header siteSettings={siteSettings} headerServices={headerServices} /> */}
       {children}
-      <Footer siteSettings={siteSettings} headerServices={headerServices} />
+      {/* <Footer siteSettings={siteSettings} headerServices={headerServices} /> */}
     </>
   );
 }

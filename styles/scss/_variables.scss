@@ -1,0 +1,47 @@
+/* ─── DESIGN TOKENS ──────────────────────────────── */
+:root {
+  --color-red:        #ee2524;
+  --color-black:      #231f20;
+  --color-dark:       #1a1a1a;
+  --color-white:      #ffffff;
+  --color-gray-text:  #575757;
+  --color-muted:      #13131380;
+  --color-pink-bg:    #fcf4f4;
+  --color-pink-bdr:   #eedede;
+  --color-input-bg:   #fbeded;
+  --color-input-bdr:  #ffd4d4;
+  --color-tab-bg:     #ebebeb;
+  --color-footer-bg:  #231f20;
+  --color-efefef:     #efefef;
+
+  --fs-10: 10px;
+  --fs-12: 12px;
+  --fs-16: 16px;
+  --fs-17: 17px;
+  --fs-18: 18px;
+  --fs-20: 20px;
+  --fs-21: 21.6px;
+  --fs-22: 22px;
+  --fs-27: 27px;
+  --fs-35: 35px;
+  --fs-50: 50px;
+  --fs-60: 60px;
+
+  --fw-400: 400;
+  --fw-500: 500;
+  --fw-600: 600;
+  --fw-700: 700;
+
+  --radius-4:  4px;
+  --radius-9:  9px;
+  --radius-16: 16px;
+  --radius-20: 20px;
+  --radius-25: 25px;
+  --radius-35: 35px;
+  --radius-50: 50px;
+  --radius-full: 9999px;
+
+  --shadow-card:   0px 0px 30px 10px rgba(0,0,0,.04);
+  --shadow-review: 0px 18px 40px rgba(0,0,0,.1);
+  --shadow-form:   0px 0px 30px 10px rgba(0,0,0,.04);
+}
