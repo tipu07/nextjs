@@ -1,106 +1,33 @@
 /* ═══════════════════════════════════════════════════
    CTA "READY TO SELL"
 ═══════════════════════════════════════════════════ */
-.cta-section {
-  background: var(--color-white);
-  padding: 0;
-  min-height: 791px; position: relative; overflow: hidden;
-}
-
-.cta__bg-img {
-  position: absolute; top: 0; left: 0;
-  width: 100%; height: 693px; object-fit: cover; z-index: 0;
-}
-
-.cta__inner {
-  position: relative; z-index: 2;
-  max-width: 1440px; margin: 0 auto; padding: 0 70px;
-  display: flex; align-items: flex-start;
-  min-height: 791px;
-}
-
-.cta__text {
-  padding-top: 173px;
-  width: 711px; position: relative;
-}
-
-.cta__heading {
-  font-size: var(--fs-50); font-weight: var(--fw-700);
-  color: var(--color-black); line-height: 55px;
-  width: 711px;
-}
-
-.cta__desc {
-  margin-top: 23px;
-  font-size: var(--fs-20); font-weight: var(--fw-400);
-  color: var(--color-gray-text); line-height: 28px;
-  width: 619px;
-}
-
-.cta__buttons {
-  margin-top: 46px;
-  display: flex; gap: 17px; flex-wrap: wrap;
-}
-
-.cta__btn {
-  height: 66px; border-radius: var(--radius-50);
-  font-size: var(--fs-20); font-weight: var(--fw-500);
-  line-height: normal; display: flex; align-items: center; justify-content: center;
-  cursor: pointer; border: none; transition: opacity .15s;
-}
-
-.cta__btn:hover { opacity: .88; }
-.cta__btn--primary { background: var(--color-red); color: #fff; width: 244px; }
-.cta__btn--dark    { background: #000; color: #fff; width: 144px; }
-.cta__btn--white   { background: #fff; color: var(--color-red); width: 244px; }
-
-/* Phone / map mockup on the right */
-.cta__visual {
-  position: absolute;
-  top: 85px; left: 844px;
-  width: 524px; height: 706px;
-  display: flex; align-items: flex-start; justify-content: center;
-}
-
-.cta__phone {
-  position: relative; width: 290px; margin-top: 0;
-}
-
-.cta__phone-shell {
-  background: #111; border-radius: 36px; padding: 12px;
-  box-shadow: 0 24px 70px rgba(0,0,0,.28);
-}
-
-.cta__phone-screen {
-  background: #fff; border-radius: 26px; overflow: hidden; min-height: 520px;
-}
-
-.cta__phone-top {
-  background: var(--color-red); padding: 20px 18px 24px;
-  text-align: center;
-}
-
-.cta__phone-map {
-  position: relative; height: 340px; background: #dde8f2; overflow: hidden;
-}
-
-.cta__phone-bottom {
-  padding: 12px 16px; background: #fff;
-}
-
-.cta__phone-get-btn {
-  background: var(--color-red); border-radius: 8px; padding: 11px;
-  text-align: center; font-size: 12px; font-weight: 700;
-  letter-spacing: .5px; color: #fff;
-}
-
-/* Accent circles around phone */
-.cta__circle-gold {
-  position: absolute; width: 120px; height: 120px; border-radius: 50%;
-  background: #ffd700; opacity: .22; top: -20px; right: 40px;
-}
-
-.cta__circle-red {
-  position: absolute; width: 80px; height: 80px; border-radius: 50%;
-  background: var(--color-red); opacity: .14; bottom: 60px; left: 30px;
+#cta {
+  position: relative;
+  padding: 10rem 0 20rem;
+  .cta__bg {
+    position: absolute;
+    inset: 0 0 10rem;
+    background-size: cover;
+    background-position: bottom center;
+    background-repeat: no-repeat;
+  }
+  .cta__inner {
+    display: flex;
+    align-items: center;
+    gap: 6rem;
+    .cta__text {
+      flex: 1;
+      .cta__desc {
+        margin-top: 2rem;
+        font-size: var(--fs-20);
+        color: var(--color-gray-text);
+        line-height: 1.4;
+      }
+    }
+    .cta__visual {
+      width: 50rem;
+      min-width: 50rem;
+      margin-bottom: -20rem;
+    }
+  }
 }

@@ -1,47 +1,51 @@
 /* ─── DESIGN TOKENS ──────────────────────────────── */
 :root {
-  --color-red:        #ee2524;
-  --color-black:      #231f20;
-  --color-dark:       #1a1a1a;
-  --color-white:      #ffffff;
-  --color-gray-text:  #575757;
-  --color-muted:      #13131380;
-  --color-pink-bg:    #fcf4f4;
-  --color-pink-bdr:   #eedede;
-  --color-input-bg:   #fbeded;
-  --color-input-bdr:  #ffd4d4;
-  --color-tab-bg:     #ebebeb;
-  --color-footer-bg:  #231f20;
-  --color-efefef:     #efefef;
+  --color-red: #ee2524;
+  --color-black: #231f20;
+  --color-dark: #1a1a1a;
+  --color-white: #ffffff;
+  --color-gray-text: #575757;
+  --color-muted: #13131380;
+  --color-pink-bg: #fcf4f4;
+  --color-pink-bdr: #eedede;
+  --color-input-bg: #fbeded;
+  --color-input-bdr: #ffd4d4;
+  --color-tab-bg: #ebebeb;
+  --color-footer-bg: #231f20;
+  --color-efefef: #efefef;
 
-  --fs-10: 10px;
-  --fs-12: 12px;
-  --fs-16: 16px;
-  --fs-17: 17px;
-  --fs-18: 18px;
-  --fs-20: 20px;
-  --fs-21: 21.6px;
-  --fs-22: 22px;
-  --fs-27: 27px;
-  --fs-35: 35px;
-  --fs-50: 50px;
-  --fs-60: 60px;
+  --fs-10: 1rem;
+  --fs-12: 1.2rem;
+  --fs-14: 1.4rem;
+  --fs-16: 1.6rem;
+  --fs-17: 1.7rem;
+  --fs-18: 1.8rem;
+  --fs-20: 2rem;
+  --fs-21: 2.16rem;
+  --fs-22: 2.2rem;
+  --fs-27: 2.7rem;
+  --fs-35: 3.5rem;
+  --fs-50: 5rem;
+  --fs-60: 6rem;
 
+  --fw-300: 300;
   --fw-400: 400;
   --fw-500: 500;
   --fw-600: 600;
   --fw-700: 700;
 
-  --radius-4:  4px;
-  --radius-9:  9px;
-  --radius-16: 16px;
-  --radius-20: 20px;
-  --radius-25: 25px;
-  --radius-35: 35px;
-  --radius-50: 50px;
-  --radius-full: 9999px;
+  --radius-4: 0.4rem;
+  --radius-9: 0.9rem;
+  --radius-16: 1.6rem;
+  --radius-20: 2rem;
+  --radius-25: 2.5rem;
+  --radius-35: 3.5rem;
+  --radius-50: 5rem;
+  --radius-full: 999.9rem;
 
-  --shadow-card:   0px 0px 30px 10px rgba(0,0,0,.04);
-  --shadow-review: 0px 18px 40px rgba(0,0,0,.1);
-  --shadow-form:   0px 0px 30px 10px rgba(0,0,0,.04);
+  --shadow-card: 0rem 0rem 3rem 1rem rgba(0, 0, 0, 0.04);
+  --shadow-review: 0rem 1.8rem 4rem rgba(0, 0, 0, 0.1);
+  --shadow-form: 0rem 0rem 3rem 1rem rgba(0, 0, 0, 0.04);
+
+  --container: 134rem;
 }

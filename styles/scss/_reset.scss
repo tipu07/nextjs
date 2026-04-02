@@ -1,12 +1,93 @@
 /* ─── RESET ──────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body { font-family: 'Poppins', Helvetica, sans-serif; background: var(--color-white); color: var(--color-dark); line-height: 1.4; }
-a { text-decoration: none; color: inherit; }
-img { display: block; max-width: 100%; }
-ul, ol { list-style: none; }
-button { font-family: inherit; cursor: pointer; border: none; background: none; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-size: 8px;
+  scroll-behavior: smooth;
+}
+body {
+  font-family: "Poppins", Helvetica, sans-serif;
+  background: var(--color-white);
+  color: var(--color-dark);
+  line-height: 1.4;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+img {
+  display: block;
+  max-width: 100%;
+}
+ul,
+ol {
+  list-style: none;
+}
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
 
 /* ─── UTILITIES ──────────────────────────────────── */
-.u-container { max-width: 1440px; margin: 0 auto; padding: 0 71px; }
-.u-sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+.contain {
+  position: relative;
+  max-width: var(--container);
+  padding: 0 2rem;
+  margin: 0 auto;
+  z-index: 1;
+}
+.u-sr-only {
+  position: absolute;
+  width: 0.1rem;
+  height: 0.1rem;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.main__heading {
+  font-size: var(--fs-50);
+  font-weight: var(--fw-700);
+  color: #000;
+  line-height: 1.2;
+}
+
+.cta__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 6rem;
+  padding: 0 4rem;
+  background: var(--color-white);
+  border-radius: var(--radius-50);
+  font-size: var(--fs-20);
+  font-weight: var(--fw-500);
+  color: var(--color-red);
+  line-height: normal;
+  cursor: pointer;
+  border: none;
+  transition: opacity 0.15s;
+  &_wrap {
+    display: flex;
+    gap: 2rem;
+  }
+  &--primary {
+    background: var(--color-red);
+    color: #fff;
+  }
+  &--dark {
+    background: #000;
+    color: #fff;
+  }
+  &--white {
+    background: #fff;
+    color: var(--color-red);
+  }
+}
