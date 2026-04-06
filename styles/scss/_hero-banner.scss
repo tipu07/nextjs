@@ -1,0 +1,44 @@
+/* ═══════════════════════════════════════════════════
+   PAGE HERO BANNER (reusable across pages)
+═══════════════════════════════════════════════════ */
+#page-hero-banner {
+  position: relative;
+  background: var(--color-red);
+  padding: 10rem 0 0;
+  overflow: hidden;
+
+  .page-hero-banner__content {
+    position: relative;
+    z-index: 2;
+    padding-bottom: 8rem;
+
+    .page-hero-banner__title {
+      // font-size: var(--fs-50);
+      // font-weight: var(--fw-700);
+      color: var(--color-white);
+      line-height: 1.2;
+      margin-bottom: 1.6rem;
+      max-width: 64rem;
+      #quote__page & {
+        max-width: 68rem;
+      }
+    }
+    
+    .page-hero-banner__subtitle {
+      font-size: var(--fs-20);
+      color: var(--color-white);
+      line-height: 1.4;
+      max-width: 52rem;
+      #quote__page & {
+        max-width: 64rem;
+      }
+    }
+  }
+
+  .page-hero-banner__wave {
+    position: relative;
+    height: 8rem;
+    background: #fff;
+    clip-path: polygon(0 100%, 100% 0, 100% 100%);
+  }
+}

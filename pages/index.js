@@ -1,12 +1,10 @@
 import Head from "next/head";
-import HeaderComponent from "../components/HeaderComponent";
 import HeroSection from "../components/HeroSection";
 import HowItWorksSection from "../components/HowItWorksSection";
 import ComparisonSection from "../components/ComparisonTableSection";
 import TipsSection from "../components/TipsSection";
 import CtaSection from "../components/CtaSection";
 import TestimonialsSection from "../components/TestimonialsSection";
-import FooterComponent from "../components/FooterComponent";
 
 export default function Final() {
   return (
@@ -22,15 +20,14 @@ export default function Final() {
           rel="stylesheet"
         />
       </Head>
-
-      <HeaderComponent />
-      <HeroSection />
-      <HowItWorksSection />
-      <ComparisonSection />
-      <TipsSection />
-      <CtaSection />
-      <TestimonialsSection />
-      <FooterComponent />
+      <main id="home__page">
+        <HeroSection />
+        <HowItWorksSection />
+        <ComparisonSection />
+        <TipsSection />
+        <CtaSection />
+        <TestimonialsSection />
+      </main>
     </>
   );
 }

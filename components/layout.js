@@ -1,8 +1,8 @@
 import SiteMaster from "./sitemaster";
-import Header from "./header";
-import Footer from "./footer";
 import { useRouter } from "next/router";
 import { Toaster } from "react-hot-toast";
+import HeaderComponent from "./HeaderComponent";
+import FooterComponent from "./FooterComponent";
 export default function Layout({
   children,
   meta_info,
@@ -16,9 +16,9 @@ export default function Layout({
     <>
       <Toaster position="top-center" reverseOrder={false} />
       <SiteMaster meta_info={meta_info} page_title={page_title} />
-      {/* <Header siteSettings={siteSettings} headerServices={headerServices} /> */}
+      <HeaderComponent />
       {children}
-      {/* <Footer siteSettings={siteSettings} headerServices={headerServices} /> */}
+      <FooterComponent />
     </>
   );
 }
