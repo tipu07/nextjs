@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Contain from "./contain";
+import Link from "next/link";
 
 export default function HeaderComponent() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -21,16 +22,22 @@ export default function HeaderComponent() {
           aria-label="Main navigation"
         >
           <div className="nav__logo">
-            <img src="/images/logo.png" alt="" />
+            <Link href="/">
+              <img src="/images/logo.png" alt="" />
+            </Link>
           </div>
 
           <div className="nav__links" role="list">
-            <a href="#how-it-works" className="nav__link" role="listitem">
+            <Link href="/how-it-works" className="nav__link" role="listitem">
               How It Works
-            </a>
-            <a href="#compare" className="nav__link" role="listitem">
+            </Link>
+            <Link
+              href="/compare-moto-buyers"
+              className="nav__link"
+              role="listitem"
+            >
               Compare Moto Buyers
-            </a>
+            </Link>
             <button
               className="nav__more"
               aria-haspopup="true"
@@ -53,9 +60,9 @@ export default function HeaderComponent() {
               </svg>
             </button>
           </div>
-          <a href="#" className="nav__cta" role="button">
+          <Link href="/steps" className="nav__cta" role="button">
             Get my Offer
-          </a>
+          </Link>
 
           <button
             className="nav__hamburger"
@@ -77,26 +84,26 @@ export default function HeaderComponent() {
         id="mobile-menu"
         aria-label="Mobile navigation"
       >
-        <a
-          href="#how-it-works"
+        <Link
+          href="/how-it-works"
           className="nav__mobile-link"
           onClick={closeMobileMenu}
         >
           How It Works
-        </a>
-        <a
-          href="#compare"
+        </Link>
+        <Link
+          href="/compare-moto-buyers"
           className="nav__mobile-link"
           onClick={closeMobileMenu}
         >
           Compare Moto Buyers
-        </a>
+        </Link>
         <a href="#" className="nav__mobile-link" onClick={closeMobileMenu}>
           More
         </a>
-        <a href="#" className="nav__mobile-cta">
+        <Link href="/steps" className="nav__mobile-cta">
           Get my Offer
-        </a>
+        </Link>
       </nav>
     </header>
   );

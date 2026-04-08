@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Contain from "./contain";
 import Heading from "./heading";
 
@@ -52,19 +53,19 @@ export default function FooterComponent() {
               Quick Links
             </Heading>
             <div className="footer__link_wrap">
-              <a href="#" className="footer__link">
+              <Link href="/" className="footer__link">
                 Home
-              </a>
+              </Link>
             </div>
             <div className="footer__link_wrap">
-              <a href="#how-it-works" className="footer__link">
+              <Link href="/how-it-works" className="footer__link">
                 How It Works
-              </a>
+              </Link>
             </div>
             <div className="footer__link_wrap">
-              <a href="#compare" className="footer__link">
+              <Link href="/compare-moto-buyers" className="footer__link">
                 Compare Moto Buyers
-              </a>
+              </Link>
             </div>
           </div>
           <div className="footer__col">
@@ -72,24 +73,24 @@ export default function FooterComponent() {
               More Links
             </Heading>
             <div className="footer__link_wrap">
-              <a href="#" className="footer__link">
+              <Link href="/contact" className="footer__link">
                 Contact Us
-              </a>
+              </Link>
             </div>
             <div className="footer__link_wrap">
-              <a href="#" className="footer__link">
+              <Link href="/faq" className="footer__link">
                 FAQ
-              </a>
+              </Link>
             </div>
             <div className="footer__link_wrap">
-              <a href="#" className="footer__link">
+              <Link href="/appointment-tips" className="footer__link">
                 Appointment Tips
-              </a>
+              </Link>
             </div>
             <div className="footer__link_wrap">
-              <a href="#" className="footer__link">
+              <Link href="/our-appraisals" className="footer__link">
                 Our Appraisals
-              </a>
+              </Link>
             </div>
           </div>
           <div className="footer__col">

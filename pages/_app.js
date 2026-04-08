@@ -93,7 +93,7 @@ export default function App({
     Component.getLayout ||
     ((page) => (
       <>
-        <NextNProgress color="#0471ffff" />
+        <NextNProgress color="#ee2524ff" />
         <Provider store={store}>
           <Layout siteSettings={siteSettings} headerServices={headerServices}>
             {page}
