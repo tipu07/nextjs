@@ -2,6 +2,8 @@ import Head from "next/head";
 import PageHeroBanner from "../components/PageHeroBanner";
 import ComparisonSection from "../components/ComparisonTableSection";
 import HowItWorksCtaSection from "../components/HowItWorksCtaSection";
+import EasiestWaySection from "../components/EasiestWaySection";
+import ReadyToRideSection from "../components/ReadyToRideSection";
 
 export default function CompareMotoBuyers() {
   return (
@@ -20,7 +22,9 @@ export default function CompareMotoBuyers() {
       <main id="compare__page">
         <PageHeroBanner title="MotoBuyers vs Other Ways to Sell Your Motorcycle" />
         <ComparisonSection />
+        <EasiestWaySection />
         <HowItWorksCtaSection />
+        <ReadyToRideSection />
       </main>
     </>
   );

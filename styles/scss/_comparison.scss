@@ -1,4 +1,214 @@
 /* ═══════════════════════════════════════════════════
+   EASIEST WAY SECTION
+═══════════════════════════════════════════════════ */
+#easiest-way {
+  background: #f7f7f7;
+  padding: 8rem 0 7rem;
+
+  .easiest__header {
+    text-align: center;
+    max-width: 68rem;
+    margin: 0 auto 5rem;
+  }
+
+  .easiest__title {
+    font-size: 4.4rem;
+    font-weight: var(--fw-700);
+    color: var(--color-dark);
+    line-height: 1.2;
+    margin-bottom: 1.8rem;
+  }
+
+  .easiest__subtitle {
+    font-size: var(--fs-18);
+    color: var(--color-gray-text);
+    line-height: 1.4;
+  }
+
+  /* ── Desktop grid (3 cards) ── */
+  .easiest__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.8rem;
+    margin-bottom: 3.2rem;
+  }
+
+  /* ── Mobile carousel (hidden on desktop) ── */
+  .easiest__carousel {
+    display: none;
+    overflow: hidden;
+    margin-bottom: 2.4rem;
+  }
+
+  .easiest__track {
+    display: flex;
+  }
+
+  .easiest__slide {
+    min-width: 100%;
+    display: none;
+
+    &--active {
+      display: block;
+    }
+  }
+
+  /* ── Shared card styles ── */
+  .easiest__card {
+    background: #fff;
+    border-radius: var(--radius-20);
+    box-shadow: var(--shadow-card);
+    padding: 3.6rem 2.8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+  }
+
+  .easiest__icon {
+    width: 9rem;
+    height: 9rem;
+    border-radius: 50%;
+    background: var(--color-red);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2.4rem;
+    flex-shrink: 0;
+
+    img {
+      width: 4.8rem;
+      height: 4.8rem;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+    }
+  }
+
+  .easiest__card-title {
+    font-size: 2.4rem;
+    font-weight: var(--fw-700);
+    color: var(--color-dark);
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .easiest__card-desc {
+    font-size: var(--fs-16);
+    color: var(--color-gray-text);
+    line-height: 1.4;
+  }
+
+  /* ── Dots ── */
+  .easiest__dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 0.8rem;
+  }
+
+  .easiest__dot {
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 50%;
+    background: #c8c8c8;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition:
+      background 0.25s ease,
+      transform 0.25s ease;
+
+    &--active {
+      background: var(--color-red);
+      transform: scale(1.2);
+    }
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .easiest__grid {
+      display: none;
+    }
+
+    .easiest__carousel {
+      display: block;
+    }
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   COMPARE CTA SECTION
+═══════════════════════════════════════════════════ */
+#ready-to-ride {
+  background: #fff;
+  padding: 8rem 0;
+
+  .ready-to-ride__inner {
+    display: flex;
+    align-items: center;
+    gap: 10rem;
+  }
+
+  .ready-to-ride__text {
+    flex: 1;
+  }
+
+  .ready-to-ride__title {
+    font-size: 4.6rem;
+    font-weight: var(--fw-700);
+    color: var(--color-dark);
+    line-height: 1.2;
+    margin-bottom: 2rem;
+  }
+
+  .ready-to-ride__desc {
+    font-size: var(--fs-16);
+    color: var(--color-gray-text);
+    line-height: 1.4;
+    margin-bottom: 3rem;
+  }
+
+  .ready-to-ride__btns {
+    margin-top: 0 !important;
+    gap: 1.6rem;
+  }
+
+  .ready-to-ride__visual {
+    width: 50rem;
+    min-width: 50rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .ready-to-ride__inner {
+      flex-direction: column-reverse;
+      gap: 3.2rem;
+    }
+
+    .ready-to-ride__visual {
+      width: 100%;
+      min-width: unset;
+      max-width: 36rem;
+      margin: 0 auto;
+    }
+
+    .ready-to-ride__title {
+      font-size: 3.2rem;
+    }
+  }
+}
+
+/* ═══════════════════════════════════════════════════
    COMPARISON TABLE (tbl)
 ═══════════════════════════════════════════════════ */
 #compare {
@@ -11,6 +221,9 @@
     background-position: bottom center;
     background-repeat: no-repeat;
     z-index: -1;
+    #compare__page & {
+      display: none;
+    }
   }
   .cmp__subtitle {
     font-size: var(--fs-20);
