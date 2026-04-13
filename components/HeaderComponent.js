@@ -16,11 +16,7 @@ export default function HeaderComponent() {
   return (
     <header className="header">
       <Contain>
-        <nav
-          className="nav u-container"
-          role="navigation"
-          aria-label="Main navigation"
-        >
+        <nav className="nav" role="navigation" aria-label="Main navigation">
           <div className="nav__logo">
             <Link href="/">
               <img src="/images/logo.png" alt="" />

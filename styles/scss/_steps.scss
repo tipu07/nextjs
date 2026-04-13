@@ -922,16 +922,84 @@
 }
 
 /* ── Responsive ── */
+@media (max-width: 1024px) {
+  #steps__page {
+    .steps__content {
+      gap: 3.2rem;
+      max-width: 100%;
+    }
+  }
+
+  .steps__single-col {
+    max-width: 100%;
+  }
+}
+
 @media (max-width: 768px) {
   #steps__page {
+    padding-bottom: 8rem;
+
     .steps__title {
       font-size: var(--fs-27);
-      margin-bottom: 3rem;
+      margin-bottom: 2.4rem;
+    }
+
+    .steps__section {
+      padding: 3rem 0 2rem;
     }
 
     .steps__content {
       grid-template-columns: 1fr;
-      gap: 3rem;
+      gap: 2.4rem;
     }
+
+    .steps__form-card {
+      padding: 2rem;
+    }
+
+    .steps__btn-back,
+    .steps__btn-continue {
+      padding: 1.2rem 2.4rem;
+    }
+  }
+
+  .steps__subtitle {
+    font-size: var(--fs-16);
+    margin-top: -2rem;
+    margin-bottom: 2.4rem;
+  }
+
+  .steps__single-col {
+    max-width: 100%;
+  }
+
+  .steps__contact-grid {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+
+  .steps__vin-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .steps__modal {
+    padding: 3rem 2rem 2rem;
+
+    &--wide {
+      max-width: 100%;
+    }
+  }
+
+  .steps__modal-title {
+    font-size: var(--fs-22);
+  }
+
+  .steps__yesno {
+    flex-wrap: wrap;
+  }
+
+  .steps__yesno-btn {
+    flex: 1;
+    text-align: center;
   }
 }
