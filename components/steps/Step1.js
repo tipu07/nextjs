@@ -77,128 +77,142 @@ export default function Step1({ data, onChange }) {
     onChange({ tab });
   };
 
+  const vinValue = data.vin || "";
+  const vinValid = isValidVin(vinValue);
+
   const handleVinBlur = () => {
-    if (data.vin && !isValidVin(data.vin)) {
+    if (vinValue && !vinValid) {
       setShowVinError(true);
     }
   };
 
   return (
     <section className="steps__section">
-      <h1 className="steps__title">What kind of ride do you have?</h1>
+      <h1 className="steps__title">Let&apos;s start with your motorcycle</h1>
+      <p className="steps__subtitle">
+        Use your VIN for the fastest path, or enter the year and make if you do not have it nearby.
+      </p>
 
-      <div className="steps__content">
-        <div className="steps__form-card">
-          <div className="steps__tabs">
-            <button
-              className={`steps__tab ${activeTab === "vin" ? "steps__tab--active" : ""}`}
-              onClick={() => handleTab("vin")}
-            >
-              VIN OR PLATE
-            </button>
-            <button
-              className={`steps__tab ${activeTab === "make" ? "steps__tab--active" : ""}`}
-              onClick={() => handleTab("make")}
-            >
-              MAKE &amp; MODEL
-            </button>
-          </div>
+      <div className="steps__single-col">
+        <div className="steps__tabs">
+          <button
+            className={`steps__tab ${activeTab === "vin" ? "steps__tab--active" : ""}`}
+            onClick={() => handleTab("vin")}
+          >
+            VIN
+          </button>
+          <button
+            className={`steps__tab ${activeTab === "make" ? "steps__tab--active" : ""}`}
+            onClick={() => handleTab("make")}
+          >
+            Year and Make
+          </button>
+        </div>
 
-          {activeTab === "vin" ? (
-            <div className="steps__tab-content">
+        {activeTab === "vin" ? (
+          <div className="steps__tab-content">
+            <label className="steps__field-label">Enter your VIN</label>
+            <div className="steps__input-icon-wrap">
               <input
                 type="text"
-                className="steps__input"
-                placeholder="Enter 17 Character VIN"
-                value={data.vin || ""}
-                onChange={(e) => onChange({ vin: e.target.value })}
+                className={`steps__input${vinValid ? " steps__input--valid" : ""}`}
+                placeholder="e.g. 1HGCM82633A123456"
+                value={vinValue}
+                onChange={(e) => onChange({ vin: e.target.value.toUpperCase() })}
                 onBlur={handleVinBlur}
+                maxLength={17}
               />
-
-              <button
-                type="button"
-                className="steps__vin-link"
-                onClick={() => setShowVinHelp(true)}
-              >
-                Where to find your VIN
-                <svg viewBox="0 0 24 24" fill="none" width="16" height="16" aria-hidden="true">
-                  <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/>
-                  <line x1="12" y1="8" x2="12" y2="12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                  <circle cx="12" cy="16" r="1" fill="currentColor"/>
-                </svg>
-              </button>
-
-              {(data.vin || "").length === 17 && (
-                <>
-                  <div className="steps__vin-or">
-                    <span>OR</span>
-                  </div>
-
-                  <input
-                    type="text"
-                    className="steps__input"
-                    placeholder="License Plate"
-                    value={data.plate || ""}
-                    onChange={(e) => onChange({ plate: e.target.value })}
-                  />
-                  <input
-                    type="text"
-                    className="steps__input"
-                    placeholder="State"
-                    value={data.state || ""}
-                    onChange={(e) => onChange({ state: e.target.value })}
-                  />
-                </>
+              {vinValid && (
+                <span className="steps__input-valid-icon">
+                  <svg viewBox="0 0 24 24" fill="none" width="20" height="20">
+                    <circle cx="12" cy="12" r="10" fill="#22c55e"/>
+                    <polyline points="7,12 10.5,15.5 17,9" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </span>
               )}
-
-              <button
-                type="button"
-                className="steps__dont-know-link"
-                onClick={() => handleTab("make")}
-              >
-                DO NOT KNOW YOUR <span>VIN</span> OR <span>PLATE</span>? ENTER MAKE &amp; MODEL
-              </button>
             </div>
-          ) : (
-            <div className="steps__tab-content">
-              <select
-                className="steps__input steps__select"
-                value={data.year || ""}
-                onChange={(e) => onChange({ year: e.target.value })}
-              >
-                <option value="" disabled>Select Year</option>
-                {YEARS.map((y) => <option key={y} value={y}>{y}</option>)}
-              </select>
-              <select
-                className="steps__input steps__select"
-                value={data.make || ""}
-                onChange={(e) => onChange({ make: e.target.value })}
-              >
-                <option value="" disabled>Select Make</option>
-                {MAKES.map((m) => <option key={m} value={m}>{m}</option>)}
-              </select>
-              <select
-                className="steps__input steps__select"
-                value={data.model || ""}
-                onChange={(e) => onChange({ model: e.target.value })}
-              >
-                <option value="" disabled>Select Model</option>
-                {MODELS.map((m) => <option key={m} value={m}>{m}</option>)}
-              </select>
-            </div>
-          )}
-        </div>
 
-        <div className="steps__tips">
-          <h2 className="steps__tips-title">Helpful tips</h2>
-          <p className="steps__tips-text">
-            Begin with your VIN or license plate number for the most precise
-            offer. You can find these on your registration, title, or insurance card.
-            The VIN is also located inside the driver&apos;s door or on the dashboard.
-            If you don&apos;t have the VIN or plate handy, just enter the year, make,
-            and model instead.
-          </p>
-        </div>
+            <button
+              type="button"
+              className="steps__vin-link"
+              onClick={() => setShowVinHelp(true)}
+            >
+              Where to find your VIN
+              <svg viewBox="0 0 24 24" fill="none" width="16" height="16" aria-hidden="true">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/>
+                <line x1="12" y1="8" x2="12" y2="12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                <circle cx="12" cy="16" r="1" fill="currentColor"/>
+              </svg>
+            </button>
+
+            {vinValid && (
+              <>
+                <label className="steps__field-label" style={{ marginTop: "1rem" }}>
+                  Vehicle identified
+                </label>
+                <input
+                  type="text"
+                  className="steps__input steps__input--readonly"
+                  value={data.vehicleIdentified || ""}
+                  readOnly
+                  placeholder="Decoding VIN..."
+                />
+
+                <label className="steps__field-label" style={{ marginTop: "1.2rem" }}>
+                  Model
+                </label>
+                <p className="steps__field-hint">Pre-filled from VIN — update if needed</p>
+                <input
+                  type="text"
+                  className="steps__input"
+                  value={data.model || ""}
+                  onChange={(e) => onChange({ model: e.target.value })}
+                  placeholder="Enter model"
+                />
+              </>
+            )}
+
+            <button
+              type="button"
+              className="steps__dont-know-link"
+              onClick={() => handleTab("make")}
+            >
+              Don&apos;t have your VIN? <span>Enter year and make instead</span>
+            </button>
+          </div>
+        ) : (
+          <div className="steps__tab-content">
+            <label className="steps__field-label">Year</label>
+            <select
+              className="steps__input steps__select"
+              value={data.year || ""}
+              onChange={(e) => onChange({ year: e.target.value })}
+            >
+              <option value="" disabled>Select Year</option>
+              {YEARS.map((y) => <option key={y} value={y}>{y}</option>)}
+            </select>
+
+            <label className="steps__field-label" style={{ marginTop: "1.2rem" }}>Make</label>
+            <select
+              className="steps__input steps__select"
+              value={data.make || ""}
+              onChange={(e) => onChange({ make: e.target.value })}
+            >
+              <option value="" disabled>Select Make</option>
+              {MAKES.map((m) => <option key={m} value={m}>{m}</option>)}
+            </select>
+
+            <label className="steps__field-label" style={{ marginTop: "1.2rem" }}>Model</label>
+            <select
+              className="steps__input steps__select"
+              value={data.model || ""}
+              onChange={(e) => onChange({ model: e.target.value })}
+            >
+              <option value="" disabled>Select Model</option>
+              {MODELS.map((m) => <option key={m} value={m}>{m}</option>)}
+            </select>
+          </div>
+        )}
       </div>
 
       {showVinError && <VinErrorModal onClose={() => setShowVinError(false)} />}

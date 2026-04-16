@@ -3,10 +3,10 @@
 ═══════════════════════════════════════════════════ */
 #steps__page {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  // display: flex;
+  // flex-direction: column;
   background: var(--color-white);
-  padding-bottom: 10rem;
+  padding-bottom: 80px;
 
   & ~ footer {
     display: none;
@@ -14,20 +14,19 @@
 
   /* ── Progress Bar ── */
   .steps__progress-bar {
-    padding: 3rem 0 2rem;
-    // border-bottom: 1px solid var(--color-efefef);
+    padding: 24px 0 16px;
 
     .steps__progress-track {
       position: relative;
-      height: 1rem;
+      height: 5px;
       background: #d9d9d9;
-      border-radius: var(--radius-full);
+      border-radius: 999px;
       overflow: visible;
 
       .steps__progress-fill {
         height: 100%;
         background: var(--color-red);
-        border-radius: var(--radius-full);
+        border-radius: 999px;
         transition: width 0.4s ease;
       }
 
@@ -38,7 +37,7 @@
         transform: translate(-50%, -50%);
 
         img {
-          width: 6rem;
+          width: 52px;
           display: block;
         }
       }
@@ -48,15 +47,16 @@
   /* ── Section ── */
   .steps__section {
     flex: 1;
-    padding: 5rem 0 4rem;
+    padding: 40px 0 32px;
+    max-width: 760px;
+    margin: 0 auto;
   }
 
   .steps__title {
-    font-size: 3.8rem;
-    font-weight: var(--fw-600);
+    font-size: 32px;
+    font-weight: 700;
     color: var(--color-black);
-    text-align: center;
-    margin-bottom: 5rem;
+    margin-bottom: 12px;
     line-height: 1.2;
   }
 
@@ -64,38 +64,29 @@
   .steps__content {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 6rem;
+    gap: 48px;
     align-items: start;
-    max-width: 90rem;
+    max-width: 760px;
     margin: 0 auto;
-  }
-
-  /* ── Form Card ── */
-  .steps__form-card {
-    border: 1.5px solid var(--color-pink-bdr);
-    border-radius: var(--radius-20);
-    padding: 3rem;
-    background: var(--color-white);
   }
 
   /* ── Tabs ── */
   .steps__tabs {
     display: flex;
     background: var(--color-tab-bg);
-    border-radius: var(--radius-full);
-    padding: 0.5rem;
-    margin-bottom: 2.4rem;
-    gap: 0.4rem;
+    border-radius: 12px;
+    padding: 4px;
+    margin-bottom: 20px;
+    gap: 4px;
   }
 
   .steps__tab {
     flex: 1;
-    padding: 1.2rem 1.6rem;
+    padding: 13px 16px;
     border: none;
-    border-radius: var(--radius-full);
-    font-size: var(--fs-14);
-    font-weight: var(--fw-600);
-    letter-spacing: 0.05em;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
     cursor: pointer;
     background: transparent;
     color: var(--color-gray-text);
@@ -104,8 +95,9 @@
       color 0.2s;
 
     &--active {
-      background: var(--color-red);
-      color: var(--color-white);
+      background: var(--color-white);
+      color: var(--color-black);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
     }
   }
 
@@ -113,17 +105,18 @@
   .steps__tab-content {
     display: flex;
     flex-direction: column;
-    gap: 1.4rem;
+    gap: 12px;
   }
 
   /* ── Input / Select ── */
   .steps__input {
     width: 100%;
-    padding: 1.6rem 2rem;
+    height: 56px;
+    padding: 0 18px;
     background: var(--color-input-bg);
     border: 1.5px solid var(--color-input-bdr);
-    border-radius: var(--radius-full);
-    font-size: var(--fs-16);
+    border-radius: 12px;
+    font-size: 16px;
     font-family: inherit;
     color: var(--color-black);
     outline: none;
@@ -134,8 +127,69 @@
     }
 
     &:focus {
-      border-color: var(--color-red);
+      border-color: #999;
     }
+  }
+
+  /* ── Input with suffix (e.g. "miles") ── */
+  .steps__input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .steps__input--suffix {
+    padding-right: 60px;
+  }
+
+  .steps__input-suffix {
+    position: absolute;
+    right: 18px;
+    font-size: 14px;
+    color: var(--color-gray-text);
+    pointer-events: none;
+    flex-shrink: 0;
+  }
+
+  /* ── Input valid state (green) ── */
+  .steps__input--valid {
+    border-color: #22c55e;
+    padding-right: 48px;
+
+    &:focus {
+      border-color: #22c55e;
+    }
+  }
+
+  .steps__input-icon-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .steps__input-valid-icon {
+    position: absolute;
+    right: 14px;
+    color: #22c55e;
+    font-size: 18px;
+    pointer-events: none;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  /* ── Read-only field ── */
+  .steps__input--readonly {
+    background: #f5f5f5;
+    color: #66666d;
+    cursor: default;
+  }
+
+  .steps__field-hint {
+    font-size: 13px;
+    color: #66666d;
+    margin-top: 2px;
+    margin-bottom: 6px;
   }
 
   .steps__select {
@@ -143,7 +197,7 @@
     -webkit-appearance: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none'%3E%3Cpolyline points='6 9 12 15 18 9' stroke='%23999' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right 2rem center;
+    background-position: right 18px center;
     cursor: pointer;
     color: #bbb;
 
@@ -156,8 +210,8 @@
   .steps__vin-link {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    font-size: var(--fs-14);
+    gap: 4px;
+    font-size: 14px;
     color: var(--color-red);
     text-decoration: underline;
     cursor: pointer;
@@ -165,18 +219,18 @@
 
   /* ── Helpful Tips ── */
   .steps__tips {
-    padding-top: 1rem;
+    padding-top: 8px;
   }
 
   .steps__tips-title {
-    font-size: var(--fs-27);
-    font-weight: var(--fw-600);
+    font-size: 20px;
+    font-weight: 600;
     color: var(--color-black);
-    margin-bottom: 1.6rem;
+    margin-bottom: 12px;
   }
 
   .steps__tips-text {
-    font-size: var(--fs-16);
+    font-size: 15px;
     color: var(--color-gray-text);
     line-height: 1.6;
   }
@@ -189,7 +243,7 @@
     right: 0;
     background: var(--color-white);
     border-top: 1px solid var(--color-efefef);
-    padding: 1.8rem 0;
+    padding: 16px 0;
     z-index: 100;
   }
 
@@ -200,34 +254,36 @@
   }
 
   .steps__btn-back {
-    padding: 1.4rem 4rem;
-    border-radius: var(--radius-full);
-    border: 2px solid var(--color-black);
-    background: transparent;
-    font-size: var(--fs-14);
-    font-weight: var(--fw-700);
-    letter-spacing: 0.08em;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1.5px solid #dcdcdc;
+    background: var(--color-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    transition:
-      background 0.2s,
-      color 0.2s;
-    font-family: inherit;
+    transition: border-color 0.2s;
+    flex-shrink: 0;
+
+    svg {
+      display: block;
+    }
 
     &:hover {
-      background: var(--color-black);
-      color: var(--color-white);
+      border-color: var(--color-black);
     }
   }
 
   .steps__btn-continue {
-    padding: 1.4rem 4rem;
-    border-radius: var(--radius-full);
+    height: 48px;
+    padding: 0 32px;
+    border-radius: 999px;
     border: none;
     background: var(--color-red);
     color: var(--color-white);
-    font-size: var(--fs-14);
-    font-weight: var(--fw-700);
-    letter-spacing: 0.08em;
+    font-size: 16px;
+    font-weight: 600;
     cursor: pointer;
     transition: opacity 0.2s;
     font-family: inherit;
@@ -238,64 +294,56 @@
   }
 }
 
-/* ── Subtitle (bike label) ── */
+/* ── Subtitle ── */
 .steps__subtitle {
-  font-size: var(--fs-18);
-  color: var(--color-gray-text);
-  text-align: center;
-  margin-top: -3rem;
-  margin-bottom: 4rem;
+  font-size: 16px;
+  color: #66666d;
+  margin-bottom: 30px;
 
   strong {
     color: var(--color-black);
-    font-weight: var(--fw-700);
+    font-weight: 700;
   }
-}
-
-/* ── Single column layout (steps 2-7) ── */
-.steps__single-col {
-  max-width: 74rem;
-  margin: 0 auto;
 }
 
 /* ── Field label ── */
 .steps__field-label {
-  font-size: var(--fs-14);
-  font-weight: var(--fw-500);
+  font-size: 14px;
+  font-weight: 600;
   color: var(--color-black);
-  margin-bottom: 1rem;
+  margin-bottom: 6px;
   display: block;
 
   &--lg {
-    font-size: var(--fs-18);
-    margin-bottom: 2rem;
+    font-size: 18px;
+    margin-bottom: 16px;
   }
 }
 
 .steps__field-label-hint {
-  font-weight: var(--fw-400);
+  font-weight: 400;
   color: var(--color-red);
 }
 
 /* ── Rect input (no pill) ── */
 .steps__input--rect {
-  border-radius: var(--radius-9);
+  border-radius: 9px;
 }
 
-/* ── Radio list (Step 2 trims) ── */
+/* ── Radio list ── */
 .steps__radio-list {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 10px;
 }
 
 .steps__radio-row {
   display: flex;
   align-items: center;
-  gap: 1.4rem;
-  padding: 1.4rem 2rem;
-  border-radius: var(--radius-50);
-  background: var(--color-input-bg);
+  gap: 12px;
+  padding: 14px 20px;
+  border-radius: 12px;
+  background: var(--color-white);
   border: 1.5px solid var(--color-input-bdr);
   cursor: pointer;
   transition:
@@ -309,8 +357,8 @@
 }
 
 .steps__radio-dot {
-  width: 2rem;
-  height: 2rem;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   border: 2px solid #ccc;
   display: flex;
@@ -324,31 +372,33 @@
 }
 
 .steps__radio-dot-inner {
-  width: 1rem;
-  height: 1rem;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background: var(--color-red);
   display: block;
 }
 
 .steps__radio-label {
-  font-size: var(--fs-16);
+  font-size: 15px;
   color: var(--color-black);
 }
 
 /* ── Yes/No toggle ── */
 .steps__yesno {
   display: flex;
-  gap: 1.2rem;
+  border: 1.5px solid var(--color-input-bdr);
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 .steps__yesno-btn {
   flex: 1;
-  padding: 1.2rem 3.5rem;
-  border-radius: var(--radius-full);
-  border: 1.5px solid var(--color-input-bdr);
-  background: var(--color-input-bg);
-  font-size: var(--fs-16);
+  height: 56px;
+  padding: 0 20px;
+  border: none;
+  background: var(--color-white);
+  font-size: 16px;
   font-family: inherit;
   color: var(--color-gray-text);
   cursor: pointer;
@@ -357,28 +407,43 @@
     background 0.2s,
     color 0.2s;
 
+  &:first-child {
+    border-right: 1.5px solid var(--color-input-bdr);
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  &:last-child {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
   &--active {
-    border-color: var(--color-red);
+    box-shadow: inset var(--color-red) 0 0 0 2px;
     background: var(--color-pink-bg);
     color: var(--color-black);
+    font-weight: 500;
+    z-index: 1;
+    border-radius: inherit;
   }
 }
 
-/* ── Rating cards (Steps 3 & 4) ── */
+/* ── Rating cards ── */
 .steps__rating-list {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 10px;
 }
 
 .steps__rating-card {
   display: flex;
   align-items: center;
-  gap: 1.4rem;
+  justify-content: space-between;
+  gap: 14px;
   width: 100%;
-  padding: 1.6rem 2rem;
-  border-radius: var(--radius-50);
-  background: var(--color-input-bg);
+  min-height: 56px;
+  padding: 14px 20px;
+  border-radius: 12px;
+  background: var(--color-white);
   border: 1.5px solid var(--color-input-bdr);
   cursor: pointer;
   text-align: left;
@@ -389,53 +454,87 @@
 
   &--active {
     border-color: var(--color-red);
+    border-width: 2px;
     background: var(--color-pink-bg);
   }
 }
 
+.steps__rating-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+}
+
+.steps__rating-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .steps__stars {
   display: flex;
-  gap: 0.2rem;
+  gap: 2px;
   flex-shrink: 0;
 }
 
 .steps__star {
-  font-size: 1.8rem;
+  font-size: 16px;
   color: #ddd;
 
   &--filled {
-    color: #f5c518;
+    color: #f5a623;
   }
 }
 
 .steps__rating-title {
-  font-size: var(--fs-16);
-  font-weight: var(--fw-600);
+  font-size: 16px;
+  font-weight: 600;
   color: var(--color-black);
-  flex: 1;
 }
 
 .steps__rating-desc {
-  font-size: var(--fs-14);
+  font-size: 13px;
   color: var(--color-gray-text);
-  margin-left: auto;
-  white-space: nowrap;
+  line-height: 1.45;
 }
 
-/* ── Checkbox list (Step 3b cosmetic issues) ── */
+.steps__rating-radio {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  background: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
+
+  .steps__rating-card--active & {
+    background: var(--color-red);
+    border-color: var(--color-red);
+  }
+}
+
+/* ── Checkbox list ── */
 .steps__checkbox-list {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 10px;
 }
 
 .steps__checkbox-row {
   display: flex;
   align-items: center;
-  gap: 1.4rem;
-  padding: 1.4rem 2rem;
-  border-radius: var(--radius-50);
-  background: var(--color-input-bg);
+  gap: 14px;
+  min-height: 56px;
+  padding: 14px 20px;
+  border-radius: 12px;
+  background: var(--color-white);
   border: 1.5px solid var(--color-input-bdr);
   cursor: pointer;
   transition:
@@ -444,15 +543,16 @@
 
   &--active {
     border-color: var(--color-red);
+    border-width: 2px;
     background: var(--color-pink-bg);
   }
 }
 
 .steps__checkbox-box {
-  width: 2.2rem;
-  height: 2.2rem;
-  border-radius: 0.4rem;
-  border: 1px solid #ccc;
+  width: 22px;
+  height: 22px;
+  border-radius: 5px;
+  border: 1.5px solid #ccc;
   background: var(--color-white);
   display: flex;
   align-items: center;
@@ -474,7 +574,7 @@
 }
 
 .steps__checkbox-label {
-  font-size: var(--fs-16);
+  font-size: 16px;
   color: var(--color-black);
 }
 
@@ -483,7 +583,7 @@
   background: none;
   border: none;
   outline: none;
-  font-size: var(--fs-16);
+  font-size: 16px;
   font-family: inherit;
   color: var(--color-black);
   font-style: italic;
@@ -496,8 +596,8 @@
 .steps__checkbox-none {
   display: flex;
   align-items: center;
-  gap: 1.4rem;
-  padding: 1rem 0.4rem;
+  gap: 12px;
+  padding: 10px 4px;
   cursor: pointer;
 }
 
@@ -505,16 +605,16 @@
 .steps__option-list {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 10px;
 }
 
 .steps__option-btn {
   width: 100%;
-  padding: 1.6rem 2rem;
-  border-radius: var(--radius-9);
+  padding: 16px 20px;
+  border-radius: 12px;
   background: var(--color-input-bg);
   border: 1.5px solid var(--color-input-bdr);
-  font-size: var(--fs-16);
+  font-size: 15px;
   font-family: inherit;
   color: var(--color-gray-text);
   text-align: left;
@@ -536,7 +636,7 @@
   background: transparent;
   border: none;
   outline: none;
-  font-size: var(--fs-16);
+  font-size: 15px;
   font-family: inherit;
   color: var(--color-black);
   width: 100%;
@@ -553,10 +653,10 @@
 
 /* ── Radio circle (Step 5 title type) ── */
 .steps__radio-box {
-  width: 2.2rem;
-  height: 2.2rem;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
-  border: 1px solid #ccc;
+  border: 1.5px solid #ccc;
   background: var(--color-white);
   display: flex;
   align-items: center;
@@ -566,36 +666,39 @@
 
   .steps__checkbox-row--active & {
     border-color: var(--color-red);
+    background: var(--color-red);
   }
 }
 
 .steps__radio-dot {
-  width: 1rem;
-  height: 1rem;
-  border-color: var(--color-red);
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  background: var(--color-red);
+  background: var(--color-white);
 }
 
 /* ── Yes / No loan toggle ── */
 .steps__loan-toggle {
   display: flex;
-  border-radius: var(--radius-9);
+  border-radius: 12px;
   overflow: hidden;
   border: 1.5px solid var(--color-input-bdr);
-  margin-top: 1rem;
+  margin-top: 10px;
 }
 
 .steps__loan-btn {
   flex: 1;
-  padding: 1.4rem 2rem;
+  padding: 14px 20px;
   background: var(--color-input-bg);
   border: none;
-  font-size: var(--fs-16);
+  font-size: 15px;
   font-family: inherit;
   color: var(--color-gray-text);
   cursor: pointer;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border-color 0.2s;
 
   &:first-child {
     border-right: 1.5px solid var(--color-input-bdr);
@@ -613,21 +716,23 @@
 /* ── Amount input row (payoff / asking price) ── */
 .steps__amount-row {
   display: flex;
-  gap: 1rem;
+  gap: 10px;
   align-items: center;
-  margin-top: 1rem;
+  margin-top: 10px;
 }
 
 .steps__amount-input-wrap {
   flex: 1;
   display: flex;
   align-items: center;
-  gap: 0.8rem;
-  padding: 1.4rem 1.6rem;
-  border-radius: var(--radius-50);
+  gap: 8px;
+  padding: 14px 16px;
+  border-radius: 12px;
   background: var(--color-input-bg);
   border: 1.5px solid var(--color-input-bdr);
-  transition: border-color 0.2s, background 0.2s;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
 
   &--active {
     border-color: var(--color-red);
@@ -642,7 +747,7 @@
 
 .steps__amount-dollar {
   color: var(--color-gray-text);
-  font-size: var(--fs-16);
+  font-size: 15px;
   flex-shrink: 0;
 }
 
@@ -651,7 +756,7 @@
   background: none;
   border: none;
   outline: none;
-  font-size: var(--fs-16);
+  font-size: 15px;
   font-family: inherit;
   color: var(--color-black);
 
@@ -664,29 +769,32 @@
 .steps__not-sure-btn {
   display: flex;
   align-items: center;
-  gap: 0.7rem;
-  padding: 1.4rem 1.8rem;
-  border-radius: var(--radius-9);
+  gap: 7px;
+  padding: 14px 18px;
+  border-radius: 12px;
   background: var(--color-input-bg);
   border: 1.5px solid var(--color-input-bdr);
-  font-size: var(--fs-15);
+  font-size: 14px;
   font-family: inherit;
   color: var(--color-gray-text);
   cursor: pointer;
   white-space: nowrap;
-  transition: background 0.2s, border-color 0.2s, color 0.2s;
+  transition:
+    background 0.2s,
+    border-color 0.2s,
+    color 0.2s;
 
   &--active {
     border-color: var(--color-red);
     background: var(--color-pink-bg);
     color: var(--color-red);
-    font-weight: var(--fw-600);
+    font-weight: 600;
   }
 }
 
 .steps__not-sure-icon {
-  width: 2rem;
-  height: 2rem;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   background: var(--color-red);
   display: flex;
@@ -710,13 +818,13 @@
 .steps__contact-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.6rem;
+  gap: 16px;
 }
 
 .steps__contact-field {
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 6px;
 }
 
 /* ── Confirmation list (Step 7) ── */
@@ -728,24 +836,24 @@
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 2.4rem;
-  margin-bottom: 3rem;
+  gap: 24px;
+  margin-bottom: 28px;
 }
 
 .steps__confirm-item {
   display: flex;
   align-items: flex-start;
-  gap: 1.6rem;
+  gap: 16px;
 }
 
 .steps__confirm-num {
-  width: 3.4rem;
-  height: 3.4rem;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   background: var(--color-red);
   color: var(--color-white);
-  font-size: var(--fs-16);
-  font-weight: var(--fw-700);
+  font-size: 15px;
+  font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -753,15 +861,15 @@
 }
 
 .steps__confirm-title {
-  font-size: var(--fs-16);
-  font-weight: var(--fw-700);
+  font-size: 15px;
+  font-weight: 700;
   color: var(--color-black);
   display: block;
-  margin-bottom: 0.4rem;
+  margin-bottom: 4px;
 }
 
 .steps__confirm-desc {
-  font-size: var(--fs-14);
+  font-size: 13px;
   color: var(--color-gray-text);
   line-height: 1.6;
 }
@@ -769,30 +877,30 @@
 .steps__confirm-note {
   display: flex;
   align-items: flex-start;
-  gap: 1.2rem;
+  gap: 12px;
   background: var(--color-efefef);
-  border-radius: var(--radius-9);
-  padding: 1.6rem 2rem;
-  font-size: var(--fs-14);
+  border-radius: 9px;
+  padding: 16px 20px;
+  font-size: 13px;
   color: var(--color-gray-text);
   line-height: 1.6;
 
   strong {
     display: block;
     color: var(--color-black);
-    font-weight: var(--fw-600);
-    margin-bottom: 0.4rem;
+    font-weight: 600;
+    margin-bottom: 4px;
   }
 }
 
 .steps__confirm-note-icon {
-  font-size: 2rem;
+  font-size: 20px;
   flex-shrink: 0;
 }
 
 /* ── Tire sliders (Step 4d) ── */
 .steps__tire {
-  margin-bottom: 3.2rem;
+  margin-bottom: 30px;
 
   &:last-of-type {
     margin-bottom: 0;
@@ -800,29 +908,29 @@
 }
 
 .steps__tire-label {
-  font-size: var(--fs-16);
-  font-weight: var(--fw-700);
+  font-size: 15px;
+  font-weight: 700;
   font-style: italic;
   color: var(--color-black);
-  margin-bottom: 0.4rem;
+  margin-bottom: 4px;
 }
 
 .steps__tire-hint {
-  font-size: var(--fs-12);
+  font-size: 12px;
   color: var(--color-gray-text);
-  margin-bottom: 2rem;
+  margin-bottom: 18px;
 }
 
 .steps__slider-row {
   display: flex;
   align-items: center;
-  gap: 1.6rem;
+  gap: 16px;
 }
 
 .steps__slider-wrap {
   flex: 1;
   position: relative;
-  padding-top: 3.2rem;
+  padding-top: 30px;
 }
 
 .steps__slider-bubble {
@@ -832,10 +940,10 @@
   transform: translateX(-50%);
   background: var(--color-red);
   color: var(--color-white);
-  font-size: var(--fs-12);
-  font-weight: var(--fw-600);
-  padding: 0.3rem 0.8rem;
-  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 999px;
   white-space: nowrap;
   pointer-events: none;
 }
@@ -844,8 +952,8 @@
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
-  height: 0.6rem;
-  border-radius: var(--radius-full);
+  height: 6px;
+  border-radius: 999px;
   background: linear-gradient(
     to right,
     var(--color-red) 0%,
@@ -864,8 +972,8 @@
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 2.2rem;
-    height: 2.2rem;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
     background: var(--color-red);
     border: 3px solid var(--color-white);
@@ -874,8 +982,8 @@
   }
 
   &::-moz-range-thumb {
-    width: 2.2rem;
-    height: 2.2rem;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
     background: var(--color-red);
     border: 3px solid var(--color-white);
@@ -887,21 +995,21 @@
 .steps__slider-marks {
   display: flex;
   justify-content: space-between;
-  margin-top: 0.8rem;
+  margin-top: 8px;
 }
 
 .steps__slider-mark {
-  font-size: 1.1rem;
+  font-size: 11px;
   color: var(--color-gray-text);
 }
 
 .steps__not-sure-btn {
   flex-shrink: 0;
-  padding: 1rem 1.8rem;
-  border-radius: var(--radius-9);
+  padding: 10px 18px;
+  border-radius: 9px;
   border: 1.5px solid var(--color-input-bdr);
   background: var(--color-input-bg);
-  font-size: var(--fs-14);
+  font-size: 13px;
   font-family: inherit;
   color: var(--color-gray-text);
   cursor: pointer;
@@ -918,18 +1026,18 @@
 }
 
 .steps__tire-footer {
-  font-size: var(--fs-12);
+  font-size: 12px;
   color: var(--color-gray-text);
-  margin-top: 2.4rem;
+  margin-top: 22px;
 }
 
 /* ── VIN OR divider ── */
 .steps__vin-or {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 10px;
   color: var(--color-gray-text);
-  font-size: var(--fs-14);
+  font-size: 13px;
 
   &::before,
   &::after {
@@ -945,16 +1053,16 @@
   background: none;
   border: none;
   font-family: inherit;
-  font-size: var(--fs-12);
-  font-weight: var(--fw-600);
+  font-size: 13px;
+  font-weight: 500;
   color: var(--color-gray-text);
   cursor: pointer;
-  letter-spacing: 0.04em;
   text-align: left;
   padding: 0;
 
   span {
     color: var(--color-red);
+    text-decoration: underline;
   }
 }
 
@@ -967,30 +1075,30 @@
   align-items: center;
   justify-content: center;
   z-index: 999;
-  padding: 2rem;
+  padding: 20px;
 }
 
 .steps__modal {
   background: var(--color-white);
-  border-radius: var(--radius-20);
-  padding: 4rem 3.2rem 3.2rem;
-  max-width: 52rem;
+  border-radius: 20px;
+  padding: 40px 32px 32px;
+  max-width: 520px;
   width: 100%;
   position: relative;
   text-align: center;
 
   &--wide {
-    max-width: 78rem;
+    max-width: 780px;
     text-align: left;
   }
 }
 
 .steps__modal-close {
   position: absolute;
-  top: 1.6rem;
-  right: 1.6rem;
-  width: 3.4rem;
-  height: 3.4rem;
+  top: 16px;
+  right: 16px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   background: var(--color-black);
   border: none;
@@ -1002,48 +1110,48 @@
 }
 
 .steps__modal-icon {
-  margin: 0 auto 2rem;
-  width: 6rem;
-  height: 6rem;
+  margin: 0 auto 20px;
+  width: 60px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .steps__modal-title {
-  font-size: var(--fs-27);
-  font-weight: var(--fw-700);
+  font-size: 24px;
+  font-weight: 700;
   color: var(--color-black);
-  margin-bottom: 2rem;
+  margin-bottom: 20px;
   line-height: 1.3;
 
   &--left {
     text-align: left;
-    font-size: var(--fs-27);
-    margin-bottom: 1rem;
+    font-size: 22px;
+    margin-bottom: 10px;
   }
 }
 
 .steps__modal-subtitle {
-  font-size: var(--fs-16);
+  font-size: 15px;
   color: var(--color-gray-text);
-  margin-bottom: 2.4rem;
+  margin-bottom: 24px;
 }
 
 .steps__modal-rules {
   background: var(--color-efefef);
-  border-radius: var(--radius-9);
-  padding: 1.6rem 2rem;
+  border-radius: 9px;
+  padding: 16px 20px;
   text-align: left;
-  margin-bottom: 2rem;
+  margin-bottom: 20px;
 
   p {
-    font-size: var(--fs-14);
+    font-size: 13px;
     color: var(--color-gray-text);
     display: flex;
     align-items: center;
-    gap: 1rem;
-    margin-bottom: 0.8rem;
+    gap: 10px;
+    margin-bottom: 8px;
 
     &:last-child {
       margin-bottom: 0;
@@ -1056,7 +1164,7 @@
 }
 
 .steps__modal-hint {
-  font-size: var(--fs-16);
+  font-size: 14px;
   color: var(--color-gray-text);
 }
 
@@ -1064,27 +1172,27 @@
 .steps__vin-cards {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2rem;
+  gap: 20px;
 }
 
 .steps__vin-card {
   background: var(--color-pink-bg);
-  border-radius: var(--radius-16);
-  padding: 2rem;
+  border-radius: 16px;
+  padding: 20px;
   overflow: hidden;
 }
 
 .steps__vin-card-title {
-  font-size: var(--fs-18);
-  font-weight: var(--fw-700);
+  font-size: 16px;
+  font-weight: 700;
   color: var(--color-black);
-  margin-bottom: 0.6rem;
+  margin-bottom: 6px;
 }
 
 .steps__vin-card-desc {
-  font-size: var(--fs-14);
+  font-size: 13px;
   color: var(--color-gray-text);
-  margin-bottom: 1.6rem;
+  margin-bottom: 16px;
   line-height: 1.5;
 }
 
@@ -1098,7 +1206,7 @@
 @media (max-width: 1024px) {
   #steps__page {
     .steps__content {
-      gap: 3.2rem;
+      gap: 32px;
       max-width: 100%;
     }
   }
@@ -1110,36 +1218,41 @@
 
 @media (max-width: 768px) {
   #steps__page {
-    padding-bottom: 8rem;
+    padding-bottom: 72px;
 
     .steps__title {
-      font-size: var(--fs-27);
-      margin-bottom: 2.4rem;
+      font-size: 22px;
+      margin-bottom: 10px;
     }
 
     .steps__section {
-      padding: 3rem 0 2rem;
+      padding: 28px 0 20px;
     }
 
     .steps__content {
       grid-template-columns: 1fr;
-      gap: 2.4rem;
+      gap: 20px;
     }
 
     .steps__form-card {
-      padding: 2rem;
+      padding: 20px;
     }
 
-    .steps__btn-back,
+    .steps__btn-back {
+      width: 40px;
+      height: 40px;
+    }
+
     .steps__btn-continue {
-      padding: 1.2rem 2.4rem;
+      height: 44px;
+      padding: 0 24px;
+      font-size: 15px;
     }
   }
 
   .steps__subtitle {
-    font-size: var(--fs-16);
-    margin-top: -2rem;
-    margin-bottom: 2.4rem;
+    font-size: 13px;
+    margin-bottom: 20px;
   }
 
   .steps__single-col {
@@ -1148,7 +1261,7 @@
 
   .steps__contact-grid {
     grid-template-columns: 1fr;
-    gap: 1.2rem;
+    gap: 12px;
   }
 
   .steps__vin-cards {
@@ -1156,7 +1269,7 @@
   }
 
   .steps__modal {
-    padding: 3rem 2rem 2rem;
+    padding: 32px 20px 20px;
 
     &--wide {
       max-width: 100%;
@@ -1164,15 +1277,10 @@
   }
 
   .steps__modal-title {
-    font-size: var(--fs-22);
-  }
-
-  .steps__yesno {
-    flex-wrap: wrap;
+    font-size: 20px;
   }
 
   .steps__yesno-btn {
-    flex: 1;
     text-align: center;
   }
 }

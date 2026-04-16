@@ -37,7 +37,11 @@ export default function StepsPage() {
         : "Your Motorcycle";
 
   const continueBtnLabel =
-    currentStep === 10 ? "SUBMIT FOR APPRAISAL" : "CONTINUE";
+    currentStep === 1
+      ? "Get my offer"
+      : currentStep === 10
+        ? "Submit for Appraisal"
+        : "Continue";
 
   return (
     <>
@@ -147,8 +151,10 @@ export default function StepsPage() {
           <Contain>
             <div className="steps__footer-nav-inner">
               {currentStep > 1 ? (
-                <button className="steps__btn-back" onClick={goBack}>
-                  BACK
+                <button className="steps__btn-back" onClick={goBack} aria-label="Back">
+                  <svg viewBox="0 0 24 24" fill="none" width="20" height="20">
+                    <path d="M15 18l-6-6 6-6" stroke="#231f20" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
                 </button>
               ) : (
                 <span />
