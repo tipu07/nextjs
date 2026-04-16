@@ -1,9 +1,9 @@
 export default function Step6({ data, onChange, bikeLabel }) {
   return (
     <section className="steps__section">
-      <h1 className="steps__title">Contact Info &amp; Submission</h1>
+      <h1 className="steps__title">How can we reach you?</h1>
       <p className="steps__subtitle">
-        Showing: <strong>{bikeLabel}</strong>
+        We will use this information to follow up with your appraisal.
       </p>
 
       <div className="steps__single-col">

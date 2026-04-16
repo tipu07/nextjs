@@ -14,11 +14,10 @@ export default function Step2({ data, onChange, bikeLabel }) {
   return (
     <section className="steps__section">
       <h1 className="steps__title">Tell us a bit more about your bike</h1>
-      <p className="steps__subtitle">{bikeLabel}</p>
 
       <div className="steps__single-col">
         <div className="steps__form-card">
-          <p className="steps__field-label">Select the trim/variant</p>
+          {/* <p className="steps__field-label">Select the trim/variant</p>
           <div className="steps__radio-list">
             {TRIMS.map((trim) => (
               <label
@@ -41,10 +40,13 @@ export default function Step2({ data, onChange, bikeLabel }) {
                 <span className="steps__radio-label">{trim}</span>
               </label>
             ))}
-          </div>
+          </div> */}
 
           <p className="steps__field-label" style={{ marginTop: "2.4rem" }}>
-            Mileage <span className="steps__field-label-hint">(to the best of your knowledge)</span>
+            Mileage{" "}
+            <span className="steps__field-label-hint">
+              (to the best of your knowledge)
+            </span>
           </p>
           <input
             type="number"
@@ -55,7 +57,10 @@ export default function Step2({ data, onChange, bikeLabel }) {
           />
 
           <p className="steps__field-label" style={{ marginTop: "2rem" }}>
-            ZIP Code <span className="steps__field-label-hint">(where the motorcycle is located)</span>
+            ZIP Code{" "}
+            <span className="steps__field-label-hint">
+              (where the motorcycle is located)
+            </span>
           </p>
           <input
             type="text"
@@ -84,6 +89,19 @@ export default function Step2({ data, onChange, bikeLabel }) {
               No
             </button>
           </div>
+          <p className="steps__field-label" style={{ marginTop: "2.4rem" }}>
+            Email Address{" "}
+            <span className="steps__field-label-hint">
+              (We send your offer here)
+            </span>
+          </p>
+          <input
+            type="text"
+            className="steps__input steps__input--rect"
+            placeholder="e.g. sample@gmail.com"
+            value={data.email || ""}
+            onChange={(e) => onChange({ email: e.target.value })}
+          />
         </div>
       </div>
     </section>

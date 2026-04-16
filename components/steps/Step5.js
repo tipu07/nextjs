@@ -1,54 +1,78 @@
 const TITLE_TYPES = [
   "Clean",
   "Salvage",
-  "True Mileage Unknown",
-  "Other / Not Sure",
+  "True mileage unknown",
+  "Other or not sure",
 ];
 
-export default function Step5({ data, onChange, bikeLabel }) {
-  const showLoanDetails = data.hasLoan === "yes";
+function CircleBox({ active }) {
+  return (
+    <span className="steps__radio-box">
+      {active && <span className="steps__radio-dot" />}
+    </span>
+  );
+}
+
+function CheckIcon() {
+  return (
+    <svg viewBox="0 0 12 10" fill="none" width="12" height="10">
+      <polyline
+        points="1,5 4.5,8.5 11,1"
+        stroke="#fff"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+export default function Step5({ data, onChange }) {
+  const showLoan = data.hasLoan === "yes";
 
   return (
     <section className="steps__section">
-      <h1 className="steps__title">Title &amp; Financial Info</h1>
-      <p className="steps__subtitle">
-        Showing: <strong>{bikeLabel}</strong>
-      </p>
+      <h1 className="steps__title">Title and financial details</h1>
 
       <div className="steps__single-col">
+
+        {/* ── Card 1: Title type ── */}
         <div className="steps__form-card">
-
-          {/* Title type */}
-          <p className="steps__field-label steps__field-label--lg">
-            What kind of title do you have?
-          </p>
+          <p className="steps__field-label steps__field-label--lg">Title type</p>
           <div className="steps__option-list">
-            {TITLE_TYPES.map((t) => (
-              <button
-                key={t}
-                type="button"
-                className={`steps__option-btn ${data.titleType === t ? "steps__option-btn--active" : ""}`}
-                onClick={() => onChange({ titleType: t })}
-              >
-                {t}
-              </button>
-            ))}
+            {TITLE_TYPES.map((t) => {
+              const active = data.titleType === t;
+              return (
+                <label
+                  key={t}
+                  className={`steps__checkbox-row ${active ? "steps__checkbox-row--active" : ""}`}
+                  onClick={() => onChange({ titleType: t })}
+                >
+                  <CircleBox active={active} />
+                  <span className="steps__checkbox-label">{t}</span>
+                </label>
+              );
+            })}
           </div>
+        </div>
 
-          {/* Loan */}
-          <p className="steps__field-label" style={{ marginTop: "3rem" }}>
+        {/* ── Card 2: Loan ── */}
+        <div className="steps__form-card" style={{ marginTop: "2rem" }}>
+          <p className="steps__field-label steps__field-label--lg">
             Do you have a loan on this bike?
           </p>
-          <div className="steps__fin-row">
-            {["Yes", "No", "Other / Not Sure"].map((opt) => {
-              const val = opt.toLowerCase().replace(" / not sure", "").replace(" ", "_");
-              const key = opt === "Yes" ? "yes" : opt === "No" ? "no" : "other";
+
+          {/* Yes / No toggle */}
+          <div className="steps__yesno">
+            {["Yes", "No"].map((opt) => {
+              const val = opt.toLowerCase();
+              const active = data.hasLoan === val;
               return (
                 <button
                   key={opt}
                   type="button"
-                  className={`steps__option-btn ${data.hasLoan === key ? "steps__option-btn--active" : ""}`}
-                  onClick={() => onChange({ hasLoan: key, payoffAmount: "", dontKnowPayoff: false })}
+                  className={`steps__yesno-btn ${active ? "steps__yesno-btn--active" : ""}`}
+                  onClick={() => onChange({ hasLoan: val, payoffAmount: "", notSurePayoff: false })}
                 >
                   {opt}
                 </button>
@@ -56,65 +80,69 @@ export default function Step5({ data, onChange, bikeLabel }) {
             })}
           </div>
 
-          {/* Payoff amount — shown only when loan = yes */}
-          {showLoanDetails && (
-            <div className="steps__fin-reveal">
-              <p className="steps__field-label" style={{ marginTop: "2.4rem" }}>
-                Do you know what your payoff amount is?
-              </p>
-              <button
-                type="button"
-                className={`steps__option-btn ${!data.dontKnowPayoff && data.payoffAmount ? "steps__option-btn--active" : ""}`}
-                style={{ marginBottom: "1rem" }}
-                onClick={() => onChange({ dontKnowPayoff: false })}
-              >
-                <input
-                  type="text"
-                  placeholder="$567"
-                  value={data.payoffAmount || ""}
-                  className="steps__inline-input"
-                  onChange={(e) => onChange({ payoffAmount: e.target.value, dontKnowPayoff: false })}
-                  onClick={(e) => e.stopPropagation()}
-                />
-              </button>
-              <button
-                type="button"
-                className={`steps__option-btn ${data.dontKnowPayoff ? "steps__option-btn--active" : ""}`}
-                onClick={() => onChange({ dontKnowPayoff: true, payoffAmount: "" })}
-              >
-                I don&apos;t know
-              </button>
+          {/* Payoff amount — visible when loan = yes */}
+          {showLoan && (
+            <div className="steps__fin-reveal" style={{ marginTop: "2rem" }}>
+              <p className="steps__field-label">Payoff amount</p>
+              <div className="steps__amount-row">
+                <div className={`steps__amount-input-wrap ${!data.notSurePayoff && data.payoffAmount ? "steps__amount-input-wrap--active" : ""} ${data.notSurePayoff ? "steps__amount-input-wrap--disabled" : ""}`}>
+                  <span className="steps__amount-dollar">$</span>
+                  <input
+                    type="text"
+                    className="steps__amount-input"
+                    placeholder="Enter amount"
+                    value={data.payoffAmount || ""}
+                    disabled={data.notSurePayoff}
+                    onChange={(e) => onChange({ payoffAmount: e.target.value, notSurePayoff: false })}
+                  />
+                </div>
+                <button
+                  type="button"
+                  className={`steps__not-sure-btn ${data.notSurePayoff ? "steps__not-sure-btn--active" : ""}`}
+                  onClick={() => onChange({ notSurePayoff: !data.notSurePayoff, payoffAmount: "" })}
+                >
+                  {data.notSurePayoff && (
+                    <span className="steps__not-sure-icon">
+                      <CheckIcon />
+                    </span>
+                  )}
+                  Not sure
+                </button>
+              </div>
             </div>
           )}
-
-          {/* Hoping price */}
-          <p className="steps__field-label" style={{ marginTop: "3rem" }}>
-            Is there a price you&apos;re hoping to get for this motorcycle?
-          </p>
-          <button
-            type="button"
-            className={`steps__option-btn ${!data.noPriceExpectation && data.hopingPrice ? "steps__option-btn--active" : ""}`}
-            style={{ marginBottom: "1rem" }}
-            onClick={() => onChange({ noPriceExpectation: false })}
-          >
-            <input
-              type="text"
-              placeholder="$567"
-              value={data.hopingPrice || ""}
-              className="steps__inline-input"
-              onChange={(e) => onChange({ hopingPrice: e.target.value, noPriceExpectation: false })}
-              onClick={(e) => e.stopPropagation()}
-            />
-          </button>
-          <button
-            type="button"
-            className={`steps__option-btn ${data.noPriceExpectation ? "steps__option-btn--active" : ""}`}
-            onClick={() => onChange({ noPriceExpectation: true, hopingPrice: "" })}
-          >
-            No / I&apos;m not sure
-          </button>
-
         </div>
+
+        {/* ── Card 3: Asking price ── */}
+        <div className="steps__form-card" style={{ marginTop: "2rem" }}>
+          <p className="steps__field-label steps__field-label--lg">Asking price</p>
+          <div className="steps__amount-row">
+            <div className={`steps__amount-input-wrap ${!data.notSurePrice && data.askingPrice ? "steps__amount-input-wrap--active" : ""} ${data.notSurePrice ? "steps__amount-input-wrap--disabled" : ""}`}>
+              <span className="steps__amount-dollar">$</span>
+              <input
+                type="text"
+                className="steps__amount-input"
+                placeholder="Enter amount"
+                value={data.askingPrice || ""}
+                disabled={data.notSurePrice}
+                onChange={(e) => onChange({ askingPrice: e.target.value, notSurePrice: false })}
+              />
+            </div>
+            <button
+              type="button"
+              className={`steps__not-sure-btn ${data.notSurePrice ? "steps__not-sure-btn--active" : ""}`}
+              onClick={() => onChange({ notSurePrice: !data.notSurePrice, askingPrice: "" })}
+            >
+              {data.notSurePrice && (
+                <span className="steps__not-sure-icon">
+                  <CheckIcon />
+                </span>
+              )}
+              Not sure
+            </button>
+          </div>
+        </div>
+
       </div>
     </section>
   );

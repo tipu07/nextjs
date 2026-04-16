@@ -90,7 +90,7 @@ export default function Step4d({ data, onChange, bikeLabel }) {
         About how many miles are on your current tires?
       </h1>
       <p className="steps__subtitle">
-        Showing: <strong>{bikeLabel}</strong>
+        Approximate is fine. This helps us understand remaining life.
       </p>
 
       <div className="steps__single-col">

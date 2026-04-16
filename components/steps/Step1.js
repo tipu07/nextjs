@@ -68,7 +68,7 @@ function VinHelpModal({ onClose }) {
 }
 
 export default function Step1({ data, onChange }) {
-  const [activeTab, setActiveTab] = useState(data.tab || "make");
+  const [activeTab, setActiveTab] = useState(data.tab || "vin");
   const [showVinError, setShowVinError] = useState(false);
   const [showVinHelp, setShowVinHelp] = useState(false);
 
@@ -109,7 +109,7 @@ export default function Step1({ data, onChange }) {
               <input
                 type="text"
                 className="steps__input"
-                placeholder="Enter Your VIN"
+                placeholder="Enter 17 Character VIN"
                 value={data.vin || ""}
                 onChange={(e) => onChange({ vin: e.target.value })}
                 onBlur={handleVinBlur}
@@ -128,24 +128,28 @@ export default function Step1({ data, onChange }) {
                 </svg>
               </button>
 
-              <div className="steps__vin-or">
-                <span>OR</span>
-              </div>
+              {(data.vin || "").length === 17 && (
+                <>
+                  <div className="steps__vin-or">
+                    <span>OR</span>
+                  </div>
 
-              <input
-                type="text"
-                className="steps__input"
-                placeholder="License Plate"
-                value={data.plate || ""}
-                onChange={(e) => onChange({ plate: e.target.value })}
-              />
-              <input
-                type="text"
-                className="steps__input"
-                placeholder="State"
-                value={data.state || ""}
-                onChange={(e) => onChange({ state: e.target.value })}
-              />
+                  <input
+                    type="text"
+                    className="steps__input"
+                    placeholder="License Plate"
+                    value={data.plate || ""}
+                    onChange={(e) => onChange({ plate: e.target.value })}
+                  />
+                  <input
+                    type="text"
+                    className="steps__input"
+                    placeholder="State"
+                    value={data.state || ""}
+                    onChange={(e) => onChange({ state: e.target.value })}
+                  />
+                </>
+              )}
 
               <button
                 type="button"

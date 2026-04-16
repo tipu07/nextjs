@@ -52,8 +52,8 @@
   }
 
   .steps__title {
-    font-size: 4rem;
-    font-weight: var(--fw-700);
+    font-size: 3.8rem;
+    font-weight: var(--fw-600);
     color: var(--color-black);
     text-align: center;
     margin-bottom: 5rem;
@@ -94,7 +94,7 @@
     border: none;
     border-radius: var(--radius-full);
     font-size: var(--fs-14);
-    font-weight: var(--fw-700);
+    font-weight: var(--fw-600);
     letter-spacing: 0.05em;
     cursor: pointer;
     background: transparent;
@@ -240,7 +240,7 @@
 
 /* ── Subtitle (bike label) ── */
 .steps__subtitle {
-  font-size: var(--fs-20);
+  font-size: var(--fs-18);
   color: var(--color-gray-text);
   text-align: center;
   margin-top: -3rem;
@@ -261,9 +261,9 @@
 /* ── Field label ── */
 .steps__field-label {
   font-size: var(--fs-14);
-  font-weight: var(--fw-600);
+  font-weight: var(--fw-500);
   color: var(--color-black);
-  margin-bottom: 1.2rem;
+  margin-bottom: 1rem;
   display: block;
 
   &--lg {
@@ -294,7 +294,7 @@
   align-items: center;
   gap: 1.4rem;
   padding: 1.4rem 2rem;
-  border-radius: var(--radius-9);
+  border-radius: var(--radius-50);
   background: var(--color-input-bg);
   border: 1.5px solid var(--color-input-bdr);
   cursor: pointer;
@@ -343,6 +343,7 @@
 }
 
 .steps__yesno-btn {
+  flex: 1;
   padding: 1.2rem 3.5rem;
   border-radius: var(--radius-full);
   border: 1.5px solid var(--color-input-bdr);
@@ -376,7 +377,7 @@
   gap: 1.4rem;
   width: 100%;
   padding: 1.6rem 2rem;
-  border-radius: var(--radius-9);
+  border-radius: var(--radius-50);
   background: var(--color-input-bg);
   border: 1.5px solid var(--color-input-bdr);
   cursor: pointer;
@@ -433,11 +434,13 @@
   align-items: center;
   gap: 1.4rem;
   padding: 1.4rem 2rem;
-  border-radius: var(--radius-9);
+  border-radius: var(--radius-50);
   background: var(--color-input-bg);
   border: 1.5px solid var(--color-input-bdr);
   cursor: pointer;
-  transition: border-color 0.2s, background 0.2s;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
 
   &--active {
     border-color: var(--color-red);
@@ -449,13 +452,15 @@
   width: 2.2rem;
   height: 2.2rem;
   border-radius: 0.4rem;
-  border: 2px solid #ccc;
+  border: 1px solid #ccc;
   background: var(--color-white);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  transition: border-color 0.2s, background 0.2s;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
 
   .steps__checkbox-row--active & {
     border-color: var(--color-red);
@@ -471,6 +476,21 @@
 .steps__checkbox-label {
   font-size: var(--fs-16);
   color: var(--color-black);
+}
+
+.steps__checkbox-other-input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  font-size: var(--fs-16);
+  font-family: inherit;
+  color: var(--color-black);
+  font-style: italic;
+
+  &::placeholder {
+    color: var(--color-gray-text);
+  }
 }
 
 .steps__checkbox-none {
@@ -531,9 +551,159 @@
   animation: fadeIn 0.2s ease;
 }
 
+/* ── Radio circle (Step 5 title type) ── */
+.steps__radio-box {
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  background: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: border-color 0.2s;
+
+  .steps__checkbox-row--active & {
+    border-color: var(--color-red);
+  }
+}
+
+.steps__radio-dot {
+  width: 1rem;
+  height: 1rem;
+  border-color: var(--color-red);
+  border-radius: 50%;
+  background: var(--color-red);
+}
+
+/* ── Yes / No loan toggle ── */
+.steps__loan-toggle {
+  display: flex;
+  border-radius: var(--radius-9);
+  overflow: hidden;
+  border: 1.5px solid var(--color-input-bdr);
+  margin-top: 1rem;
+}
+
+.steps__loan-btn {
+  flex: 1;
+  padding: 1.4rem 2rem;
+  background: var(--color-input-bg);
+  border: none;
+  font-size: var(--fs-16);
+  font-family: inherit;
+  color: var(--color-gray-text);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+
+  &:first-child {
+    border-right: 1.5px solid var(--color-input-bdr);
+  }
+
+  &--active {
+    background: var(--color-pink-bg);
+    color: var(--color-black);
+    border-color: var(--color-red);
+    outline: 1.5px solid var(--color-red);
+    outline-offset: -1px;
+  }
+}
+
+/* ── Amount input row (payoff / asking price) ── */
+.steps__amount-row {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.steps__amount-input-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1.4rem 1.6rem;
+  border-radius: var(--radius-50);
+  background: var(--color-input-bg);
+  border: 1.5px solid var(--color-input-bdr);
+  transition: border-color 0.2s, background 0.2s;
+
+  &--active {
+    border-color: var(--color-red);
+    background: var(--color-pink-bg);
+  }
+
+  &--disabled {
+    opacity: 0.45;
+    pointer-events: none;
+  }
+}
+
+.steps__amount-dollar {
+  color: var(--color-gray-text);
+  font-size: var(--fs-16);
+  flex-shrink: 0;
+}
+
+.steps__amount-input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  font-size: var(--fs-16);
+  font-family: inherit;
+  color: var(--color-black);
+
+  &::placeholder {
+    color: #bbb;
+  }
+}
+
+/* ── Not sure button ── */
+.steps__not-sure-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 1.4rem 1.8rem;
+  border-radius: var(--radius-9);
+  background: var(--color-input-bg);
+  border: 1.5px solid var(--color-input-bdr);
+  font-size: var(--fs-15);
+  font-family: inherit;
+  color: var(--color-gray-text);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+
+  &--active {
+    border-color: var(--color-red);
+    background: var(--color-pink-bg);
+    color: var(--color-red);
+    font-weight: var(--fw-600);
+  }
+}
+
+.steps__not-sure-icon {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--color-red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-6px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ── Contact grid (Step 6) ── */
@@ -735,7 +905,10 @@
   font-family: inherit;
   color: var(--color-gray-text);
   cursor: pointer;
-  transition: border-color 0.2s, background 0.2s, color 0.2s;
+  transition:
+    border-color 0.2s,
+    background 0.2s,
+    color 0.2s;
 
   &--active {
     border-color: var(--color-red);
