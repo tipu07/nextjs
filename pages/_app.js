@@ -1,6 +1,4 @@
 import React from "react";
-import { Provider } from "react-redux";
-import store from "../states/store";
 
 import { parse } from "cookie";
 import http from "../helpers/http";
@@ -21,11 +19,9 @@ export default function App({
     ((page) => (
       <>
         <NextNProgress color="#ee2524ff" />
-        <Provider store={store}>
-          <Layout siteSettings={siteSettings} headerServices={headerServices}>
-            {page}
-          </Layout>
-        </Provider>
+        <Layout siteSettings={siteSettings} headerServices={headerServices}>
+          {page}
+        </Layout>
       </>
     ));
 

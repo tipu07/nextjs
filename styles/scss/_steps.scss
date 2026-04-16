@@ -14,7 +14,7 @@
 
   /* ── Progress Bar ── */
   .steps__progress-bar {
-    padding: 2rem 0;
+    padding: 3rem 0 2rem;
     // border-bottom: 1px solid var(--color-efefef);
 
     .steps__progress-track {
@@ -52,7 +52,7 @@
   }
 
   .steps__title {
-    font-size: var(--fs-50);
+    font-size: 4rem;
     font-weight: var(--fw-700);
     color: var(--color-black);
     text-align: center;
@@ -170,7 +170,7 @@
 
   .steps__tips-title {
     font-size: var(--fs-27);
-    font-weight: var(--fw-700);
+    font-weight: var(--fw-600);
     color: var(--color-black);
     margin-bottom: 1.6rem;
   }
@@ -178,7 +178,7 @@
   .steps__tips-text {
     font-size: var(--fs-16);
     color: var(--color-gray-text);
-    line-height: 1.7;
+    line-height: 1.6;
   }
 
   /* ── Footer Nav ── */
