@@ -1,4 +1,49 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+
+function CustomSelect({ value, onChange, options, placeholder }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const handler = (e) => {
+      if (ref.current && !ref.current.contains(e.target)) setOpen(false);
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
+  const selected = options.find((o) => String(o) === String(value));
+
+  return (
+    <div className="steps__custom-select" ref={ref}>
+      <button
+        type="button"
+        className={`steps__custom-select__trigger${selected ? " steps__custom-select__trigger--has-value" : ""}${open ? " steps__custom-select__trigger--open" : ""}`}
+        onClick={() => setOpen((v) => !v)}
+      >
+        <span className="steps__custom-select__label">{selected ?? placeholder}</span>
+        <span className={`steps__custom-select__chevron${open ? " steps__custom-select__chevron--open" : ""}`}>
+          <svg viewBox="0 0 24 24" fill="none" width="18" height="18">
+            <polyline points="6 9 12 15 18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </span>
+      </button>
+      {open && (
+        <div className="steps__custom-select__dropdown">
+          {options.map((opt) => (
+            <div
+              key={opt}
+              className={`steps__custom-select__option${String(opt) === String(value) ? " steps__custom-select__option--selected" : ""}`}
+              onMouseDown={() => { onChange(String(opt)); setOpen(false); }}
+            >
+              {opt}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 
 const YEARS = Array.from({ length: 30 }, (_, i) => 2025 - i);
 const MAKES = ["Honda", "Yamaha", "Kawasaki", "Suzuki", "Harley-Davidson", "BMW", "Ducati", "KTM", "Triumph", "Royal Enfield"];
@@ -111,12 +156,12 @@ export default function Step1({ data, onChange }) {
 
         {activeTab === "vin" ? (
           <div className="steps__tab-content">
-            <label className="steps__field-label">Enter your VIN</label>
+            <label className="steps__field-label !mb-[0]">Enter your VIN</label>
             <div className="steps__input-icon-wrap">
               <input
                 type="text"
                 className={`steps__input${vinValid ? " steps__input--valid" : ""}`}
-                placeholder="e.g. 1HGCM82633A123456"
+                placeholder="17 character VIN"
                 value={vinValue}
                 onChange={(e) => onChange({ vin: e.target.value.toUpperCase() })}
                 onBlur={handleVinBlur}
@@ -147,7 +192,7 @@ export default function Step1({ data, onChange }) {
 
             {vinValid && (
               <>
-                <label className="steps__field-label" style={{ marginTop: "1rem" }}>
+                <label className="steps__field-label !mb-[0]" style={{ marginTop: "1rem" }}>
                   Vehicle identified
                 </label>
                 <input
@@ -158,10 +203,10 @@ export default function Step1({ data, onChange }) {
                   placeholder="Decoding VIN..."
                 />
 
-                <label className="steps__field-label" style={{ marginTop: "1.2rem" }}>
+                <label className="steps__field-label !-mb-[10px]" style={{ marginTop: "1.2rem" }}>
                   Model
                 </label>
-                <p className="steps__field-hint">Pre-filled from VIN — update if needed</p>
+                <p className="steps__field-hint !mb-[0]">Pre-filled from VIN — update if needed</p>
                 <input
                   type="text"
                   className="steps__input"
@@ -182,35 +227,29 @@ export default function Step1({ data, onChange }) {
           </div>
         ) : (
           <div className="steps__tab-content">
-            <label className="steps__field-label">Year</label>
-            <select
-              className="steps__input steps__select"
+            <label className="steps__field-label !mb-[0]">Year</label>
+            <CustomSelect
               value={data.year || ""}
-              onChange={(e) => onChange({ year: e.target.value })}
-            >
-              <option value="" disabled>Select Year</option>
-              {YEARS.map((y) => <option key={y} value={y}>{y}</option>)}
-            </select>
+              onChange={(val) => onChange({ year: val })}
+              options={YEARS}
+              placeholder="Select Year"
+            />
 
-            <label className="steps__field-label" style={{ marginTop: "1.2rem" }}>Make</label>
-            <select
-              className="steps__input steps__select"
+            <label className="steps__field-label !mb-[0]" style={{ marginTop: "1.2rem" }}>Make</label>
+            <CustomSelect
               value={data.make || ""}
-              onChange={(e) => onChange({ make: e.target.value })}
-            >
-              <option value="" disabled>Select Make</option>
-              {MAKES.map((m) => <option key={m} value={m}>{m}</option>)}
-            </select>
+              onChange={(val) => onChange({ make: val })}
+              options={MAKES}
+              placeholder="Select Make"
+            />
 
-            <label className="steps__field-label" style={{ marginTop: "1.2rem" }}>Model</label>
-            <select
-              className="steps__input steps__select"
+            <label className="steps__field-label !mb-[0]" style={{ marginTop: "1.2rem" }}>Model</label>
+            <CustomSelect
               value={data.model || ""}
-              onChange={(e) => onChange({ model: e.target.value })}
-            >
-              <option value="" disabled>Select Model</option>
-              {MODELS.map((m) => <option key={m} value={m}>{m}</option>)}
-            </select>
+              onChange={(val) => onChange({ model: val })}
+              options={MODELS}
+              placeholder="Select Model"
+            />
           </div>
         )}
       </div>

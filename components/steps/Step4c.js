@@ -11,7 +11,7 @@ function CircleBox({ active }) {
 const SERVICE_ITEMS = [
   "Valve adjustment or major service",
   "Fork seals",
-  "Chain and sprockets",
+  "Chain or sprockets",
   "Brake pads or rotors",
   "Battery or charging system",
 ];
@@ -66,15 +66,11 @@ export default function Step4c({ data, onChange }) {
 
   return (
     <section className="steps__section">
-      <h1 className="steps__title">Service &amp; Maintenance Items</h1>
+      <h1 className="steps__title">Are any of these service or maintenance items due?</h1>
       <p className="steps__subtitle">Select all that apply.</p>
 
       <div className="steps__single-col">
         <div className="steps__form-card">
-          <p className="steps__field-label steps__field-label--lg">
-            Are any of the following maintenance items due or in need of attention?
-          </p>
-
           <div className="steps__checkbox-list">
             {SERVICE_ITEMS.map((item) => {
               const checked = selected.includes(item);

@@ -2,125 +2,109 @@ import { useState } from "react";
 
 const MAX = 5000;
 const STEP = 500;
-const MARKS = [0, 500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000];
 
-function TireSlider({ label, value, notSure, onChange, onToggleNotSure }) {
+function ToggleSwitch({ on, onToggle }) {
+  return (
+    <button
+      type="button"
+      role="switch"
+      aria-checked={on}
+      onClick={onToggle}
+      className={`steps__tire-toggle-switch${on ? " steps__tire-toggle-switch--on" : ""}`}
+    />
+  );
+}
+
+function TireCard({ label, value, unknown, onSlide, onToggleUnknown }) {
   const pct = (value / MAX) * 100;
 
   return (
-    <div className="steps__tire">
-      <p className="steps__tire-label">{label}</p>
-      <p className="steps__tire-hint">
-        Slide to estimate miles on the {label.toLowerCase()} (0 mi — 5,000+ mi)
-      </p>
-      <div className="steps__slider-row">
-        <div className="steps__slider-wrap">
-          {!notSure && (
-            <div
-              className="steps__slider-bubble"
-              style={{ left: `${pct}%` }}
-            >
-              {value.toLocaleString()} mi
-            </div>
-          )}
-          <input
-            type="range"
-            min={0}
-            max={MAX}
-            step={STEP}
-            value={notSure ? 0 : value}
-            disabled={notSure}
-            onChange={(e) => onChange(Number(e.target.value))}
-            className="steps__range"
-            style={{
-              "--pct": `${notSure ? 0 : pct}%`,
-            }}
-          />
-          <div className="steps__slider-marks">
-            {MARKS.map((m) => (
-              <span key={m} className="steps__slider-mark">
-                {m === 5000 ? "5,000+" : m === 0 ? "0" : m.toLocaleString()}
-              </span>
-            ))}
-          </div>
+    <div className={`steps__tire-card${unknown ? " steps__tire-card--unknown" : ""}`}>
+      {/* Header */}
+      <div className="steps__tire-card-header">
+        <span className="steps__tire-card-title">{label}</span>
+        <label className="steps__tire-toggle-row">
+          <span className={`steps__tire-toggle-label${unknown ? " steps__tire-toggle-label--on" : ""}`}>
+            I don&apos;t know
+          </span>
+          <ToggleSwitch on={unknown} onToggle={onToggleUnknown} />
+        </label>
+      </div>
+
+      {/* Value display */}
+      <div className="steps__tire-card-display">
+        {unknown ? (
+          <span className="steps__tire-unknown">Unknown</span>
+        ) : value > 0 ? (
+          <span className="steps__tire-value">{value.toLocaleString()} mi</span>
+        ) : (
+          <span className="steps__tire-slide-hint">Slide to set range</span>
+        )}
+      </div>
+
+      {/* Slider */}
+      <div className="steps__tire-card-slider">
+        <input
+          type="range"
+          min={0}
+          max={MAX}
+          step={STEP}
+          value={unknown ? 0 : value}
+          disabled={unknown}
+          onChange={(e) => onSlide(Number(e.target.value))}
+          className={`steps__range${unknown ? " steps__range--unknown" : ""}`}
+          style={{ "--pct": `${unknown ? 0 : pct}%` }}
+        />
+        <div className="steps__tire-card-marks">
+          <span>0</span>
+          <span>5,000+</span>
         </div>
-        <button
-          type="button"
-          className={`steps__not-sure-btn ${notSure ? "steps__not-sure-btn--active" : ""}`}
-          onClick={onToggleNotSure}
-        >
-          I&apos;m not sure
-        </button>
       </div>
     </div>
   );
 }
 
-export default function Step4d({ data, onChange, bikeLabel }) {
+export default function Step4d({ data, onChange }) {
   const [frontMiles, setFrontMiles] = useState(data.frontTireMiles ?? 0);
   const [rearMiles, setRearMiles] = useState(data.rearTireMiles ?? 0);
-  const [frontNotSure, setFrontNotSure] = useState(data.frontTireNotSure ?? false);
-  const [rearNotSure, setRearNotSure] = useState(data.rearTireNotSure ?? false);
+  const [frontUnknown, setFrontUnknown] = useState(data.frontTireNotSure ?? false);
+  const [rearUnknown, setRearUnknown] = useState(data.rearTireNotSure ?? false);
 
-  const handleFront = (val) => {
-    setFrontMiles(val);
-    onChange({ frontTireMiles: val });
-  };
+  const handleFront = (val) => { setFrontMiles(val); onChange({ frontTireMiles: val }); };
+  const handleRear = (val) => { setRearMiles(val); onChange({ rearTireMiles: val }); };
 
-  const handleRear = (val) => {
-    setRearMiles(val);
-    onChange({ rearTireMiles: val });
-  };
-
-  const toggleFrontNotSure = () => {
-    const next = !frontNotSure;
-    setFrontNotSure(next);
+  const toggleFront = () => {
+    const next = !frontUnknown;
+    setFrontUnknown(next);
     onChange({ frontTireNotSure: next });
   };
 
-  const toggleRearNotSure = () => {
-    const next = !rearNotSure;
-    setRearNotSure(next);
+  const toggleRear = () => {
+    const next = !rearUnknown;
+    setRearUnknown(next);
     onChange({ rearTireNotSure: next });
   };
 
   return (
     <section className="steps__section">
-      <h1 className="steps__title">
-        About how many miles are on your current tires?
-      </h1>
-      <p className="steps__subtitle">
-        Approximate is fine. This helps us understand remaining life.
-      </p>
+      <h1 className="steps__title">About how many miles are on the current tires?</h1>
+      <p className="steps__subtitle">Approximate is fine. This helps us understand remaining life.</p>
 
-      <div className="steps__single-col">
-        <div className="steps__form-card">
-          <p className="steps__field-label steps__field-label--lg">
-            Adjust the sliders for each tire below. Use the &ldquo;I&apos;m not
-            sure&rdquo; toggle if you don&apos;t know.
-          </p>
-
-          <TireSlider
-            label="Front Tire"
-            value={frontMiles}
-            notSure={frontNotSure}
-            onChange={handleFront}
-            onToggleNotSure={toggleFrontNotSure}
-          />
-
-          <TireSlider
-            label="Rear Tire"
-            value={rearMiles}
-            notSure={rearNotSure}
-            onChange={handleRear}
-            onToggleNotSure={toggleRearNotSure}
-          />
-
-          <p className="steps__tire-footer">
-            Step increments: 500 mi. Use the slider or tap &ldquo;I&apos;m not
-            sure&rdquo; if unknown.
-          </p>
-        </div>
+      <div className="steps__tire-grid">
+        <TireCard
+          label="Front tire"
+          value={frontMiles}
+          unknown={frontUnknown}
+          onSlide={handleFront}
+          onToggleUnknown={toggleFront}
+        />
+        <TireCard
+          label="Rear tire"
+          value={rearMiles}
+          unknown={rearUnknown}
+          onSlide={handleRear}
+          onToggleUnknown={toggleRear}
+        />
       </div>
     </section>
   );

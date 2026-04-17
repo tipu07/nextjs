@@ -1,12 +1,13 @@
 import { useRef } from "react";
 
 const MECHANICAL_ISSUES = [
-  "Engine or transmission issues",
-  "Electrical or electronic problems",
-  "Fluid leaks (oil, coolant, brake fluid)",
-  "Dash warning lights (check engine, ABS, etc.)",
-  "Doesn't start consistently",
-  "Unusual sounds or vibrations",
+  "Engine or transmission issue",
+  "Electrical issue",
+  "Fluid leak",
+  "Warning light on dash",
+  "Starting problem",
+  "Unusual noise or vibration",
+  "Overheating or stalling",
   "Other",
 ];
 
@@ -42,9 +43,7 @@ export default function Step4b({ data, onChange }) {
   return (
     <section className="steps__section">
       <h1 className="steps__title">What mechanical issues are you aware of?</h1>
-      <p className="steps__subtitle">
-        Select all that apply, or let us know if none of these fit.
-      </p>
+      <p className="steps__subtitle">Select all that apply.</p>
 
       <div className="steps__single-col">
         <div className="steps__checkbox-list">
@@ -78,7 +77,9 @@ export default function Step4b({ data, onChange }) {
                     placeholder="Describe the issue..."
                     value={otherText}
                     onClick={(e) => e.stopPropagation()}
-                    onChange={(e) => onChange({ otherText: e.target.value, noIssues: false })}
+                    onChange={(e) =>
+                      onChange({ otherText: e.target.value, noIssues: false })
+                    }
                   />
                 ) : (
                   <span className="steps__checkbox-label">{issue}</span>

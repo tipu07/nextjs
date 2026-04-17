@@ -7,6 +7,7 @@
   // flex-direction: column;
   background: var(--color-white);
   padding-bottom: 80px;
+  font-family: "Inter", sans-serif;
 
   & ~ footer {
     display: none;
@@ -53,7 +54,7 @@
   }
 
   .steps__title {
-    font-size: 32px;
+    font-size: 30px;
     font-weight: 700;
     color: var(--color-black);
     margin-bottom: 12px;
@@ -73,8 +74,8 @@
   /* ── Tabs ── */
   .steps__tabs {
     display: flex;
-    background: var(--color-tab-bg);
-    border-radius: 12px;
+    background: #f3f3f1;
+    border-radius: 16px;
     padding: 4px;
     margin-bottom: 20px;
     gap: 4px;
@@ -82,10 +83,14 @@
 
   .steps__tab {
     flex: 1;
-    padding: 13px 16px;
+    height: 48px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: none;
     border-radius: 12px;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 600;
     cursor: pointer;
     background: transparent;
@@ -97,7 +102,7 @@
     &--active {
       background: var(--color-white);
       color: var(--color-black);
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+      box-shadow: rgba(17, 17, 17, 0.08) 0 8px 24px;
     }
   }
 
@@ -114,8 +119,8 @@
     height: 56px;
     padding: 0 18px;
     background: var(--color-input-bg);
-    border: 1.5px solid var(--color-input-bdr);
-    border-radius: 12px;
+    border: 1px solid #d8d8de;
+    border-radius: 16px;
     font-size: 16px;
     font-family: inherit;
     color: var(--color-black);
@@ -123,12 +128,20 @@
     transition: border-color 0.2s;
 
     &::placeholder {
-      color: #bbb;
+      color: #8a8a93;
     }
 
     &:focus {
-      border-color: #999;
+      border-color: var(--color-red);
+      box-shadow:
+        rgba(242, 59, 45, 0.12) 0 0 0 3px,
+        inset var(--color-red) 0 0 0 1px;
     }
+  }
+  textarea.steps__input {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    height: auto;
   }
 
   /* ── Input with suffix (e.g. "miles") ── */
@@ -158,6 +171,9 @@
 
     &:focus {
       border-color: #22c55e;
+      box-shadow:
+        rgba(34, 197, 94, 0.12) 0 0 0 3px,
+        inset #22c55e 0 0 0 1px;
     }
   }
 
@@ -189,7 +205,7 @@
     font-size: 13px;
     color: #66666d;
     margin-top: 2px;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
 
   .steps__select {
@@ -203,6 +219,107 @@
 
     &:valid {
       color: var(--color-black);
+    }
+  }
+
+  /* ── Custom Select Dropdown ── */
+  .steps__custom-select {
+    position: relative;
+    width: 100%;
+  }
+
+  .steps__custom-select__trigger {
+    width: 100%;
+    height: 56px;
+    padding: 0 18px;
+    background: var(--color-input-bg);
+    border: 1px solid #c6c6cc;
+    border-radius: 16px;
+    font-size: 16px;
+    font-family: inherit;
+    color: #8a8a93;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+    transition:
+      border-color 0.2s,
+      box-shadow 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+
+    &--has-value {
+      color: var(--color-black);
+    }
+
+    &--open {
+      border-color: var(--color-red);
+      box-shadow:
+        rgba(242, 59, 45, 0.12) 0 0 0 3px,
+        inset var(--color-red) 0 0 0 1px;
+    }
+  }
+
+  .steps__custom-select__label {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .steps__custom-select__chevron {
+    flex-shrink: 0;
+    color: #999;
+    display: flex;
+    align-items: center;
+    transition: transform 0.2s;
+
+    &--open {
+      transform: rotate(180deg);
+    }
+  }
+
+  .steps__custom-select__dropdown {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    right: 0;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow:
+      0 4px 24px rgba(0, 0, 0, 0.12),
+      0 1px 4px rgba(0, 0, 0, 0.06);
+    z-index: 100;
+    max-height: 260px;
+    overflow-y: auto;
+    border: 1px solid #e8e8ec;
+  }
+
+  .steps__custom-select__option {
+    padding: 14px 18px;
+    font-size: 16px;
+    font-family: inherit;
+    color: var(--color-black);
+    cursor: pointer;
+    border-bottom: 1px solid #f0f0f2;
+    transition: background 0.1s;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &:hover {
+      background: #fafafa;
+    }
+
+    &--selected {
+      color: var(--color-red);
+      background: rgba(242, 59, 45, 0.05);
+
+      &:hover {
+        background: rgba(242, 59, 45, 0.08);
+      }
     }
   }
 
@@ -311,7 +428,7 @@
   font-size: 14px;
   font-weight: 600;
   color: var(--color-black);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   display: block;
 
   &--lg {
@@ -387,19 +504,20 @@
 /* ── Yes/No toggle ── */
 .steps__yesno {
   display: flex;
-  border: 1.5px solid var(--color-input-bdr);
-  border-radius: 12px;
+  border: 1px solid #d8d8de;
+  border-radius: 16px;
   overflow: hidden;
 }
 
 .steps__yesno-btn {
   flex: 1;
-  height: 56px;
+  height: 48px;
   padding: 0 20px;
   border: none;
   background: var(--color-white);
-  font-size: 16px;
+  font-size: 14px;
   font-family: inherit;
+  font-weight: 600;
   color: var(--color-gray-text);
   cursor: pointer;
   transition:
@@ -408,7 +526,7 @@
     color 0.2s;
 
   &:first-child {
-    border-right: 1.5px solid var(--color-input-bdr);
+    border-right: 1px solid #d8d8de;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
   }
@@ -421,7 +539,6 @@
     box-shadow: inset var(--color-red) 0 0 0 2px;
     background: var(--color-pink-bg);
     color: var(--color-black);
-    font-weight: 500;
     z-index: 1;
     border-radius: inherit;
   }
@@ -436,7 +553,7 @@
 
 .steps__rating-card {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 14px;
   width: 100%;
@@ -489,15 +606,15 @@
 }
 
 .steps__rating-title {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   color: var(--color-black);
 }
 
 .steps__rating-desc {
-  font-size: 13px;
+  font-size: 13.5px;
   color: var(--color-gray-text);
-  line-height: 1.45;
+  line-height: 1.4;
 }
 
 .steps__rating-radio {
@@ -532,10 +649,10 @@
   align-items: center;
   gap: 14px;
   min-height: 56px;
-  padding: 14px 20px;
-  border-radius: 12px;
+  padding: 10px 16px;
+  border-radius: 16px;
   background: var(--color-white);
-  border: 1.5px solid var(--color-input-bdr);
+  border: 1px solid var(--color-input-bdr);
   cursor: pointer;
   transition:
     border-color 0.2s,
@@ -552,7 +669,7 @@
   width: 22px;
   height: 22px;
   border-radius: 5px;
-  border: 1.5px solid #ccc;
+  border: 1px solid #ccc;
   background: var(--color-white);
   display: flex;
   align-items: center;
@@ -574,7 +691,8 @@
 }
 
 .steps__checkbox-label {
-  font-size: 16px;
+  font-size: 15px;
+  font-weight: 500;
   color: var(--color-black);
 }
 
@@ -583,7 +701,7 @@
   background: none;
   border: none;
   outline: none;
-  font-size: 16px;
+  font-size: 14px;
   font-family: inherit;
   color: var(--color-black);
   font-style: italic;
@@ -666,7 +784,7 @@
 
   .steps__checkbox-row--active & {
     border-color: var(--color-red);
-    background: var(--color-red);
+    background: var(--color-white);
   }
 }
 
@@ -675,6 +793,10 @@
   height: 10px;
   border-radius: 50%;
   background: var(--color-white);
+  .steps__checkbox-row--active & {
+    background: var(--color-red);
+    border-color: var(--color-red);
+  }
 }
 
 /* ── Yes / No loan toggle ── */
@@ -717,7 +839,7 @@
 .steps__amount-row {
   display: flex;
   gap: 10px;
-  align-items: center;
+  // align-items: center;
   margin-top: 10px;
 }
 
@@ -727,7 +849,7 @@
   align-items: center;
   gap: 8px;
   padding: 14px 16px;
-  border-radius: 12px;
+  border-radius: 16px;
   background: var(--color-input-bg);
   border: 1.5px solid var(--color-input-bdr);
   transition:
@@ -740,7 +862,7 @@
   }
 
   &--disabled {
-    opacity: 0.45;
+    background: #f3f3f1;
     pointer-events: none;
   }
 }
@@ -898,55 +1020,130 @@
   flex-shrink: 0;
 }
 
-/* ── Tire sliders (Step 4d) ── */
-.steps__tire {
-  margin-bottom: 30px;
-
-  &:last-of-type {
-    margin-bottom: 0;
-  }
-}
-
-.steps__tire-label {
-  font-size: 15px;
-  font-weight: 700;
-  font-style: italic;
-  color: var(--color-black);
-  margin-bottom: 4px;
-}
-
-.steps__tire-hint {
-  font-size: 12px;
-  color: var(--color-gray-text);
-  margin-bottom: 18px;
-}
-
-.steps__slider-row {
-  display: flex;
-  align-items: center;
+/* ── Tire cards (Step 4d) ── */
+.steps__tire-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 16px;
 }
 
-.steps__slider-wrap {
-  flex: 1;
-  position: relative;
-  padding-top: 30px;
+.steps__tire-card {
+  background: #fff;
+  border: 1.5px solid #e8e8ec;
+  border-radius: 16px;
+  padding: 20px 18px 16px;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
+
+  &--unknown {
+    border-color: var(--color-red);
+    background: rgba(242, 59, 45, 0.04);
+  }
 }
 
-.steps__slider-bubble {
-  position: absolute;
-  top: 0;
-  left: var(--bubble-left, 50%);
-  transform: translateX(-50%);
-  background: var(--color-red);
-  color: var(--color-white);
-  font-size: 12px;
-  font-weight: 600;
-  padding: 3px 8px;
-  border-radius: 999px;
-  white-space: nowrap;
-  pointer-events: none;
+.steps__tire-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
 }
+
+.steps__tire-card-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-black);
+}
+
+.steps__tire-toggle-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.steps__tire-toggle-label {
+  font-size: 12px;
+  color: var(--color-gray-text);
+  white-space: nowrap;
+
+  &--on {
+    color: var(--color-red);
+  }
+}
+
+.steps__tire-toggle-switch {
+  position: relative;
+  width: 40px;
+  height: 22px;
+  border-radius: 999px;
+  background: #ccc;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+  flex-shrink: 0;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #fff;
+    transition: transform 0.2s;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18);
+  }
+
+  &--on {
+    background: var(--color-red);
+
+    &::after {
+      transform: translateX(18px);
+    }
+  }
+}
+
+.steps__tire-card-display {
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.steps__tire-value {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--color-red);
+}
+
+.steps__tire-slide-hint {
+  font-size: 14px;
+  color: var(--color-gray-text);
+}
+
+.steps__tire-unknown {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--color-red);
+}
+
+.steps__tire-card-slider {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.steps__tire-card-marks {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--color-gray-text);
+}
+
+/* ── Range slider ── */
 
 .steps__range {
   -webkit-appearance: none;
@@ -967,6 +1164,22 @@
   &:disabled {
     opacity: 0.4;
     cursor: not-allowed;
+  }
+
+  &--unknown {
+    background: #d9d9d9;
+    cursor: not-allowed;
+    pointer-events: none;
+
+    &::-webkit-slider-thumb {
+      background: #bbb;
+      box-shadow: none;
+    }
+
+    &::-moz-range-thumb {
+      background: #bbb;
+      box-shadow: none;
+    }
   }
 
   &::-webkit-slider-thumb {
@@ -1006,8 +1219,8 @@
 .steps__not-sure-btn {
   flex-shrink: 0;
   padding: 10px 18px;
-  border-radius: 9px;
-  border: 1.5px solid var(--color-input-bdr);
+  border-radius: 16px;
+  border: 1px solid var(--color-input-bdr);
   background: var(--color-input-bg);
   font-size: 13px;
   font-family: inherit;
@@ -1020,8 +1233,8 @@
 
   &--active {
     border-color: var(--color-red);
-    background: var(--color-red);
-    color: var(--color-white);
+    background: var(--color-pink-bg);
+    color: var(--color-red);
   }
 }
 
@@ -1043,8 +1256,17 @@
   &::after {
     content: "";
     flex: 1;
-    height: 1px;
-    background: var(--color-efefef);
+    height: 2px;
+    background: #c6c6cc;
+  }
+  > span {
+    background: #f3f3f1;
+    color: #66666d;
+    font-size: 11px;
+    padding: 4px 12px;
+    border-radius: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
   }
 }
 

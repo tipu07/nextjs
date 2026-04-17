@@ -8,31 +8,19 @@ export default function Step6({ data, onChange, bikeLabel }) {
 
       <div className="steps__single-col">
         <div className="steps__form-card">
-          <div className="steps__contact-grid">
-            <div className="steps__contact-field">
-              <label className="steps__field-label">First Name</label>
-              <input
-                type="text"
-                className="steps__input steps__input--rect"
-                placeholder="First Name"
-                value={data.firstName || ""}
-                onChange={(e) => onChange({ firstName: e.target.value })}
-              />
-            </div>
-            <div className="steps__contact-field">
-              <label className="steps__field-label">Last Name</label>
-              <input
-                type="text"
-                className="steps__input steps__input--rect"
-                placeholder="Last Name"
-                value={data.lastName || ""}
-                onChange={(e) => onChange({ lastName: e.target.value })}
-              />
-            </div>
+          <div className="steps__contact-field">
+            <label className="steps__field-label !mb-[0]">First Name</label>
+            <input
+              type="text"
+              className="steps__input steps__input--rect"
+              placeholder="Enter your full name"
+              value={data.firstName || ""}
+              onChange={(e) => onChange({ firstName: e.target.value })}
+            />
           </div>
 
           <div className="steps__contact-field" style={{ marginTop: "2rem" }}>
-            <label className="steps__field-label">Phone Number</label>
+            <label className="steps__field-label !mb-[0]">Phone Number</label>
             <input
               type="tel"
               className="steps__input steps__input--rect"
@@ -43,7 +31,7 @@ export default function Step6({ data, onChange, bikeLabel }) {
           </div>
 
           <div className="steps__contact-field" style={{ marginTop: "2rem" }}>
-            <label className="steps__field-label">Email Address</label>
+            <label className="steps__field-label !mb-[0]">Email Address</label>
             <input
               type="email"
               className="steps__input steps__input--rect"
@@ -51,6 +39,19 @@ export default function Step6({ data, onChange, bikeLabel }) {
               value={data.email || ""}
               onChange={(e) => onChange({ email: e.target.value })}
             />
+          </div>
+
+          <div className="steps__contact-field" style={{ marginTop: "2rem" }}>
+            <label className="steps__field-label !mb-[0]">
+              Anything else we should know?
+            </label>
+            <textarea
+              name=""
+              id=""
+              rows={5}
+              placeholder="Add any details that might affect the offer..."
+              className="steps__input steps__input--rect"
+            ></textarea>
           </div>
         </div>
       </div>

@@ -1,9 +1,9 @@
 const COSMETIC_RATINGS = [
-  { stars: 5, label: "Excellent", desc: "Like-new condition. No visible damage or wear." },
-  { stars: 4, label: "Very Good", desc: "Light scratches only, bike has never been dropped." },
-  { stars: 3, label: "Good", desc: "Minor cosmetic damage, possibly from a light drop." },
-  { stars: 2, label: "Fair", desc: "Moderate damage that may need bodywork or repainting." },
-  { stars: 1, label: "Poor", desc: "Unrepaired crash damage, bent or broken parts." },
+  { stars: 5, label: "Excellent", desc: "Like-new condition. All original fairings and paint. Never dropped, scratched, or blemished." },
+  { stars: 4, label: "Very Good", desc: "Normal use only. Light swirls, belt marks, or small chips. Never dropped." },
+  { stars: 3, label: "Good", desc: "Minor cosmetic damage from a light drop, such as rash on bar ends or fairings. No cracked panels." },
+  { stars: 2, label: "Fair", desc: "Moderate drop or accident damage. Visible rash, cracks, or panels that may need replacement." },
+  { stars: 1, label: "Poor", desc: "Unrepaired crash damage. Bent parts, broken panels, or major cosmetic body issues." },
 ];
 
 function Stars({ count }) {
@@ -25,9 +25,6 @@ export default function Step3({ data, onChange }) {
   return (
     <section className="steps__section">
       <h1 className="steps__title">How would you rate the cosmetic condition?</h1>
-      <p className="steps__subtitle">
-        Paint, bodywork, plastics, and overall visual appearance.
-      </p>
 
       <div className="steps__single-col">
         <div className="steps__rating-list">

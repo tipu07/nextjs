@@ -870,4 +870,7 @@
       border-radius: 0.5rem;
     }
   }
+  .steps__tire-grid {
+    grid-template-columns: 1fr;
+  }
 }

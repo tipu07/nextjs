@@ -9,9 +9,9 @@ export default function Step2({ data, onChange }) {
           <p className="steps__field-hint">To the best of your knowledge</p>
           <div className="steps__input-wrap">
             <input
-              type="number"
+              type="text"
               className="steps__input steps__input--suffix"
-              placeholder="e.g. 12,000"
+              placeholder="Enter mileage"
               value={data.mileage || ""}
               onChange={(e) => onChange({ mileage: e.target.value })}
             />
@@ -24,7 +24,7 @@ export default function Step2({ data, onChange }) {
           <input
             type="text"
             className="steps__input"
-            placeholder="e.g. 90210"
+            placeholder="Enter Zip code"
             value={data.zip || ""}
             onChange={(e) => onChange({ zip: e.target.value })}
           />

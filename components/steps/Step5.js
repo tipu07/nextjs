@@ -38,7 +38,6 @@ export default function Step5({ data, onChange }) {
 
         {/* ── Card 1: Title type ── */}
         <div className="steps__form-card">
-          <p className="steps__field-label steps__field-label--lg">Title type</p>
           <div className="steps__option-list">
             {TITLE_TYPES.map((t) => {
               const active = data.titleType === t;
