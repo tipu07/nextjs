@@ -217,13 +217,6 @@ export default function Step1({ data, onChange }) {
               </>
             )}
 
-            <button
-              type="button"
-              className="steps__dont-know-link"
-              onClick={() => handleTab("make")}
-            >
-              Don&apos;t have your VIN? <span>Enter year and make instead</span>
-            </button>
           </div>
         ) : (
           <div className="steps__tab-content">
