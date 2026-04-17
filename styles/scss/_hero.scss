@@ -204,8 +204,8 @@
       border-radius: var(--radius-50);
       transition: background 0.15s;
       &:hover {
-        background: rgba(0, 0, 0, 0.7);
-        background: var(--color-white);
+        color: var(--color-red);
+        background: var(--color-efefef);
       }
     }
   }
