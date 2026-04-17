@@ -10,11 +10,12 @@ import Step4b from "../components/steps/Step4b";
 import Step4c from "../components/steps/Step4c";
 import Step4d from "../components/steps/Step4d";
 import Step5 from "../components/steps/Step5";
+import Step5b from "../components/steps/Step5b";
 import Step6 from "../components/steps/Step6";
 import Step7 from "../components/steps/Step7";
 
-const TOTAL_STEPS = 11;
-const PROGRESS = [9, 18, 27, 38, 49, 58, 67, 76, 85, 93, 100];
+const TOTAL_STEPS = 12;
+const PROGRESS = [8, 17, 25, 34, 42, 51, 59, 67, 76, 84, 93, 100];
 
 export default function StepsPage() {
   const [currentStep, setCurrentStep] = useState(1);
@@ -40,8 +41,10 @@ export default function StepsPage() {
     currentStep === 1
       ? "Get my offer"
       : currentStep === 10
-        ? "Submit for Appraisal"
-        : "Continue";
+        ? "Skip for now"
+        : currentStep === 11
+          ? "Submit for Appraisal"
+          : "Continue";
 
   return (
     <>
@@ -137,13 +140,19 @@ export default function StepsPage() {
             />
           )}
           {currentStep === 10 && (
+            <Step5b
+              data={formData}
+              onChange={handleChange}
+            />
+          )}
+          {currentStep === 11 && (
             <Step6
               data={formData}
               onChange={handleChange}
               bikeLabel={bikeLabel}
             />
           )}
-          {currentStep === 11 && <Step7 bikeLabel={bikeLabel} />}
+          {currentStep === 12 && <Step7 bikeLabel={bikeLabel} />}
         </Contain>
 
         {/* Footer Nav */}
